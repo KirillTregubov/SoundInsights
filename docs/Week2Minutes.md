@@ -19,7 +19,7 @@
 
 1. Work on the next actions we decided. We’ll say this is due next Wednesday before our next meeting. This way we can use the next meeting to report our progress and have time to run through the project to prepare for the next week’s worth of work.
 
-### Minutes:
+## Minutes:
 
 We started by talking about the dataset we want to use.
 
@@ -150,7 +150,7 @@ We set up the git repository with everyone in the meeting so that we wouldn’t 
 
 We decided that Burt will be leading the next meeting, Eddie will be taking notes and Kirill will be resting and we will alternate to continue the pattern
 
-### Things to follow up on for next meeting
+## Things to follow up on for next meeting
 
 - Assigned tasks
 - Figuring out deployment / container for database
