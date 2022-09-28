@@ -6,17 +6,10 @@
 
 <!-- PROJECT SHIELDS -->
 
-<!-- [![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url] -->
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue)](https://www.gnu.org/licenses/gpl-3.0)
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+<!-- [![Contributors](https://img.shields.io/github/contributors/KirillTregubov/csc302.svg?label=Contributors)](https://github.com/KirillTregubov/csc302/graphs/contributors) -->
 
-<!-- [![ License][license-shield]][license-url] -->
-
-<!-- PROJECT LOGO -->
-<br />
 <div align="center">
   <!-- <a href="https://github.com/KirillTregubov/csc302">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
@@ -30,8 +23,8 @@
     <a href="https://github.com/KirillTregubov/csc302"><strong>Explore the docs »</strong></a> -->
     <br />
     <br />
-    <a href="">View Demo</a>
-    ·
+    <!-- <a href="">View Demo</a>
+    · -->
     <a href="https://github.com/KirillTregubov/csc302/issues">Report Bug</a>
     ·
     <a href="https://github.com/KirillTregubov/csc302/issues">Request Feature</a>
@@ -56,11 +49,11 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
+    <!-- <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li> -->
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <!-- <li><a href="#contact">Contact</a></li> -->
+    <li><a href="#maintainers">Maintainers</a></li>
   </ol>
 </details>
 
@@ -71,8 +64,6 @@
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
 A project that uses a data source to demonstrate interesting and meaningful results and analyses.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 
@@ -86,34 +77,32 @@ A project that uses a data source to demonstrate interesting and meaningful resu
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
 ### Prerequisites
 
-Before running this project, please ensure you have [Node.js](https://nodejs.org/en/download/current/) version 18.x installed.
+Before running this project, please ensure you have [Node.js version 18.x](https://nodejs.org/en/download/current/) installed.
 
-This is an example of how to list things you need to use the software and how to install them.
-
-- npm
+<!-- - npm
   ```sh
   npm install npm@latest -g
-  ```
+  ``` -->
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
+
    ```sh
    git clone https://github.com/KirillTregubov/csc302.git
    ```
-3. Install NPM packages
+
+1. Navigate to the `app` directory
+
+   ```sh
+    cd csc302/app
+   ```
+
+1. Install dependencies
    ```sh
    npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API'
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -122,15 +111,65 @@ This is an example of how to list things you need to use the software and how to
 
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+### Available Scripts
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+All these scripts are executed inside the `app` subdirectory.
+
+- Run the app in development mode
+
+  ```sh
+  npm run dev
+  ```
+
+- Run the app in production mode
+
+  1. Build the app for production
+
+     ```sh
+     npm run build
+     ```
+
+  2. Locally preview production build
+     ```sh
+     npm run preview
+     ```
+
+- Format the code
+
+  ```sh
+  npm run format
+  ```
+
+  - Check the code linting with ESLint
+
+    ```sh
+    npm run lint:check
+    ```
+
+  - Lint the code with ESLint
+
+    ```sh
+    npm run lint
+    ```
+
+  - Check the code formatting with Prettier
+
+    ```sh
+    npm run prettier:check
+    ```
+
+  - Format the code with Prettier
+    ```sh
+    npm run prettier
+    ```
+
+<!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
 
-## Roadmap
+<!-- ## Roadmap
 
 - [ ] Feature 1
 - [ ] Feature 2
@@ -139,11 +178,11 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 See the [open issues](https://github.com/KirillTregubov/csc302/issues) for a full list of proposed features (and known issues).
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 <!-- CONTRIBUTING -->
 
-## Contributing
+<!-- ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -156,66 +195,24 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 <!-- LICENSE -->
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the GNU GPLv3. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
-
-## Contact
-
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
-Project Link: [https://github.com/KirillTregubov/csc302](https://github.com/KirillTregubov/csc302)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- ACKNOWLEDGMENTS -->
 
-## Acknowledgments
+## Maintainers
 
-- []()
-- []()
-- []()
+- [Kirill Tregubov](https://github.com/KirillTregubov)
+- [Eddie Shao](https://github.com/EddieShao)
+- [Burt Lau](https://github.com/burtlau)
+- [Roger Liu](https://github.com/pvtstaticvoid)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- ?style=for-the-badge -->
-
-[contributors-shield]: https://img.shields.io/github/contributors/KirillTregubov/csc302.svg
-[contributors-url]: https://github.com/KirillTregubov/csc302/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg
-[forks-url]: https://github.com/KirillTregubov/csc302/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg
-[stars-url]: https://github.com/KirillTregubov/csc302/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg
-[issues-url]: https://github.com/KirillTregubov/csc302/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg
-[license-url]: https://github.com/KirillTregubov/csc302/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
-[next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[next-url]: https://nextjs.org/
-[react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[react-url]: https://reactjs.org/
-[typescript]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=typescript&logoColor=3178C6
-[vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[vue-url]: https://vuejs.org/
-[angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[angular-url]: https://angular.io/
-[svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[svelte-url]: https://svelte.dev/
-[laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[laravel-url]: https://laravel.com
-[bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[bootstrap-url]: https://getbootstrap.com
-[jquery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[jquery-url]: https://jquery.com
