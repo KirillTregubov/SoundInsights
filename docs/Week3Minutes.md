@@ -1,14 +1,14 @@
 ## Week 3 Meeting Minutes
 
 Follow-up on last week's assigned tasks
-Kirill
-- JS frontend is set up.
-- Vite and linter is set up.
-Eddie
-- MySQL db on AWS (free for 12 months) is set up.
-- Created a demo app to show how to connect to it (using Node).
-Burt
-- Brainstormed a bunch of ideas for what kind of data we can get from Spotify.
+- Kirill
+  - JS frontend is set up.
+  - Vite and linter is set up.
+- Eddie
+  - MySQL db on AWS (free for 12 months) is set up.
+  - Created a demo app to show how to connect to it (using Node).
+- Burt
+  - Brainstormed a bunch of ideas for what kind of data we can get from Spotify.
 
 After much consideration, we decided to pivot from working with personal user data to “big” data datasets instead. Therefore, we ditched the idea of using the
 Spotify api because it doesn't offer much "big" data endpoints. Instead, we looked at using one of [these](https://research.atspotify.com/datasets/) datasets.
