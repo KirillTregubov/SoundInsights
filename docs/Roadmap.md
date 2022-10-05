@@ -1,12 +1,14 @@
 ## Roadmap
+Note: names are for who is in charge of the task. Anyone is encouraged to contribute.
 ### Milestone 1
-*Set up the database.*
-- Make the database interfaceable with our Python backend. **TBD**
-- Sanitize the database if needed. **TBD**
+*Implement the database and ensure queries are responded to with the proper data in a reasonable amount of time.*
+- Make the database interfaceable with our Python backend. **Roger**
+- Sanitize the database if needed. **Roger**
+- Figure how to store the data and make it programmatically accessible. **Eddie**
 ### Milestone 2
-*Set up automation and testing.*
-- Ensure our code will be linted, styled, and sufficiently tested. **TBD**
-- Set up automatic testing, building, and (maybe) deployment pipeline. **TBD**
+*Enforce automation and testing.*
+- Ensure our code is linted, styled, and sufficiently tested. **Burt**
+- Set up automatic testing, building, and (maybe) deployment pipeline. **Kirill**
 ### Milestone 3
 *Create a backend that runs ML on our data to answer interesting questions.*
 - Set up an ML model to use our data. **Roger**
