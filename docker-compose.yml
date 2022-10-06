@@ -12,7 +12,10 @@ services:
 
   frontend:
     container_name: frontend
-    build: ./frontend
+    build: 
+      context: /frontend
+      args:
+        workdir: /app
     environment:
       FLASK_DEBUG: 1
       FLASK_APP: app/app.py
