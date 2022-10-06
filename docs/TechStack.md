@@ -65,15 +65,19 @@ Cons
 - Most of our team is new to Flask, so we'll need to spend extra time learning it.
 
 We also considered [React JS](https://reactjs.org/) but rejected it because the added complexity of having a different language for our frontend was too much
-to justify  using React. Our app's focus is not on the UI, so we can't justify adding so much complexity just to make our UI look a bit better.
+to justify using React. Our app's focus is not on the UI, so we can't justify adding so much complexity just to make our UI look a bit better. We originally decided on React and created a [branch](https://github.com/KirillTregubov/csc302/tree/dev-js) to set it up. However, after pivoting our project to use ML on large data, we abandonded that branch and switched over to Flask.
 
 ## Container
 We decided to use [Docker](https://www.docker.com/).<br>
 <br>
 Pros
-- TODO
+- Separates frontend and backend environments.
+- We can install dependencies and run all environments in 1 command.
+- Allows us to package the final product as an image.
 
 Cons
-- TODO
+- Steep learning curve.
+- Hard to make a script to install environments on any operating system. Which scripts to run for which operating systems needs to be implemented manually in an if-else chain, making it impossible to write scripts for more than a few operating systems (if you have an obscure OS, you probably can't set up our app).
+- User needs to have Docker installed on their machine. Some other services are completed hosted online.
 
 We also considered [AWS](https://aws.amazon.com/) but rejected it because of 2 reasons. First, the services are not free. Second, hosting multiple containers together is very complicated. We'd rather use Docker which has compose.
