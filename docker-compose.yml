@@ -3,7 +3,12 @@ version: "3.8"
 services:
   backend:
     container_name: backend
-    build: /backend
+    build: 
+      context: /backend
+      args:
+        workdir: /app
+    volumes:
+      - ./backend:/app
 
   frontend:
     container_name: frontend
