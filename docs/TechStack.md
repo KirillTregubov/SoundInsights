@@ -1,8 +1,8 @@
 # Our Tech Stack
 [Data - Spotify Podcast Dataset](#data)<br>
 [Database - SQLite](#database)<br>
-[Backend - Python with Flask](#backend)<br>
-[Frontend - JS with React](#frontend)<br>
+[Backend - Flask](#backend)<br>
+[Frontend - React](#frontend)<br>
 [Container - Docker](#container)
 ## Data
 We decided to use the [Spotify Million Playlist Dataset](https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge)<br>
