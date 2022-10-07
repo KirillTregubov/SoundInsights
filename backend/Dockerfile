@@ -11,4 +11,4 @@ RUN pip3 install -r requirements.txt
 
 COPY . .${workdir}
 
-CMD python3 main.py
+CMD python3 src/main.py
