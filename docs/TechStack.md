@@ -2,7 +2,7 @@
 [Data - Spotify Podcast Dataset](#data)<br>
 [Database - SQLite](#database)<br>
 [Backend - Flask](#backend)<br>
-[Frontend - React](#frontend)<br>
+[Frontend - Vite](#frontend)<br>
 [Container - Docker](#container)
 ## Data
 We decided to use the [Spotify Million Playlist Dataset](https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge)<br>
@@ -50,17 +50,17 @@ Cons
 We also considered [Node JS](https://nodejs.org/en/) with [Typescript](https://www.typescriptlang.org/) but rejected it because it has less support for machine learning which will complicate our code. Another downside is that our backend team (Roger and Burt) in charge of handling the machine learning code is unfamiliar with Node JS and Typescript.
 
 ## Frontend
-We decided to use [React](https://reactjs.org/).<br>
+We decided to use [Vite](https://vitejs.dev/).<br>
 <br>
 Pros
 - Our code controls the entire frontend from page load onwards. Allows us to build dynamic UI components easier.
-- Better tooling to make UI. Will save us development time.
+- Simpler than other JS frameworks. Will save us development time.
 - Our connection between frontend and backend is through REST API, so a separate language has very little drawback in middleware complexity.
 
 Cons
 - Development is more complicated now that we have 2 separate languages in our project.
 
-We also considered [Flask](https://flask.palletsprojects.com/en/2.2.x/) but rejected it because the only way we can build UI is by sending static HTML responses. We plan to have a few dynamic UI components in our app, so having control of UI on the client side is important to us. Although it was tempting to have the same language for both our frontend and backend codebases, the limitations of Flask as a frontend library was too much to justify using it over React.
+We also considered [Flask](https://flask.palletsprojects.com/en/2.2.x/) but rejected it because the only way we can build UI is by sending static HTML responses. We plan to have a few dynamic UI components in our app, so having control of UI on the client side is important to us. Although it was tempting to have the same language for both our frontend and backend codebases, the limitations of Flask as a frontend library was too much to justify using it over Vite.
 
 ## Container
 We decided to use [Docker](https://www.docker.com/).<br>
@@ -76,4 +76,4 @@ Cons
 - Hard to make a script to install environments on any operating system. Which scripts to run for which operating systems needs to be implemented manually in an if-else chain, making it impossible to write scripts for more than a few operating systems (if you have an obscure OS, you probably can't set up our app).
 - User needs to have Docker installed on their machine. Some other services are completed hosted online.
 
-We also considered [AWS](https://aws.amazon.com/) but rejected it because of 2 reasons. First, the services are not free. Second, hosting multiple containers together is very complicated. We'd rather use Docker which has compose.
+We also [AWS](https://aws.amazon.com/) but rejected it because of 2 reasons. First, the services are not free. Second, hosting multiple containers together is very complicated. We'd rather use Docker which has compose.
