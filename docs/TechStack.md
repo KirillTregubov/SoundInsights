@@ -1,19 +1,19 @@
 # Our Tech Stack
 [Data - Spotify Podcast Dataset](#data)<br>
 [Database - SQLite](#database)<br>
-[Backend - Python](#backend)<br>
-[Frontend - Python with Flask](#frontend)<br>
+[Backend - Python with Flask](#backend)<br>
+[Frontend - JS with React](#frontend)<br>
 [Container - Docker](#container)
 ## Data
-We decided to use the [Spotify Podcast Dataset](https://podcastsdataset.byspotify.com/)<br>
+We decided to use the [Spotify Million Playlist Dataset](https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge)<br>
 <br>
 Pros
-- Lots of data and the data is very detailed. Allows us to answer interesting questions.
+- Comes directly from Spotify, so it's accurate and up-to-date.
+- There's lots of data (1 million playlists!).
 - Simple to download and set up. Just download a bunch of files.
 
 Cons
-- Might be too much data. We'll likely need to cut off some data.
-- We need to request access from Spotify. Depending on how long they take to respond, we might be delayed from making progress on the database.
+- Most of the data is metadata, which limits the interesting questions we can ask about the data.
 
 We considered these other options:<br>
 <br>
@@ -21,11 +21,10 @@ Various music datasets on [Kaggle](https://www.kaggle.com/search?q=music)
 - Rejected because data can be submitted by anyone on the internet. That means data on Kaggle is likely outdated and/or contains errors.
 
 [Spotify Web API](https://developer.spotify.com/documentation/web-api/)
-- Rejected because of rate limits and limited public domain data. We're only allowed a certain amount of requests every 30 seconds, making real-time large data
-computation impossible. The only public domain data available to us is metadata on songs, artists, and playlists.
+- Rejected because of rate limits and limited public domain data. We're only allowed a certain amount of requests every 30 seconds, making real-time large data computation impossible. The only public domain data available to us is metadata on songs, artists, and playlists.
 
-[Spotify Million Playlist Dataset](https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge)
-- Rejected because like the Spotify API, it only contains metadata about playlists. We won't be able to answer any meaningful questions with this dataset.
+[Spotify Podcast Dataset](https://podcastsdataset.byspotify.com/)
+- Rejected because it's taking too long for Spotify to approve our request to use their dataset. We'd rather just use a different viable dataset than delay the project by several weeks just to wait for Spotify to approve our request.
 
 ## Database
 We decided to use [SQLite](https://www.sqlite.org/index.html).<br>
@@ -35,44 +34,41 @@ Pros
 - It has native integration with Python. Saves us development time.
 
 Cons
-- SQLite's concurrency issues will cause problems if we decide to host our app on a server. If we ever want to expand to a client-server app, we'll need to switch
-to a different database.
+- SQLite's concurrency issues will cause problems if we decide to host our app on a server. If we ever want to expand to a client-server app, we'll need to switch to a different database.
 
-We also considered [MySQL](https://www.mysql.com/) but rejected it because it requires us to host it on a server. Our app will be locally run, so having our
-database on a server will make development and performance worse with no benefit over a server-less database like SQLite.
+We also considered [MySQL](https://www.mysql.com/) but rejected it because it requires us to host it on a server. Our app will be locally run, so having our database on a server will make development and performance worse with no benefit over a server-less database like SQLite.
 
 ## Backend
-We decided to use [Python](https://www.python.org/).<br>
+We decided to use [Flask](https://flask.palletsprojects.com/en/2.2.x/).<br>
 Pros
-- Fast at crunching numbers. Our app will be doing lots of that.
-- Has built-in support for machine learning which our app will use.
+- Python is fast at crunching numbers. Our app will be doing lots of that.
+- Python has built-in support for machine learning which our app will use.
 
 Cons
 - Dynamic typing will make complex code structures hard to manage. We'll need to emphasize code simplicity over design.
 
-We also considered [Node JS](https://nodejs.org/en/) with [Typescript](https://www.typescriptlang.org/) but rejected it because it has less support for machine
-learning which will complicate our code. Another downside is that our backend team (Roger and Burt) in charge of handling the machine learning code is unfamiliar
-with Node JS and Typescript.
+We also considered [Node JS](https://nodejs.org/en/) with [Typescript](https://www.typescriptlang.org/) but rejected it because it has less support for machine learning which will complicate our code. Another downside is that our backend team (Roger and Burt) in charge of handling the machine learning code is unfamiliar with Node JS and Typescript.
 
 ## Frontend
-We decided to use Python with [Flask](https://flask.palletsprojects.com/en/2.2.x/).<br>
+We decided to use [React](https://reactjs.org/).<br>
 <br>
 Pros
-- Same language as our backend. Makes connecting to our backend easy, saves development time, and keeps our build chain simple.
-- Flask's UI library is minimal. It's easy to use but hard to make complicated UI. Our app's main focus is not on UI, so this tradeoff is perfect for us.
+- Our code controls the entire frontend from page load onwards. Allows us to build dynamic UI components easier.
+- Better tooling to make UI. Will save us development time.
+- Our connection between frontend and backend is through REST API, so a separate language has very little drawback in middleware complexity.
 
 Cons
-- Most of our team is new to Flask, so we'll need to spend extra time learning it.
+- Development is more complicated now that we have 2 separate languages in our project.
 
-We also considered [React JS](https://reactjs.org/) but rejected it because the added complexity of having a different language for our frontend was too much
-to justify using React. Our app's focus is not on the UI, so we can't justify adding so much complexity just to make our UI look a bit better. We originally decided on React and created a [branch](https://github.com/KirillTregubov/csc302/tree/dev-js) to set it up. However, after pivoting our project to use ML on large data, we abandonded that branch and switched over to Flask.
+We also considered [Flask](https://flask.palletsprojects.com/en/2.2.x/) but rejected it because the only way we can build UI is by sending static HTML responses. We plan to have a few dynamic UI components in our app, so having control of UI on the client side is important to us. Although it was tempting to have the same language for both our frontend and backend codebases, the limitations of Flask as a frontend library was too much to justify using it over React.
 
 ## Container
 We decided to use [Docker](https://www.docker.com/).<br>
 <br>
 Pros
 - Separates frontend and backend environments.
-- We can install dependencies and run all environments in 1 command.
+- We can install dependencies and run all environments in one command.
+- Docker Compose can connect frontend and backend environments easily, even when they're 2 different languages.
 - Allows us to package the final product as an image.
 
 Cons
