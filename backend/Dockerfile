@@ -4,11 +4,11 @@ FROM python:3.10-slim-buster
 
 ARG workdir=
 
-WORKDIR ${workdir}
+WORKDIR ${workdir}/src
 
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
 COPY . .${workdir}
 
-CMD python3 src/main.py
+CMD python3 main.py
