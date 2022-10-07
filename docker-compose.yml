@@ -3,8 +3,8 @@ version: "3.8"
 services:
   backend:
     container_name: backend
-    build: 
-      context: /backend
+    build:
+      context: ./backend
       args:
         workdir: /app
     volumes:
@@ -12,13 +12,13 @@ services:
 
   frontend:
     container_name: frontend
-    build: 
-      context: /frontend
+    build:
+      context: ./frontend
       args:
         workdir: /app
     environment:
       FLASK_DEBUG: 1
       FLASK_APP: app/app.py
-    ports: ['5000:5000']
+    ports: [ '5000:5000' ]
     volumes:
       - ./frontend:/app
