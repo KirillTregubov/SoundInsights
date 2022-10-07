@@ -79,11 +79,11 @@ A project that uses a data source to demonstrate interesting and meaningful resu
 
 ### Prerequisites
 
-Before running this project, please ensure you have [Node.js version 18.x](https://nodejs.org/en/download/current/) installed.
+Before running this project, please ensure you have [Node.js version 18.x](https://nodejs.org/en/download/current/) installed. Next, make sure you have `yarn` installed:
 
 <!-- - npm
   ```sh
-  npm install npm@latest -g
+  npm install yarn -g
   ``` -->
 
 ### Installation
@@ -94,15 +94,15 @@ Before running this project, please ensure you have [Node.js version 18.x](https
    git clone https://github.com/KirillTregubov/csc302.git
    ```
 
-1. Navigate to the `app` directory
+1. Navigate to the `frontend` directory
 
    ```sh
-    cd csc302/app
+   frontend csc302/app
    ```
 
 1. Install dependencies
    ```sh
-   npm install
+   yarn
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -118,7 +118,7 @@ All these scripts are executed inside the `app` subdirectory.
 - Run the app in development mode
 
   ```sh
-  npm run dev
+  yarn dev
   ```
 
 - Run the app in production mode
@@ -126,41 +126,47 @@ All these scripts are executed inside the `app` subdirectory.
   1. Build the app for production
 
      ```sh
-     npm run build
+     yarn build
      ```
 
   2. Locally preview production build
      ```sh
-     npm run preview
+     yarn preview
      ```
+
+- Run tests
+
+  ```sh
+  yarn test
+  ```
 
 - Format the code
 
   ```sh
-  npm run format
+  yarn format
   ```
 
   - Check the code linting with ESLint
 
     ```sh
-    npm run lint:check
+    yarn lint:check
     ```
 
   - Lint the code with ESLint
 
     ```sh
-    npm run lint
+    yarn lint
     ```
 
   - Check the code formatting with Prettier
 
     ```sh
-    npm run prettier:check
+    yarn prettier:check
     ```
 
   - Format the code with Prettier
     ```sh
-    npm run prettier
+    yarn prettier
     ```
 
 <!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
