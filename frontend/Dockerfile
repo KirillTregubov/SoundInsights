@@ -1,14 +1,23 @@
 # syntax=docker/dockerfile:1
 
-FROM python:3.10-slim-buster
+FROM node:18
 
 ARG workdir=
 
 WORKDIR ${workdir}
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+# COPY package.json ./
+# COPY package-lock.json ./
 
-COPY . .${workdir}
+ENV NODE_ENV=development
+ENV NPM_CONFIG_PRODUCTION=false
+ENV YARN_PRODUCTION=false
 
-CMD python3 -m flask run --host=0.0.0.0 --port=5000
+COPY package.json .
+COPY yarn.lock .
+
+RUN yarn
+
+CMD ["yarn", "dev", "--host", "0.0.0.0"]
+
+# CMD sleep infinity
