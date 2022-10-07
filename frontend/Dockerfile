@@ -19,5 +19,3 @@ COPY yarn.lock .
 RUN yarn
 
 CMD ["yarn", "dev", "--host", "0.0.0.0"]
-
-# CMD sleep infinity
