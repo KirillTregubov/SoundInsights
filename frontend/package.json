@@ -1,7 +1,7 @@
 {
   "name": "app",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,15 +12,19 @@
     "lint:check": "npx eslint src",
     "lint": "npm run lint:check -- --fix",
     "prettier:check": "npx prettier src --check",
-    "prettier": "npm run prettier:check -- --write"
+    "prettier": "npm run prettier:check -- --write",
+    "test": "vitest"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "@types/react-test-renderer": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
     "@vitejs/plugin-react": "^2.1.0",
@@ -31,9 +35,12 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "happy-dom": "^7.1.1",
     "prettier": "^2.7.1",
+    "react-test-renderer": "^18.2.0",
     "typescript": "^4.6.4",
     "vite": "^3.1.0",
-    "vite-tsconfig-paths": "^3.5.1"
+    "vite-tsconfig-paths": "^3.5.1",
+    "vitest": "^0.23.4"
   }
 }

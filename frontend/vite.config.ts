@@ -4,8 +4,13 @@ import react from '@vitejs/plugin-react'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
+  plugins: [react(), tsconfigPaths()],
   server: {
     port: 5000
   },
-  plugins: [react(), tsconfigPaths()]
+  test: {
+    globals: true,
+    environment: 'happy-dom',
+    setupFiles: './tests/setup.ts'
+  }
 })
