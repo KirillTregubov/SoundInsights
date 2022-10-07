@@ -79,12 +79,19 @@ A project that uses a data source to demonstrate interesting and meaningful resu
 
 ### Prerequisites
 
-Before running this project, please ensure you have [Node.js version 18.x](https://nodejs.org/en/download/current/) installed. Next, make sure you have `yarn` installed:
+Before running this project, please ensure you have [Node.js version 18.x](https://nodejs.org/en/download/current/) installed.
 
-<!-- - npm
-  ```sh
-  npm install yarn -g
-  ``` -->
+You can check by running:
+
+```sh
+node --version
+```
+
+Next, make sure you have `yarn` installed:
+
+```sh
+npm install yarn -g
+```
 
 ### Installation
 
