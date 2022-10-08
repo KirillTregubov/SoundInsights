@@ -20,17 +20,27 @@ docker info
 
 ## Usage
 
+### Linux and macOS
+
 To run our application, execute the following command:
 
 ```sh
-docker compose up --build
+sh ./run-dev.sh
 ```
 
 To run tests for the application, execute:
 
 ```sh
-docker compose --file docker-compose-test.yml up --build
+sh ./run-tests.sh
 ```
+
+If you run into issues related to permissions for running the scripts, execute:
+
+```sh
+sudo chmod 755 ./<script>.sh
+```
+
+Replacing `<script>` with the script name.
 
 ## A Small Example
 
