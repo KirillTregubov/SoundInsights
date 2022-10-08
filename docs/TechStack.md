@@ -1,5 +1,5 @@
 # Our Tech Stack
-[Data - Spotify Podcast Dataset](#data)<br>
+[Data - Spotify Million Playlist Dataset](#data)<br>
 [Database - SQLite](#database)<br>
 [Backend - Flask](#backend)<br>
 [Frontend - Vite](#frontend)<br>
