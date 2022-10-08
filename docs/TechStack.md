@@ -41,14 +41,17 @@ We decided to use [SQLite](https://www.sqlite.org/index.html).
 We considered [MySQL](https://www.mysql.com/) but rejected it because it requires us to host it on a server. Our app will be locally run, so having our database on a server will make development and performance worse with no benefit over a server-less database like SQLite.
 
 ## Backend
-We decided to use [Flask](https://flask.palletsprojects.com/en/2.2.x/).<br>
-Pros
+We decided to use Python and [Flask](https://flask.palletsprojects.com/en/2.2.x/) for exposing the backend as an API.
+
+### Pros
 - Python is fast at crunching numbers. Our app will be doing lots of that.
 - Python has built-in support for machine learning which our app will use.
+- Flask is considered ideal for building machine learning APIs, which we will be doing.
 
-Cons
+### Cons
 - Dynamic typing will make complex code structures hard to manage. We'll need to emphasize code simplicity over design.
 
+### Alternatives
 We also considered [Node.js](https://nodejs.org/en/) with [TypeScript](https://www.typescriptlang.org/) but rejected it because it has less support for machine learning which will complicate our code and is less performant. Another downside is that our backend team (Roger and Burt) in charge of handling the machine learning code is unfamiliar with both Node.js and TypeScript.
 
 ## Frontend
