@@ -10,12 +10,18 @@ Install Docker using:
 ```sh
 bash install-docker.sh
 ```
+and verify it's installed using:
+```sh
+docker info
+```
+<br>
 
 Run the Docker containers using:
 
 ```sh
 docker compose up --build
 ```
+<br>
 
 Test our project using:
 ```sh
