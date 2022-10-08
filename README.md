@@ -6,32 +6,36 @@
 
 ## Installation
 
-Install Docker using:
+> Windows requires [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) to be installed to use Docker.
+
+Install the development environment by executing the following command in a shell:
 
 ```sh
-bash install-docker.sh
+bash run-install.sh
 ```
 
-and verify it's installed using:
+Once the script finishes running, open Docker Desktop and complete setup. Once it shows `Engine running`, you can verify it works by executing:
 
 ```sh
 docker info
 ```
 
+If the script fails to run on your machine, please [install Docker Desktop](https://docs.docker.com/desktop/) yourself.
+
 ## Usage
 
 ### Linux and macOS
 
-To run our application, execute the following command:
+To build our application and run it in development mode, execute the following command:
 
 ```sh
-sh ./run-dev.sh
+bash run-build.sh
 ```
 
 To run tests for the application, execute:
 
 ```sh
-sh ./run-tests.sh
+bash run-tests.sh
 ```
 
 If you run into issues related to permissions for running the scripts, execute:
