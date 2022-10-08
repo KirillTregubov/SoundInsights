@@ -6,8 +6,14 @@ The full dataset is from the "Spotify Million Playlist Dataset Challenge" and ca
 
 ## Usage
 
-Run the Docker containers using:
+To run the application, run the following command:
 
 ```sh
 docker compose up --build
+```
+
+To run tests for the application, run:
+
+```sh
+docker compose --file docker-compose-test.yml up --build
 ```
