@@ -1,4 +1,5 @@
 # Custom stuff
+.DS_Store
 *.db
 
 # Byte-compiled / optimized / DLL files
@@ -130,3 +131,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Docker install files
+get-docker.sh
+Docker.dmg
+installer.exe

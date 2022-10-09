@@ -1,0 +1,26 @@
+version: "3.8"
+
+name: "csc302-tests"
+
+services:
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.test
+      args:
+        workdir: /app
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.test
+      args:
+        workdir: /app
+    volumes:
+      - ./frontend:/app
+      - node_modules:/app/node_modules
+
+volumes:
+  node_modules:
