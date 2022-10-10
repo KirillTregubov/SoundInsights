@@ -1,9 +1,8 @@
 #!/bin/sh
-# Tested on macOS 11.7
-# TODO: Add Windows print and Test again
-# TODO: Test on Linux
+# Tested on macOS 11.7 and Windows 10 21H2
+
 if [ -x "$(command -v docker)" ]; then
-  printf "\n\033[31mError: \033[1;36mDocker \033[0;31mis already installed\033[0m\n\n" >&2
+  printf "\n\033[31mError: \033[1;36mDocker \033[0;31mis already installed\033[0m\n" >&2
   exit 1
 fi
 
@@ -34,13 +33,6 @@ case "${uname}" in
         sudo hdiutil detach /Volumes/Docker
         rm Docker.dmg
         printf "\n\033[1;32mInstallation complete\033[0m\n";;
-    CYGWIN*|MINGW*)
-        # printf "\n\033[32mDownloading \033[1;36mDocker\033[0m\n" # TODO: FIXME
-        curl https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe -o installer.exe
-        # printf "\n\033[32mInstalling \033[1;36mDocker\033[0m\n" # TODO: FIXME
-        start /wait "installer.exe" install
-        #printf "\n\033[1;32mInstallation complete\033[0m\n"
-        ;;
     *)
         echo "Unsupported system: ${uname} - Please install Docker on your own at https://docs.docker.com/desktop/"
 esac

@@ -6,7 +6,7 @@
 
 ## Installation
 
-> Windows requires [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) to be installed to use Docker.
+### Linux and macOS
 
 Install the development environment by executing the following command in a shell:
 
@@ -14,10 +14,14 @@ Install the development environment by executing the following command in a shel
 bash run-install.sh
 ```
 
-Once the script finishes running, open Docker Desktop and complete setup. Once it shows `Engine running`, you can verify it works by executing:
+> macOS: Once the script finishes running, open Docker Desktop and complete setup.
+
+### Windows
+
+On Windows, install the development environment by executing:
 
 ```sh
-docker info
+run-install.bat
 ```
 
 If the script fails to run on your machine, please [install Docker Desktop](https://docs.docker.com/desktop/) yourself.
