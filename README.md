@@ -16,6 +16,8 @@ bash run-install.sh
 
 > macOS: Once the script finishes running, open Docker Desktop and complete setup.
 
+If the script fails to run on your machine, please [install Docker Desktop](https://docs.docker.com/desktop/) yourself.
+
 ### Windows
 
 On Windows, install the development environment by executing:
@@ -24,7 +26,7 @@ On Windows, install the development environment by executing:
 run-install.bat
 ```
 
-If the script fails to run on your machine, please [install Docker Desktop](https://docs.docker.com/desktop/) yourself.
+> Once the script finishes running, open Docker Desktop and complete setup.
 
 ## Usage
 
