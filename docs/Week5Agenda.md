@@ -5,7 +5,7 @@ Members: Kirill, Eddie, Burt, Roger
 
 ## Before the meeting
 
-- Each memeber should familiarize themselves with the Assignment 2 handout posted by the professor.
+- Each member should familiarize themselves with the Assignment 2 handout posted by the professor.
 
 ## During the meeting
 
