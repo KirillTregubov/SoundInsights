@@ -40,6 +40,6 @@ Members: Kirill, Eddie, Burt, Roger
 
 ## After the meeting
 
-- Each member should do some research / start the sub-tasks assigned to them and
+- Each member should do some research / start the sub-tasks assigned to them and contact the rest of the team if they run into issues / think they cannot accomplish everything within the span of a week
 
 - We will discuss all the details related to the milestones we are prioritizing in the next meeting.
