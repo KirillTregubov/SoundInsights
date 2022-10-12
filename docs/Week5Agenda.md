@@ -26,7 +26,7 @@ Members: Kirill, Eddie, Burt, Roger
 1. Discuss details related to the Assignment 2 handout, including: (est. 15 min)
 
    - Which parts of the project we can automate
-   - What our heuristic for prioritizing tasks over one-another looks like
+   - What our criteria for prioritizing tasks over one-another looks like
    - What is our acceptance criteria for sub-tasks, should we have a few for different "types" of tasks (code, research, integration)
 
 1. Come up with the milestones we want to focus on and concrete features we intend to implement within the next three weeks (duration of Assignment 2) and separate them into sub-tasks accomplishable within a week. Assign each tasks to a "task leader". (est. 45 min)
