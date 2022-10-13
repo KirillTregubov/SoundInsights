@@ -13,6 +13,8 @@ case "${uname}" in
         printf "\033[32mDownloading \033[1;36mDocker\033[0m\n"
         curl -fsSL https://get.docker.com -o get-docker.sh
         printf "\n\033[32mInstalling \033[1;36mDocker\033[0m\n"
+        apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EA8CACC073C3DB2A
+        apt-get remove docker docker-engine docker.io containerd runc
         sh get-docker.sh
         printf "\n\033[1;32mInstallation complete\033[0m\n";;
     Darwin*)
