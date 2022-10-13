@@ -28,4 +28,4 @@ start /wait "" "Docker Desktop Installer.exe"
 del "Docker Desktop Installer.exe"
 
 echo:
-echo [32mPlease open [92mDocker Desktop[32m to complete installation. The environment is ready when the Engine is running.[0m
+echo [32mPlease open the [92mDocker Desktop[32m app to complete installation. The environment is ready when the Engine is running.[0m
