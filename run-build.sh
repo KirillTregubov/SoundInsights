@@ -1,7 +1,7 @@
 #!/bin/sh
 printf "\n\033[32mRunning \033[1mDevelopment \033[0;32menvironment\033[0m\n"
 
-if ! docker -v >null 2>&1; then
+if ! docker -v &>/dev/null 2>&1; then
   printf "\n\033[31mError: \033[1;36mDocker \033[0;31mis not installed or running\033[0m\n" >&2
   exit 1
 fi
