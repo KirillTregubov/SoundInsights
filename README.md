@@ -38,7 +38,29 @@ run-install.bat
 
 ## Usage
 
-### Linux and macOS
+### Linux
+
+To build our application and run it in development mode, execute the following command:
+
+```sh
+sudo bash run-build.sh
+```
+
+To run tests for the application, execute:
+
+```sh
+sudo bash run-tests.sh
+```
+
+If you run into issues related to permissions for running the scripts, execute:
+
+```sh
+sudo chmod 755 ./<script>.sh
+```
+
+Replacing `<script>` with the script name.
+
+### macOS
 
 To build our application and run it in development mode, execute the following command:
 
@@ -51,8 +73,6 @@ To run tests for the application, execute:
 ```sh
 bash run-tests.sh
 ```
-
-> On Linux, remember to add `sudo` before every command above.
 
 If you run into issues related to permissions for running the scripts, execute:
 
