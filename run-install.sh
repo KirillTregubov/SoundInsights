@@ -32,7 +32,7 @@ case "${uname}" in
         sudo /Volumes/Docker/Docker.app/Contents/MacOS/install
         sudo hdiutil detach /Volumes/Docker
         rm Docker.dmg
-        printf "\n\033[1;32mInstallation complete\033[0m\n";;
+        printf "\n\033[1;32mInstallation complete! Please open the Docker Desktop app to finish setup.\033[0m\n";;
     *)
         echo "Unsupported system: ${uname} - Please install Docker on your own at https://docs.docker.com/desktop/"
 esac
