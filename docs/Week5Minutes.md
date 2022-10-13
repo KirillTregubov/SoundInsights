@@ -37,7 +37,7 @@
 
 - Eddie
   - Specify how to interface with the Python script (i.e. what am I sending the Python script and what do I want back from the Python script).
-  - Implement function that sends POST requests.
+  - Implement endpoint that handles GET requests and responds with data.
 
 - Kirill
   - Configure Docker network and integrate backend and frontend comms.
