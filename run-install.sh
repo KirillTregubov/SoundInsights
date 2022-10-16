@@ -13,6 +13,8 @@ case "${uname}" in
         printf "\033[32mDownloading \033[1;36mDocker\033[0m\n"
         curl -fsSL https://get.docker.com -o get-docker.sh
         printf "\n\033[32mInstalling \033[1;36mDocker\033[0m\n"
+        apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EA8CACC073C3DB2A
+        apt-get remove docker docker-engine docker.io containerd runc
         sh get-docker.sh
         printf "\n\033[1;32mInstallation complete\033[0m\n";;
     Darwin*)
@@ -32,7 +34,7 @@ case "${uname}" in
         sudo /Volumes/Docker/Docker.app/Contents/MacOS/install
         sudo hdiutil detach /Volumes/Docker
         rm Docker.dmg
-        printf "\n\033[1;32mInstallation complete! Please open the Docker Desktop app to finish setup.\033[0m\n";;
+        printf "\n\033[1;32mPlease open the Docker Desktop app to complete installation. The environment is ready when the Engine is running.\033[0m\n";;
     *)
         echo "Unsupported system: ${uname} - Please install Docker on your own at https://docs.docker.com/desktop/"
 esac

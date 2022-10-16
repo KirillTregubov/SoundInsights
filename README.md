@@ -22,15 +22,21 @@
 
 ## Installation
 
-### Linux and macOS
+### Linux
+
+Install the development environment by executing the following command in a shell:
+
+```sh
+sudo bash run-install.sh
+```
+
+### macOS
 
 Install the development environment by executing the following command in a shell:
 
 ```sh
 bash run-install.sh
 ```
-
-If the script fails to run on your machine, please [install Docker Desktop](https://docs.docker.com/desktop/) yourself.
 
 ### Windows
 
@@ -40,9 +46,35 @@ On Windows, install the development environment by executing:
 run-install.bat
 ```
 
+### Troubleshooting
+
+If the script fails to run on your machine, please [install Docker Desktop](https://docs.docker.com/desktop/) yourself.
+
 ## Usage
 
-### Linux and macOS
+### Linux
+
+To build our application and run it in development mode, execute the following command:
+
+```sh
+sudo bash run-build.sh
+```
+
+To run tests for the application, execute:
+
+```sh
+sudo bash run-tests.sh
+```
+
+If you run into issues related to permissions for running the scripts, execute:
+
+```sh
+sudo chmod 755 ./<script>.sh
+```
+
+Replacing `<script>` with the script name.
+
+### macOS
 
 To build our application and run it in development mode, execute the following command:
 
