@@ -1,20 +1,13 @@
 import sqlite3
 import os
 import json
-
-from flask import Flask, request, jsonify, g
+from flask import Flask, make_response, jsonify, g
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 
 DATABASE = 'database.db'
-
-# TEMP - Remove database.db if it exists
-try:
-    os.remove("database.db")
-except:
-    pass
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -23,17 +16,22 @@ def get_db():
     return db
 
 @app.teardown_appcontext
-def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
+def cleanup(exception):
+	db = getattr(g, '_database', None)
+	if db is not None:
+		db.close()
 
 def db_demo():
+	try:
+		os.remove("database.db")
+	except:
+		pass
+
 	db = get_db()
 	cur = db.cursor()
 
 	# Load a small slice of the actual dataset.
-	with open("dataset_small.json", "r") as read_file:
+	with open("../data/dataset_small.json", "r") as read_file:
 		data_small = json.load(read_file)
 
 	# Create tables.
@@ -70,4 +68,10 @@ def db_demo():
 
 	# Make a sample query.
 	res = cur.execute("SELECT avg(num_tracks) FROM playlists WHERE num_followers > 10")
-	print(f"The average number of tracks in playlists with more than 10 followers is {res.fetchone()[0]}.")
+	return jsonify({"query": "average number of tracks in playlists with more than 10 followers", "result": res.fetchone()[0]})
+
+@app.route("/")
+def hello_world():
+	response = make_response(jsonify({"message": "Hello, World!"}), 200)
+	response.headers["Content-Type"] = "application/json"
+	return response

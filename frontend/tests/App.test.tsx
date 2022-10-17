@@ -10,7 +10,7 @@ describe('App.tsx', () => {
 
   test('contains desired title', () => {
     const { getByText } = render(<App />)
-    const linkElement = getByText(/Vite \+ React/i)
+    const linkElement = getByText(/Hello from App.tsx/i)
     expect(linkElement).toBeInTheDocument()
   })
 })

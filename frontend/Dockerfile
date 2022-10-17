@@ -14,6 +14,6 @@ ENV YARN_PRODUCTION=false
 COPY package.json .
 COPY yarn.lock .
 
-RUN yarn
+RUN yarn install
 
 CMD ["yarn", "dev", "--host", "0.0.0.0"]
