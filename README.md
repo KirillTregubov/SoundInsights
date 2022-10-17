@@ -66,15 +66,7 @@ To run tests for the application, execute:
 sudo bash run-tests.sh
 ```
 
-If you run into issues related to permissions for running the scripts, execute:
-
-```sh
-sudo chmod 755 ./<script>.sh
-```
-
-Replacing `<script>` with the script name.
-
-### macOS
+### macOS & Windows (WSL)
 
 To build our application and run it in development mode, execute the following command:
 
@@ -88,10 +80,20 @@ To run tests for the application, execute:
 bash run-tests.sh
 ```
 
+### Troubleshooting
+
 If you run into issues related to permissions for running the scripts, execute the following command replacing `<script>` with the script name:
 
 ```sh
 sudo chmod 755 ./<script>.sh
+```
+
+## Development
+
+To add a package to the backend, execute the following helper script:
+
+```sh
+bash ./backend/install-pkg.sh
 ```
 
 ## A Small Example
