@@ -6,9 +6,7 @@ ARG workdir=
 
 WORKDIR ${workdir}
 
-# COPY package.json ./
-# COPY package-lock.json ./
-
+ENV PATH=${workdir}/node_modules/.bin:$PATH
 ENV NODE_ENV=development
 ENV NPM_CONFIG_PRODUCTION=false
 ENV YARN_PRODUCTION=false

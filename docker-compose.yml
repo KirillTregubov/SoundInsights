@@ -24,7 +24,4 @@ services:
       - CHOKIDAR_USEPOLLING=true
     volumes:
       - ./frontend:/app
-      - node_modules:/app/node_modules
-
-volumes:
-  node_modules:
+      - /app/node_modules/
