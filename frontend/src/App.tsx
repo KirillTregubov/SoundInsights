@@ -31,7 +31,9 @@ const Fetch: React.FC = () => {
   return (
     <div className="m-2 rounded-lg bg-gray-200 p-4">
       <h1 className="font-semibold ">Fetch data from backend</h1>
-      <div>Data: {JSON.stringify(query.data)}</div>
+      <div>
+        Data: <pre>{JSON.stringify(query.data, null, 2)}</pre>
+      </div>
       <h4 className="mt-1 text-sm text-gray-900">
         Received at {new Date(query.dataUpdatedAt).toLocaleString()}
       </h4>
