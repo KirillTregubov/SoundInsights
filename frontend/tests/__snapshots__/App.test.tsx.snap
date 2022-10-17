@@ -2,56 +2,30 @@
 
 exports[`App.tsx > renders correctly 1`] = `
 <div
-  className="App"
+  id="App"
 >
-  <div>
-    <a
-      href="https://vitejs.dev"
-      rel="noreferrer"
-      target="_blank"
-    >
-      <img
-        alt="Vite logo"
-        className="logo"
-        src="/vite.svg"
-      />
-    </a>
-    <a
-      href="https://reactjs.org"
-      rel="noreferrer"
-      target="_blank"
-    >
-      <img
-        alt="React logo"
-        className="logo react"
-        src="/src/assets/react.svg"
-      />
-    </a>
-  </div>
-  <h1>
-    Vite + React
-  </h1>
   <div
-    className="card"
+    className="m-2"
   >
-    <button
-      onClick={[Function]}
-    >
-      count is 
-      0
-    </button>
-    <p>
-      Edit 
-      <code>
-        src/App.tsx
-      </code>
-       and save to test HMR
-    </p>
+    Hello from App.tsx
   </div>
-  <p
-    className="read-the-docs"
+  <div
+    className="m-2 rounded-lg bg-gray-200 p-4"
   >
-    Click on the Vite and React logos to learn more
-  </p>
+    <h1
+      className="font-semibold "
+    >
+      Fetch data from backend
+    </h1>
+    <div>
+      Data: 
+    </div>
+    <h4
+      className="mt-1 text-sm text-gray-900"
+    >
+      Received at 
+      1969-12-31, 7:00:00 p.m.
+    </h4>
+  </div>
 </div>
 `;

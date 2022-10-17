@@ -7,9 +7,12 @@ services:
       context: ./backend
       args:
         workdir: /app
-    # environment:
-    #   FLASK_DEBUG: 1
-    #   FLASK_APP: app/app.py
+    ports: [ '5050:5050' ]
+    environment:
+      FLASK_DEBUG: 1
+      FLASK_APP: src/main.py
+      FLASK_RUN_HOST: 0.0.0.0
+      FLASK_RUN_PORT: 5050
     volumes:
       - ./backend:/app
 
