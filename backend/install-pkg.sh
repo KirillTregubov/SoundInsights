@@ -14,7 +14,11 @@ fi
 current_dir=`basename $PWD`
 
 if pip3 install $1 >/dev/null 2>&1; then
-  pip3 freeze | grep $1 >> requirements.txt
+  dir='requirements.txt'
+  if ! [ "$current_dir" = "backend" ]; then
+    dir='backend/requirements.txt'
+  fi
+  pip3 freeze | grep -i $1 >> $dir
   printf "\033[32mSuccessfully installed \033[1;36m$1\033[0m\n"
   printf "\033[32mAdded \033[1;36m$1\033[32m to requirements.txt\033[0m\n"
   if grep -qi microsoft /proc/version; then
