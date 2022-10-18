@@ -19,12 +19,13 @@ exports[`App.tsx > renders correctly 1`] = `
     </h1>
     <div>
       Data: 
+      <pre />
     </div>
     <h4
       className="mt-1 text-sm text-gray-900"
     >
       Received at 
-      1969-12-31, 7:00:00 p.m.
+      1/1/1970, 12:00:00 AM
     </h4>
   </div>
 </div>

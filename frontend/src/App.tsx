@@ -4,7 +4,7 @@ import {
   useQuery
 } from '@tanstack/react-query'
 
-import { getQuery } from 'lib/api'
+import { getDemoQuery } from 'lib/api'
 
 const App: React.FC = () => {
   const queryClient = new QueryClient({
@@ -26,7 +26,7 @@ const App: React.FC = () => {
 }
 
 const Fetch: React.FC = () => {
-  const query = useQuery(['query'], getQuery)
+  const query = useQuery(['query'], getDemoQuery)
 
   return (
     <div className="m-2 rounded-lg bg-gray-200 p-4">
