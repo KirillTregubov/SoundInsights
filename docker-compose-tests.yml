@@ -10,6 +10,8 @@ services:
       dockerfile: Dockerfile.test
       args:
         workdir: /app
+    # environment:
+    #   PYTHONPATH: /app
 
   frontend:
     container_name: frontend

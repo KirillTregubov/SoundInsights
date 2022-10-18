@@ -1,7 +1,7 @@
 import json
 import os
 from flask import jsonify
-from db_helper import get_db
+from src.db_helper import get_db
 
 
 def db_demo():
@@ -14,7 +14,8 @@ def db_demo():
     cur = db.cursor()
 
     # Load a small slice of the actual dataset.
-    with open("../data/dataset_small.json", "r") as read_file:
+    print(os.getcwd(), flush=True)
+    with open("./data/dataset_small.json", "r") as read_file:
         data_small = json.load(read_file)
 
     # Create tables.
