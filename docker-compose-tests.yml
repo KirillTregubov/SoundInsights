@@ -12,6 +12,8 @@ services:
         workdir: /app
     # environment:
     #   PYTHONPATH: /app
+    volumes:
+      - ./backend:/app
 
   frontend:
     container_name: frontend

@@ -14,7 +14,6 @@ def db_demo():
     cur = db.cursor()
 
     # Load a small slice of the actual dataset.
-    print(os.getcwd(), flush=True)
     with open("./data/dataset_small.json", "r") as read_file:
         data_small = json.load(read_file)
 

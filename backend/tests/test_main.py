@@ -16,12 +16,6 @@ def client(app):
     return app.test_client()
 
 
-def test_hello_world(client):
-    response = client.get("/")
-    assert "message" in response.json.keys()
-    assert response.json["message"] == "Hello, World!"
-
-
 def test_query_db(client):
     response = client.get("/db-demo")
     keys = response.json.keys()
