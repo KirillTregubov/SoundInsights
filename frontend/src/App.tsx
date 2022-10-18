@@ -4,7 +4,7 @@ import {
   useQuery
 } from '@tanstack/react-query'
 
-import { getQuery } from 'lib/api'
+import { getDemoQuery } from 'lib/api'
 
 const App: React.FC = () => {
   const queryClient = new QueryClient({
@@ -26,16 +26,24 @@ const App: React.FC = () => {
 }
 
 const Fetch: React.FC = () => {
-  const query = useQuery(['query'], getQuery)
+  const { data, dataUpdatedAt, isLoading } = useQuery(['query'], getDemoQuery)
+
+  if (isLoading)
+    return (
+      <div className="m-2 rounded-lg bg-gray-200 p-4">
+        <h1 className="font-semibold ">Fetch data from backend</h1>
+        <div>Loading...</div>
+      </div>
+    )
 
   return (
     <div className="m-2 rounded-lg bg-gray-200 p-4">
       <h1 className="font-semibold ">Fetch data from backend</h1>
       <div>
-        Data: <pre>{JSON.stringify(query.data, null, 2)}</pre>
+        Data: <pre>{JSON.stringify(data, null, 2)}</pre>
       </div>
       <h4 className="mt-1 text-sm text-gray-900">
-        Received at {new Date(query.dataUpdatedAt).toLocaleString()}
+        Received at {new Date(dataUpdatedAt).toLocaleString()}
       </h4>
     </div>
   )
