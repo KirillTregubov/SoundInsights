@@ -1,6 +1,7 @@
+import { render } from '@testing-library/react'
 import renderer from 'react-test-renderer'
-import App from '../src/App'
-import { render, screen } from '@testing-library/react'
+
+import App from 'src/App'
 
 describe('App.tsx', () => {
   test('renders correctly', () => {
@@ -13,9 +14,4 @@ describe('App.tsx', () => {
     const linkElement = getByText(/Hello from App.tsx/i)
     expect(linkElement).toBeInTheDocument()
   })
-
-  test('Select an option', () => {
-    render(<App />)
-    expect(screen.getAllByRole('option').length).toBe(3)
-    })
 })
