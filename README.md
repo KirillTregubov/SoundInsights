@@ -1,8 +1,24 @@
 # Team Ez2Type
 
-[Meeting Notes](https://github.com/KirillTregubov/csc302/tree/main/docs)<br>
-[Roadmap](https://github.com/KirillTregubov/csc302/blob/main/docs/Roadmap.md)<br>
-[Tech Stack](https://github.com/KirillTregubov/csc302/blob/main/docs/TechStack.md)<br>
+<div align="center">
+  <!-- <a href="https://github.com/KirillTregubov/csc302">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a> -->
+
+  <h2 align="center">CSC302</h2>
+  <p align="center">
+    A group project that uses the Spotify Million Playlist Dataset to display interesting and meaningful results.
+    <!-- <br />
+    <a href="https://github.com/KirillTregubov/csc302"><strong>Explore the docs »</strong></a> -->
+    <div>
+      <a href="https://github.com/KirillTregubov/csc302/tree/main/docs">Meeting Notes</a>
+      ·
+      <a href="https://github.com/KirillTregubov/csc302/blob/main/docs/Documentation.md">Documentation</a>
+      ·
+      <a href="https://github.com/users/KirillTregubov/projects/1">Roadmap</a>
+    </div>
+  </p>
+</div>
 
 ## Installation
 
@@ -22,10 +38,6 @@ Install the development environment by executing the following command in a shel
 bash run-install.sh
 ```
 
-> Once the script finishes running, open Docker Desktop and complete setup.
-
-If the script fails to run on your machine, please [install Docker Desktop](https://docs.docker.com/desktop/) yourself.
-
 ### Windows
 
 On Windows, install the development environment by executing:
@@ -34,7 +46,9 @@ On Windows, install the development environment by executing:
 run-install.bat
 ```
 
-> Once the script finishes running, open Docker Desktop and complete setup.
+### Troubleshooting
+
+If the script fails to run on your machine, please [install Docker Desktop](https://docs.docker.com/desktop/) yourself.
 
 ## Usage
 
@@ -52,15 +66,7 @@ To run tests for the application, execute:
 sudo bash run-tests.sh
 ```
 
-If you run into issues related to permissions for running the scripts, execute:
-
-```sh
-sudo chmod 755 ./<script>.sh
-```
-
-Replacing `<script>` with the script name.
-
-### macOS
+### macOS & Windows (WSL)
 
 To build our application and run it in development mode, execute the following command:
 
@@ -74,13 +80,21 @@ To run tests for the application, execute:
 bash run-tests.sh
 ```
 
-If you run into issues related to permissions for running the scripts, execute:
+### Troubleshooting
+
+If you run into issues related to permissions for running the scripts, execute the following command replacing `<script>` with the script name:
 
 ```sh
 sudo chmod 755 ./<script>.sh
 ```
 
-Replacing `<script>` with the script name.
+## Development
+
+To add a package to the backend, execute the following helper script:
+
+```sh
+bash ./backend/install-pkg.sh
+```
 
 ## A Small Example
 

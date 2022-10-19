@@ -1,32 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import {
+  QueryClientProvider,
+  QueryClient,
+  useQuery
+} from '@tanstack/react-query'
 
-function App() {
-  const [count, setCount] = useState(0)
+import { getDemoQuery } from 'lib/api'
+
+const App: React.FC = () => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false
+      }
+    }
+  })
 
   return (
-    <div className='App'>
+    <QueryClientProvider client={queryClient}>
+      <div id="App">
+        <div className="m-2">Hello from App.tsx</div>
+        <Fetch />
+      </div>
+    </QueryClientProvider>
+  )
+}
+
+const Fetch: React.FC = () => {
+  const { data, dataUpdatedAt, isLoading } = useQuery(['query'], getDemoQuery)
+
+  if (isLoading)
+    return (
+      <div className="m-2 rounded-lg bg-gray-200 p-4">
+        <h1 className="font-semibold ">Fetch data from backend</h1>
+        <div>Loading...</div>
+      </div>
+    )
+
+  return (
+    <div className="m-2 rounded-lg bg-gray-200 p-4">
+      <h1 className="font-semibold ">Fetch data from backend</h1>
       <div>
-        <a href='https://vitejs.dev' target='_blank' rel='noreferrer'>
-          <img src='/vite.svg' className='logo' alt='Vite logo' />
-        </a>
-        <a href='https://reactjs.org' target='_blank' rel='noreferrer'>
-          <img src={reactLogo} className='logo react' alt='React logo' />
-        </a>
+        Data: <pre>{JSON.stringify(data, null, 2)}</pre>
       </div>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className='read-the-docs'>
-        Click on the Vite and React logos to learn more
-      </p>
 
       <select id="user_select1" onChange="update()">
         <option value="c1">customize1</option>
@@ -34,6 +49,9 @@ function App() {
         <option value="c3">customize3</option>
       </select>
 
+      <h4 className="mt-1 text-sm text-gray-900">
+        Received at {new Date(dataUpdatedAt).toLocaleString()}
+      </h4>
     </div>
   )
 }

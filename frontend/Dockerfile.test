@@ -6,6 +6,7 @@ ARG workdir=
 
 WORKDIR ${workdir}
 
+ENV PATH=${workdir}/node_modules/.bin:$PATH
 ENV NODE_ENV=development
 ENV NPM_CONFIG_PRODUCTION=false
 ENV YARN_PRODUCTION=false
@@ -13,6 +14,6 @@ ENV YARN_PRODUCTION=false
 COPY package.json .
 COPY yarn.lock .
 
-RUN yarn
+RUN yarn install
 
 CMD yarn test

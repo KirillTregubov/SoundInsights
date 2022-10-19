@@ -8,7 +8,7 @@
     "typecheck": "tsc",
     "build": "npm run typecheck && vite build",
     "preview": "vite preview",
-    "test": "vitest run",
+    "test": "vitest run -u",
     "test:watch": "vitest",
     "format": "npm run prettier && npm run lint",
     "lint:check": "npx eslint src",
@@ -17,6 +17,7 @@
     "prettier": "npm run prettier:check -- --write"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.12.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -31,6 +32,8 @@
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
     "@vitejs/plugin-react": "^2.1.0",
+    "autoprefixer": "^10.4.12",
+    "cross-fetch": "^3.1.5",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
@@ -39,11 +42,15 @@
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
     "happy-dom": "^7.1.1",
+    "msw": "^0.47.4",
+    "postcss": "^8.4.18",
     "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
     "react-test-renderer": "^18.2.0",
+    "tailwindcss": "^3.1.8",
     "typescript": "^4.6.4",
     "vite": "^3.1.0",
     "vite-tsconfig-paths": "^3.5.1",
-    "vitest": "^0.23.4"
+    "vitest": "^0.24.3"
   }
 }
