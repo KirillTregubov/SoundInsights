@@ -1,6 +1,6 @@
 import renderer from 'react-test-renderer'
 import App from '../src/App'
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 describe('App.tsx', () => {
   test('renders correctly', () => {
@@ -13,4 +13,9 @@ describe('App.tsx', () => {
     const linkElement = getByText(/Vite \+ React/i)
     expect(linkElement).toBeInTheDocument()
   })
+
+  test('Select an option', () => {
+    render(<App />)
+    expect(screen.getAllByRole('option').length).toBe(3)
+    })
 })

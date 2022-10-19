@@ -27,6 +27,13 @@ function App() {
       <p className='read-the-docs'>
         Click on the Vite and React logos to learn more
       </p>
+
+      <select id="user_select1" onChange="update()">
+        <option value="c1">customize1</option>
+        <option value="c2">customize2</option>
+        <option value="c3">customize3</option>
+      </select>
+
     </div>
   )
 }
