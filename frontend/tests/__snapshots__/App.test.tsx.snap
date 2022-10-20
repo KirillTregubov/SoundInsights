@@ -2,12 +2,100 @@
 
 exports[`App.tsx > renders correctly 1`] = `
 <div
+  className="m-2"
   id="App"
 >
-  <div
-    className="m-2"
-  >
+  <p>
     Hello from App.tsx
+  </p>
+  <div>
+    <div
+      className="flex items-center gap-2"
+    >
+      <select
+        className="block w-full max-w-[12rem] cursor-default rounded-md border border-gray-300 py-2 pl-2 pr-5 text-sm text-gray-900 ring-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-opacity-75"
+        id="countries"
+        onChange={[Function]}
+      >
+        <option
+          hidden={true}
+        >
+          Choose a category
+        </option>
+        <option
+          value="song"
+        >
+          song
+        </option>
+        <option
+          value="album"
+        >
+          album
+        </option>
+        <option
+          value="artist"
+        >
+          artist
+        </option>
+      </select>
+      <select
+        className="block w-full max-w-[12rem] cursor-default rounded-md border border-gray-300 py-2 pl-2 pr-5 text-sm text-gray-900 ring-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-opacity-75"
+        id="countries"
+        onChange={[Function]}
+      >
+        <option
+          hidden={true}
+        >
+          Choose a category
+        </option>
+        <option
+          value="song"
+        >
+          song
+        </option>
+        <option
+          value="album"
+        >
+          album
+        </option>
+        <option
+          value="artist"
+        >
+          artist
+        </option>
+      </select>
+      <select
+        className="block w-full max-w-[12rem] cursor-default rounded-md border border-gray-300 py-2 pl-2 pr-5 text-sm text-gray-900 ring-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-opacity-75"
+        id="countries"
+        onChange={[Function]}
+      >
+        <option
+          hidden={true}
+        >
+          Choose a category
+        </option>
+        <option
+          value="song"
+        >
+          song
+        </option>
+        <option
+          value="album"
+        >
+          album
+        </option>
+        <option
+          value="artist"
+        >
+          artist
+        </option>
+      </select>
+      <button
+        onClick={[Function]}
+      >
+        Search
+      </button>
+    </div>
   </div>
   <div
     className="m-2 rounded-lg bg-gray-200 p-4"

@@ -4,6 +4,7 @@ import {
   useQuery
 } from '@tanstack/react-query'
 
+import QueryInput from 'components/QueryInput'
 import { getDemoQuery } from 'lib/api'
 
 const App: React.FC = () => {
@@ -17,8 +18,9 @@ const App: React.FC = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div id="App">
-        <div className="m-2">Hello from App.tsx</div>
+      <div id="App" className="m-2">
+        <p>Hello from App.tsx</p>
+        <QueryInput />
         <Fetch />
       </div>
     </QueryClientProvider>
@@ -42,6 +44,7 @@ const Fetch: React.FC = () => {
       <div>
         Data: <pre>{JSON.stringify(data, null, 2)}</pre>
       </div>
+
       <h4 className="mt-1 text-sm text-gray-900">
         Received at {new Date(dataUpdatedAt).toLocaleString()}
       </h4>
