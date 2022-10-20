@@ -30,7 +30,7 @@ For next week:
 
 - Kirill
   - Decide on the website layout (pages, etc.).
-  - Implement CI/CD.
+  - Implement Continuous Integration
   
 - Roger
   - The answers will be given back to backend with types and values.
