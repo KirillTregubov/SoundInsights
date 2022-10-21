@@ -1,10 +1,15 @@
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
 import QueryInput from 'components/QueryInput'
 
-describe('Test QueryInput component', () => {
-  test('Ensure there are three options', () => {
-    render(<QueryInput />)
+describe('test QueryInput component', () => {
+  test('ensure there are three options', () => {
+    const screen = render(<QueryInput />)
     expect(screen.getAllByRole('combobox').length).toBe(3)
+  })
+
+  test('ensure there is a Search button', () => {
+    const screen = render(<QueryInput />)
+    expect(screen.getByRole('button', { name: 'Search' })).toBeInTheDocument()
   })
 })
