@@ -5,16 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "typecheck": "tsc",
-    "build": "npm run typecheck && vite build",
+    "build": "yarn run typecheck && vite build",
     "preview": "vite preview",
-    "test": "vitest run -u",
+    "typecheck": "tsc",
+    "test": "vitest run && yarn run typecheck",
     "test:watch": "vitest",
-    "format": "npm run prettier && npm run lint",
+    "format": "yarn run prettier && yarn run lint",
     "lint:check": "npx eslint src",
-    "lint": "npm run lint:check -- --fix",
+    "lint": "yarn run lint:check --fix",
     "prettier:check": "npx prettier src --check",
-    "prettier": "npm run prettier:check -- --write"
+    "prettier": "yarn run prettier:check --write"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.12.0",

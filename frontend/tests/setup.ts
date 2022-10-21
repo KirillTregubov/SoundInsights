@@ -8,7 +8,7 @@ const responses = {
 }
 
 const handlers = [
-  rest.get('http://localhost:5050/db-demo', (req, res, ctx) => {
+  rest.get('http://localhost:5050/db-demo', (_, res, ctx) => {
     return res(ctx.status(200), ctx.json(responses['db-demo']))
   })
 ]
