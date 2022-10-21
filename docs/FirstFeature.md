@@ -8,7 +8,7 @@ ML Model
 Backend Endpoint
 - Create a POST endpoint that takes in a JSON (format: `{ "data" : ["", ""] /* list of track_uri */ }`) for frontend to hit.
 - Send ML model a python list of 5 `track_uri`s (strings).
-- Once ML returns recommended tracks, loop through `track_uri`s and query track name, artist, etc. Use [this](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-track) for reference.
+- Once ML returns recommended tracks, loop through `track_uri`s and query track name, artist, image_url, etc. Use [this](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-track) for reference.
 - `jsonify` the queried track data and pass it back to the frontend using the response.
 
 Frontend Component
