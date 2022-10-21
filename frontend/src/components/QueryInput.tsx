@@ -5,8 +5,8 @@ const categories = ['song', 'album', 'artist']
 const QueryInput: React.FC = () => {
   const [values, setValues] = useState({ 0: '', 1: '', 2: '' })
 
-  const handleValues = (name, target) => {
-    setValues({ ...values, [target]: name })
+  const handleValues = (value: string, target: number) => {
+    setValues({ ...values, [target]: value })
   }
 
   return (
@@ -21,7 +21,11 @@ const QueryInput: React.FC = () => {
   )
 }
 
-const Select: React.FC = ({ setValue }: { setValue: (v: string) => void }) => {
+interface SelectProps {
+  setValue: React.Dispatch<string>
+}
+
+const Select: React.FC<SelectProps> = ({ setValue }: SelectProps) => {
   return (
     <select
       id="countries"
