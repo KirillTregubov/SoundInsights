@@ -1,17 +1,23 @@
 import { render } from '@testing-library/react'
-import renderer from 'react-test-renderer'
 
 import App from 'src/App'
 
-describe('App.tsx', () => {
-  test('renders correctly', () => {
-    const tree = renderer.create(<App />).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-
+describe('test App.tsx', () => {
   test('contains desired title', () => {
     const { getByText } = render(<App />)
-    const linkElement = getByText(/Hello from App.tsx/i)
-    expect(linkElement).toBeInTheDocument()
+    const text = getByText('Hello from App.tsx')
+    expect(text).toBeInTheDocument()
+  })
+
+  test('contains QueryInput component', () => {
+    const { getByRole } = render(<App />)
+    const button = getByRole('button', { name: 'Search' })
+    expect(button).toBeInTheDocument()
+  })
+
+  test('contains Fetch component', () => {
+    const { getByText } = render(<App />)
+    const text = getByText('Fetch data from backend')
+    expect(text).toBeInTheDocument()
   })
 })
