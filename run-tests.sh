@@ -10,7 +10,7 @@ fi
 clean_up () {
   printf "\n\033[32mRemoving \033[1;36mDocker \033[0;32mcontainers\033[0m\n\n"
   docker compose --file docker-compose-tests.yml down -v --rmi all --remove-orphans
-  trap EXIT
+  trap "" EXIT
   exit 0
 }
 trap clean_up INT EXIT

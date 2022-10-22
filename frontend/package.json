@@ -17,9 +17,11 @@
     "prettier": "yarn run prettier:check --write"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.12",
     "@tanstack/react-query": "^4.12.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "zod": "^3.19.1"
   },
   "devDependencies": {
     "@testing-library/dom": "^8.19.0",
