@@ -1,6 +1,7 @@
 # Repo gitignore
 .DS_Store
 *.db
+*.db-journal
 
 # Docker install files
 get-docker.sh

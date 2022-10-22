@@ -4,7 +4,7 @@ import { setupServer } from 'msw/node'
 import { afterAll, afterEach, beforeAll } from 'vitest'
 
 const responses = {
-  'db-demo': { message: 'Hello world' }
+  'db-demo': { query: 'Mock query', result: 2 }
 }
 
 const handlers = [

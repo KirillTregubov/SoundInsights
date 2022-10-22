@@ -1,4 +1,5 @@
 import fetch from 'cross-fetch'
+import { z } from 'zod'
 
 const API_URL = 'http://localhost:5050/'
 
@@ -7,12 +8,18 @@ const API_URL = 'http://localhost:5050/'
  * adding a new endpoint or tests will break.
  */
 
-const getDemoQuery = async () => {
+export const demoQuery = z
+  .object({
+    query: z.string(),
+    result: z.number()
+  })
+  .strict()
+
+export const getDemoQuery = async () => {
   const response = await fetch(`${API_URL}db-demo`)
-  if (!response.ok) {
+  if (response.status !== 200) {
     throw new Error('Request to /db-demo failed')
   }
-  return response.json()
+  const data = await response.json()
+  return demoQuery.parse(data)
 }
-
-export { getDemoQuery }
