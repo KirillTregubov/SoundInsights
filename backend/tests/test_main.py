@@ -32,7 +32,7 @@ def test_recommend_tracks_endpoint(client):
             "0WqIKmW4BTrj3eJFmnCKMv",
             "1AWQoqb9bSvzTjaLralEkT",
             "1lzr43nnXAijIGYnCT8M8H"
-	    ]
+        ]
     })
     assert response.status_code == 200
     assert isinstance(response.json, List)
