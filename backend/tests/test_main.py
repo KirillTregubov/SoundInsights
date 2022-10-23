@@ -26,7 +26,13 @@ def test_query_db(client):
 
 def test_recommend_tracks_endpoint(client):
     response = client.post("/recommend-tracks", data={
-        "data": ["0UaMYEvWZi0ZqiDOoHU3YI", "6I9VzXrHxO9rA9A5euc8Ak"]
+        "data": [
+			"0UaMYEvWZi0ZqiDOoHU3YI",
+			"6I9VzXrHxO9rA9A5euc8Ak",
+			"0WqIKmW4BTrj3eJFmnCKMv",
+			"1AWQoqb9bSvzTjaLralEkT",
+			"1lzr43nnXAijIGYnCT8M8H"
+		]
     })
     assert response.status_code == 200
     assert isinstance(response.json, List)
