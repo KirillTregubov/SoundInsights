@@ -15,6 +15,14 @@ export const demoQuery = z
   })
   .strict()
 
+export const Track = z
+  .object({
+    name: z.string(),
+    artists: z.string().array(),
+    image_url: z.string().url().nullable()
+  })
+  .strict()
+
 export const getDemoQuery = async () => {
   const response = await fetch(`${API_URL}db-demo`)
   if (response.status !== 200) {

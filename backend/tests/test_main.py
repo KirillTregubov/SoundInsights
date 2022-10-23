@@ -1,3 +1,4 @@
+from typing import List
 from ..src.main import create_app
 import pytest
 
@@ -21,3 +22,16 @@ def test_query_db(client):
     keys = response.json.keys()
     assert "query" in keys
     assert "result" in keys
+
+def test_recommend_tracks_endpoint(client):
+    response = client.post("/recommend-tracks", data={
+        "data": ["0UaMYEvWZi0ZqiDOoHU3YI", "6I9VzXrHxO9rA9A5euc8Ak"]
+    })
+    assert response.status_code == 200
+    assert isinstance(response.json, List)
+    for track in response.json:
+        keys = track.keys()
+        assert "name" in keys
+        assert "artists" in keys
+        assert isinstance(track["artists"], List)
+        assert "image_url" in keys
