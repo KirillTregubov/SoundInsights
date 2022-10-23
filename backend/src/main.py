@@ -1,4 +1,4 @@
-from flask import Flask, make_response, request
+from flask import Flask, make_response, request, jsonify
 from flask_cors import CORS
 from src.db_demo import db_demo
 from src.db_helper import close_db
@@ -18,10 +18,26 @@ def create_app():
         response = make_response(db_demo(), 200)
         response.headers["Content-Type"] = "application/json"
         return response
-    
-    @app.route("/recommend-tracks", methods = ['POST'])
+
+    @app.route("/recommend-tracks", methods=['POST'])
     def recommend_tracks_endpoint():
-        track_uris = request.form.getlist("data")
-        return recommend_tracks(track_uris)
+        """
+        Get recommended tracks for a list of track uris
+
+        Preconditions:
+        - POST body must be JSON
+        - POST body must be a List[str] containing 1-5 "track_uris"
+        """
+        if request.headers.get('Content-Type') != 'application/json':
+            return make_response(jsonify({"error": "content_type must be application/json"}), 400)
+
+        if "data" not in request.json:
+            return make_response(jsonify({"error": "POST data must include `data` field"}), 400)
+
+        track_uris = request.json["data"]
+        if (isinstance(track_uris, list) and len(track_uris) > 0 and len(track_uris) <= 5):
+            return recommend_tracks(track_uris)
+        else:
+            return make_response(jsonify({"error": "data must be a list of 1-5 track_uris"}), 400)
 
     return app

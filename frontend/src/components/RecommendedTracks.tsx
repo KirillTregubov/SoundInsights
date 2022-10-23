@@ -1,44 +1,24 @@
-import {
-  QueryClientProvider,
-  QueryClient,
-  useQuery
-} from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
+import { getRecommendedTracks } from 'src/lib/api'
 
-import QueryInput from 'components/QueryInput'
-import RecommendedTracks from 'components/RecommendedTracks'
-import { getDemoQuery } from 'lib/api'
-
-const App: React.FC = () => {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: false
-      }
-    }
-  })
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <div id="App" className="m-2">
-        <p>Hello from App.tsx</p>
-        <QueryInput />
-        <Fetch />
-        <RecommendedTracks />
-      </div>
-    </QueryClientProvider>
-  )
-}
-
-const Fetch: React.FC = () => {
+const RecommendedTracks: React.FC = () => {
   const { data, dataUpdatedAt, isLoading, isError, error } = useQuery(
-    ['db-demo'],
-    getDemoQuery
+    ['recommend-tracks'],
+    getRecommendedTracks
   )
+
+  const Body = ({ children }: { children: React.ReactNode }) => {
+    return (
+      <div className="my-2 rounded-lg bg-gray-200 p-4">
+        <h1 className="font-semibold">Fetch Recommended Tracks</h1>
+        <div>{children}</div>
+      </div>
+    )
+  }
 
   if (isLoading)
     return (
-      <div className="my-2 rounded-lg bg-gray-200 p-4">
-        <h1 className="font-semibold ">Fetch data from backend</h1>
+      <Body>
         {/* By Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL */}
         <svg
           className="mt-1 h-7 w-7 animate-spin text-gray-700"
@@ -69,21 +49,17 @@ const Fetch: React.FC = () => {
             </g>
           </g>
         </svg>
-      </div>
+      </Body>
     )
   if (isError)
     return (
-      <div className="my-2 rounded-lg bg-gray-200 p-4">
-        <h1 className="font-semibold ">Fetch data from backend</h1>
-        <div>
-          <pre>{error?.toString()}</pre>
-        </div>
-      </div>
+      <Body>
+        <pre>{error?.toString()}</pre>
+      </Body>
     )
 
   return (
-    <div className="my-2 rounded-lg bg-gray-200 p-4">
-      <h1 className="font-semibold ">Fetch data from backend</h1>
+    <Body>
       <div>
         Data: <pre>{JSON.stringify(data, null, 2)}</pre>
       </div>
@@ -91,8 +67,8 @@ const Fetch: React.FC = () => {
       <h4 className="mt-1 text-sm text-gray-900">
         Received at {new Date(dataUpdatedAt).toLocaleString()}
       </h4>
-    </div>
+    </Body>
   )
 }
 
-export default App
+export default RecommendedTracks
