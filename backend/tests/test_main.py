@@ -23,6 +23,7 @@ def test_query_db(client):
     assert "query" in keys
     assert "result" in keys
 
+
 def test_recommend_tracks_endpoint(client):
     response = client.post("/recommend-tracks", data={
         "data": ["0UaMYEvWZi0ZqiDOoHU3YI", "6I9VzXrHxO9rA9A5euc8Ak"]
