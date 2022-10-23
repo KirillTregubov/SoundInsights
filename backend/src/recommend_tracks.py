@@ -10,6 +10,7 @@ def recommend_tracks(track_uris: List[str]) -> Response:
         return make_response(jsonify([]), 401) # unauthorized
 
     # TODO: pass track_uris to ML script and get back a list of recommendations
+    # for now, use these 2 arbitrary track_uris as mock
     recommended_track_uris = ["0UaMYEvWZi0ZqiDOoHU3YI", "6I9VzXrHxO9rA9A5euc8Ak"]
 
     headers = {"Authorization": f"Bearer {access_token}"}
