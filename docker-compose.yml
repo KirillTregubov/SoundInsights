@@ -13,6 +13,8 @@ services:
       FLASK_APP: src/main.py
       FLASK_RUN_HOST: 0.0.0.0
       FLASK_RUN_PORT: 5050
+      CLIENT_ID: 77b019360235410f81c0904a4ace93ba
+      CLIENT_SECRET: a90e38621cae4a6797a97004abe633b8
     volumes:
       - ./backend:/app
 
