@@ -24,7 +24,7 @@ def recommend_tracks(track_uris: List[str]) -> Response:
             image_url = None if len(images) == 0 else images[0]["url"] # first image is the largest one
             tracks.append({
                 "name": track["name"],
-			    "artists": list(map(lambda artist: artist["name"], track["artists"])),
+                "artists": list(map(lambda artist: artist["name"], track["artists"])),
                 "image_url": image_url
             })
 
