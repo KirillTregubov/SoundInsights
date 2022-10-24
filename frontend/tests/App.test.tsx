@@ -3,6 +3,10 @@ import { render } from '@testing-library/react'
 import App from 'src/App'
 
 describe('test App.tsx', () => {
+  test('failure test', () => {
+    expect(false)
+  })
+
   test('contains desired title', () => {
     const { getByText } = render(<App />)
     const text = getByText('Hello from App.tsx')
