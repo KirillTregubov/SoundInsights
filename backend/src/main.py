@@ -9,6 +9,12 @@ def create_app():
     app = Flask(__name__)
     CORS(app, origins="*")
 
+    @app.after_request
+    def add_headers(response):
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers',
+                             'Content-Type,Authorization')
+
     @app.teardown_appcontext
     def cleanup(exception):
         close_db()
