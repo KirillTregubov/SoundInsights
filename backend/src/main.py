@@ -1,5 +1,5 @@
 from flask import Flask, make_response, request, jsonify
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from src.db_demo import db_demo
 from src.db_helper import close_db
 from src.recommend_tracks import recommend_tracks
@@ -8,12 +8,6 @@ from src.recommend_tracks import recommend_tracks
 def create_app():
     app = Flask(__name__)
     CORS(app, origins="*")
-
-    @app.after_request
-    def add_headers(response):
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        response.headers.add('Access-Control-Allow-Headers',
-                             'Content-Type,Authorization')
 
     @app.teardown_appcontext
     def cleanup(exception):
