@@ -10,8 +10,6 @@ services:
       dockerfile: Dockerfile.test
       args:
         workdir: /app
-    # environment:
-    #   PYTHONPATH: /app
     volumes:
       - ./backend:/app
     environment:

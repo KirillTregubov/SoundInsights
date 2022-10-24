@@ -4,16 +4,13 @@ FROM python:3.10-slim-buster
 
 ARG workdir=
 
-ENV FLASK_DEBUG=1
-ENV FLASK_APP=src/main.py
-ENV FLASK_RUN_HOST=0.0.0.0
-ENV FLASK_RUN_PORT=5050
-
 WORKDIR ${workdir}
 
 COPY requirements.txt requirements.txt
+RUN pip3 install flake8
 RUN pip3 install -r requirements.txt
 
 COPY . .${workdir}
 
-CMD [ "python3", "-m" , "flask", "run" ]
+# warn if there are Python syntax errors or undefined names
+CMD python3 -m flake8 . --count --exit-zero --select=E9,F63,F7,F82 --show-source --statistics
