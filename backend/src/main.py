@@ -7,21 +7,19 @@ from src.recommend_tracks import recommend_tracks
 
 def create_app():
     app = Flask(__name__)
-    CORS(app)
+    CORS(app, origins="*")
 
     @app.teardown_appcontext
     def cleanup(exception):
         close_db()
 
     @app.route("/db-demo")
-    @cross_origin()
     def query_db():
         response = make_response(db_demo(), 200)
         response.headers["Content-Type"] = "application/json"
         return response
 
     @app.route("/recommend-tracks", methods=['POST'])
-    @cross_origin()
     def recommend_tracks_endpoint():
         """
         Get recommended tracks for a list of track uris
