@@ -1,8 +1,7 @@
-name: "Test"
+name: "Unit Tests"
 
 on:
   workflow_call:
-  repository_dispatch:
   pull_request:
   push:
 
