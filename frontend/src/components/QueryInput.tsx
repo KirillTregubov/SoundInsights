@@ -5,7 +5,7 @@ const categories = ['song', 'album', 'artist']
 const QueryInput: React.FC = () => {
   const [values, setValues] = useState({ 0: '', 1: '', 2: '' })
 
-  const handleValues = (value: string, target: number) => {
+  const handleValues = (value, target: number) => {
     setValues({ ...values, [target]: value })
   }
 
