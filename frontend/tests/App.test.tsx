@@ -4,7 +4,7 @@ import App from 'src/App'
 
 describe('test App.tsx', () => {
   test('failure test', () => {
-    expect(false)
+    expect(false).toBe(true)
   })
 
   test('contains desired title', () => {
