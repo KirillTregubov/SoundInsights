@@ -1,5 +1,5 @@
 from flask import Flask, make_response, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from src.db_demo import db_demo
 from src.db_helper import close_db
 from src.recommend_tracks import recommend_tracks
@@ -14,12 +14,14 @@ def create_app():
         close_db()
 
     @app.route("/db-demo")
+    @cross_origin()
     def query_db():
         response = make_response(db_demo(), 200)
         response.headers["Content-Type"] = "application/json"
         return response
 
     @app.route("/recommend-tracks", methods=['POST'])
+    @cross_origin()
     def recommend_tracks_endpoint():
         """
         Get recommended tracks for a list of track uris
