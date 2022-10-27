@@ -1,12 +1,13 @@
 import {
   QueryClientProvider,
-  QueryClient,
-  useQuery
+  QueryClient
+  // useQuery
 } from '@tanstack/react-query'
 
 // import QueryInput from 'components/QueryInput'
-import RecommendedTracks from 'components/RecommendedTracks'
-import { getDemoQuery } from 'lib/api'
+// import RecommendedTracks from 'components/RecommendedTracks'
+import SpotifySearch from 'components/SpotifySearch'
+// import { getDemoQuery } from 'lib/api'
 
 const App: React.FC = () => {
   const queryClient = new QueryClient({
@@ -21,9 +22,10 @@ const App: React.FC = () => {
     <QueryClientProvider client={queryClient}>
       <div id="App" className="m-2">
         <p>Hello from App.tsx</p>
+        <SpotifySearch />
         {/* <QueryInput />
         <Fetch /> */}
-        <RecommendedTracks />
+        {/* <RecommendedTracks /> */}
       </div>
     </QueryClientProvider>
   )

@@ -9,15 +9,15 @@ describe('test App.tsx', () => {
     expect(text).toBeInTheDocument()
   })
 
-  test('contains QueryInput component', () => {
-    const { getByRole } = render(<App />)
-    const button = getByRole('button', { name: 'Search' })
-    expect(button).toBeInTheDocument()
-  })
+  // test('contains QueryInput component', () => {
+  //   const { getByRole } = render(<App />)
+  //   const button = getByRole('button', { name: 'Search' })
+  //   expect(button).toBeInTheDocument()
+  // })
 
-  test('contains Fetch component', () => {
-    const { getByText } = render(<App />)
-    const text = getByText('Fetch data from backend')
-    expect(text).toBeInTheDocument()
-  })
+  // test('contains Fetch component', () => {
+  //   const { getByText } = render(<App />)
+  //   const text = getByText('Fetch data from backend')
+  //   expect(text).toBeInTheDocument()
+  // })
 })

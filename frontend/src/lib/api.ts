@@ -1,19 +1,16 @@
 import fetch from 'cross-fetch'
 import { z } from 'zod'
 
+import { DemoQuery, Tracks } from 'lib/types'
+
 const API_URL = 'http://localhost:5050'
 
 /*
  * WARN: Don't forget to add request mock to frontend/tests/setup.ts when
  * adding a new endpoint or tests will break.
+ *
+ * Also, don't forget to declare all relevant types in lib/types.ts
  */
-
-export const DemoQuery = z
-  .object({
-    query: z.string(),
-    result: z.number()
-  })
-  .strict()
 
 export const getDemoQuery = async () => {
   const response = await fetch(`${API_URL}/db-demo`)
@@ -24,15 +21,15 @@ export const getDemoQuery = async () => {
   return DemoQuery.parse(data)
 }
 
-export const Track = z
-  .object({
-    name: z.string(),
-    artists: z.string().array(),
-    image_url: z.string().url().nullable()
-  })
-  .strict()
-
-export const Tracks = Track.array()
+export const searchTracks = async (query: string) => {
+  const response = await fetch(`${API_URL}/search-tracks?query=${query}`)
+  if (response.status !== 200) {
+    throw new Error('Request to /search failed')
+  }
+  const data = await response.json()
+  console.log(data)
+  return data
+}
 
 export const getRecommendedTracks = async () => {
   const response = await fetch(`${API_URL}/recommend-tracks`, {

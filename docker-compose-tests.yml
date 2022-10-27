@@ -4,7 +4,7 @@ name: "csc302-tests"
 
 services:
   backend:
-    container_name: backend
+    container_name: backend-tests
     build:
       context: ./backend
       dockerfile: Dockerfile.test
@@ -15,9 +15,10 @@ services:
     environment:
       CLIENT_ID: 77b019360235410f81c0904a4ace93ba
       CLIENT_SECRET: a90e38621cae4a6797a97004abe633b8
+      USING_DOCKER: true
 
   frontend:
-    container_name: frontend
+    container_name: frontend-tests
     build:
       context: ./frontend
       dockerfile: Dockerfile.test

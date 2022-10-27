@@ -1,7 +1,7 @@
 import requests
 from flask import Response, jsonify, make_response
 from typing import List
-from src.spotify_helper import get_access_token
+from src.spotify_helper import get_access_token, get_tracks
 
 
 def recommend_tracks(track_uris: List[str]) -> Response:
@@ -19,18 +19,24 @@ def recommend_tracks(track_uris: List[str]) -> Response:
     response = requests.get(
         "https://api.spotify.com/v1/tracks", headers=headers, params=params)
 
-    tracks = []
-    if response.status_code == 200:
-        for track in response.json()["tracks"]:
-            images = track["album"]["images"]
-            # first image is the largest one
-            image_url = None if len(images) == 0 else images[-1]["url"]
-            tracks.append({
-                "name": track["name"],
-                "artists": list(map(lambda artist: artist["name"], track["artists"])),
-                "image_url": image_url
-            })
+    tracks = get_tracks(response.json()["tracks"])
 
+    ret_res = make_response(jsonify(tracks), response.status_code)
+    ret_res.headers["Content-Type"] = "application/json"
+    return ret_res
+
+
+def search_tracks(query: str) -> Response:
+    access_token = get_access_token()
+    if access_token is None:
+        return make_response(jsonify([]), 401)  # unauthorized
+
+    headers = {"Authorization": f"Bearer {access_token}"}
+    params = {"q": query, "type": "track", "limit": 10}
+    response = requests.get(
+        "https://api.spotify.com/v1/search", headers=headers, params=params)
+
+    tracks = get_tracks(response.json()["tracks"]["items"])
     ret_res = make_response(jsonify(tracks), response.status_code)
     ret_res.headers["Content-Type"] = "application/json"
     return ret_res
