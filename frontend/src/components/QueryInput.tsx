@@ -25,7 +25,7 @@ interface SelectProps {
   setValue: React.Dispatch<string>
 }
 
-const Select: React.FC<SelectProps> = ({ setValue }: SelectProps) => {
+const Select: React.FC<SelectProps> = ({ setValue }) => {
   return (
     <select
       id="countries"
