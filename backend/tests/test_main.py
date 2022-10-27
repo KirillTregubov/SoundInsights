@@ -70,7 +70,8 @@ def test_recommend_tracks_endpoint(client):
             "1lzr43nnXAijIGYnCT8M8H"
         ]
     }), content_type='application/json')
-    if os.environ.get("USING_DOCKER").lower() == 'true':
+    docker = os.environ.get("USING_DOCKER")
+    if type(docker) == str and docker.lower() == 'true':
         assert response.status_code == 200
         assert len(response.json) == 2
         # TODO: Fix API key
