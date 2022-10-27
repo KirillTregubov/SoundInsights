@@ -7,7 +7,7 @@ from src.recommend_tracks import recommend_tracks
 
 def create_app():
     app = Flask(__name__)
-    CORS(app)
+    CORS(app, origins="*")
 
     @app.teardown_appcontext
     def cleanup(exception):
