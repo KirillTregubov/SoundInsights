@@ -21,13 +21,14 @@ def get_tracks(tracks) -> List[str]:
     # tracks = json.loads(input)
     result = []
     for track in tracks:
-        images = track["album"]["images"]
+        all_images = track["album"]["images"]
         # last image is the largest one
-        image_url = None if len(images) == 0 else images[-1]["url"]
+        images = None if len(all_images) == 0 else {
+            "large": all_images[0]["url"], "small": all_images[-1]["url"]}
         result.append({
             "name": track["name"],
             "artists": list(map(lambda artist: artist["name"], track["artists"])),
-            "image_url": image_url,
+            "images": images,
             "uri": track["uri"],
             "explicit": track["explicit"]
         })

@@ -13,7 +13,7 @@ const Fetch: React.FC = () => {
     return (
       <div className="my-2 rounded-lg bg-neutral-200 p-4">
         <h1 className="font-semibold ">Fetch data from backend</h1>
-        <Loading className="mt-1 h-7 w-7 text-neutral-700" />
+        <Loading className="mt-1" />
       </div>
     )
   if (isError)

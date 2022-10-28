@@ -25,6 +25,7 @@ def create_app():
         query = request.args.get("query")
         if query is None:
             return make_response(jsonify({"error": "query must be a URL parameter"}), 400)
+        # TODO: remove when fallback songs are added
         if len(query) == 0:
             return make_response(jsonify({"error": "query must not be empty"}), 400)
         return search_tracks(query)

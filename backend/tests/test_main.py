@@ -70,17 +70,17 @@ def test_recommend_tracks_endpoint(client):
             "1lzr43nnXAijIGYnCT8M8H"
         ]
     }), content_type='application/json')
+    # TODO: Fix API key
     docker = os.environ.get("USING_DOCKER")
     if type(docker) == str and docker.lower() == 'true':
         assert response.status_code == 200
         assert len(response.json) == 2
-        # TODO: Fix API key
         assert isinstance(response.json, List)
         for track in response.json:
             keys = track.keys()
             assert "name" in keys
             assert "artists" in keys
             assert isinstance(track["artists"], List)
-            assert "image_url" in keys
+            assert "images" in keys
     else:
         assert response.status_code == 401

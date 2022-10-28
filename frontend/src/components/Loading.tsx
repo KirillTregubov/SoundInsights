@@ -7,7 +7,9 @@ interface LoadingProps {
 const Loading: React.FC<LoadingProps> = ({ className }) => {
   return (
     <svg
-      className={className + '  animate-spin'}
+      className={`inline-block h-7 w-7 animate-spin text-neutral-700 dark:text-neutral-400${
+        className ? ` ${className}` : ''
+      }`}
       viewBox="0 0 38 38"
       xmlns="http://www.w3.org/2000/svg"
       width="1rem"

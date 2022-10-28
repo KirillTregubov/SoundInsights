@@ -1,19 +1,109 @@
-// import { useQuery } from '@tanstack/react-query'
-// import { useForm, SubmitHandler } from 'react-hook-form'
+import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { MinusCircleIcon } from '@heroicons/react/20/solid'
 
-// import { getRecommendedTracks } from 'lib/api'
+import SpotifySearch, { Selection } from 'components/SpotifySearch'
+
+import { getRecommendedTracks, getRecommendedTracksProps } from 'lib/api'
 // import Loading from 'components/Loading'
 
 const RecommendedTracks: React.FC = () => {
-  return <></>
+  const [selection, setSelection] = useState<Selection[]>([])
+  const [dirty, setDirty] = useState<boolean>(false)
+  const query = useQuery(
+    ['recommend-tracks'],
+    () =>
+      getRecommendedTracks(
+        selection.map((item) => {
+          const { uri } = item
+          return uri
+        }) as getRecommendedTracksProps
+      ),
+    {
+      enabled: false
+    }
+  )
+  const { data, refetch } = query
+  // { data, refetch, dataUpdatedAt, isLoading, isError, error }
+
+  function removeUri(uri: string) {
+    setSelection(selection.filter((item) => item.uri !== uri))
+  }
+
+  function chooseSong({ image, uri }: Selection) {
+    if (selection.filter((item) => item.uri === uri).length > 0) {
+      removeUri(uri)
+      return
+    }
+    if (!dirty) {
+      setDirty(true)
+    }
+    if (selection.length >= 5) {
+      alert('You may only select up to 5 tracks.') // TODO: improve UX
+      return
+    }
+    setSelection([...selection, { image, uri }])
+  }
+
+  function getRecommendations() {
+    console.log('getRecommendations')
+    console.log(
+      selection.map((item) => {
+        const { uri } = item
+        return uri
+      }) as getRecommendedTracksProps
+    )
+    refetch()
+  }
+
+  return (
+    <div className="mx-auto max-w-xl">
+      <div className="mb-2">
+        <h1 className="text-lg font-medium">Get Music Recommendations</h1>
+        <h3 className="dark:text-neutral-400">Select up to 5 tracks.</h3>
+      </div>
+      <div className="flex items-center">
+        {selection && selection.length == 0 ? (
+          <div className="dark:text-neutral-500">No tracks selected...</div>
+        ) : (
+          <div className="flex gap-2.5">
+            {selection.length > 0 &&
+              selection.map((track) => (
+                <button
+                  className="group relative -m-1 p-1 text-red-800"
+                  key={track.uri}
+                  onClick={() => removeUri(track.uri)}>
+                  <img
+                    className="box-content h-7 w-7 rounded-md transition-opacity group-hover:opacity-60"
+                    src={track.image}
+                    alt="Cover art"
+                  />
+                  <span className="absolute top-[-3px] right-[-3px] hidden h-3.5 w-3.5 rounded-full bg-red-900 opacity-75 group-hover:block group-hover:animate-ping"></span>
+                  <MinusCircleIcon className="absolute top-[-3px] right-[-3px] h-3.5 w-3.5" />
+                </button>
+              ))}
+          </div>
+        )}
+        <button
+          className="ml-auto rounded-full border py-1 px-3 disabled:cursor-not-allowed disabled:opacity-50"
+          disabled={selection?.length == 0}
+          onClick={() => getRecommendations()}>
+          Get Recommendations
+        </button>
+      </div>
+      <SpotifySearch setChosen={chooseSong} />
+      {data && (
+        <details>
+          <summary className="select-none">Recommendations</summary>
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+        </details>
+      )}
+    </div>
+  )
 }
 
 export default RecommendedTracks
 
-// const { data, dataUpdatedAt, isLoading, isError, error } = useQuery(
-//   ['recommend-tracks'],
-//   getRecommendedTracks
-// )
 // const Body = ({ children }: { children: React.ReactNode }) => {
 //   return (
 //     <div className="my-2 rounded-lg bg-neutral-200 p-4">

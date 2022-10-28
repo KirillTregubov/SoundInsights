@@ -32,6 +32,11 @@ def search_tracks(query: str) -> Response:
         return make_response(jsonify([]), 401)  # unauthorized
 
     headers = {"Authorization": f"Bearer {access_token}"}
+
+    if len(query) == 0:
+        # TODO: get list of 10 songs we want to show by default
+        # params = {"type": "track", "limit": 10}
+        return make_response(jsonify([]), 200)
     params = {"q": query, "type": "track", "limit": 10}
     response = requests.get(
         "https://api.spotify.com/v1/search", headers=headers, params=params)

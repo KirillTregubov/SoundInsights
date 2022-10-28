@@ -1,16 +1,23 @@
 import { z } from 'zod'
 
-export const Track = z
+export const TrackValidator = z
   .object({
     name: z.string(),
     artists: z.string().array(),
-    image_url: z.string().url().nullable(),
+    images: z
+      .object({
+        small: z.string().url(),
+        large: z.string().url()
+      })
+      .nullable(),
     uri: z.string(),
     explicit: z.boolean()
   })
   .strict()
+export type Track = z.infer<typeof TrackValidator>
 
-export const Tracks = Track.array()
+export const TracksValidator = TrackValidator.array()
+export type Tracks = z.infer<typeof TracksValidator>
 
 export const DemoQuery = z
   .object({
