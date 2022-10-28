@@ -10,7 +10,7 @@ import { getRecommendedTracks, getRecommendedTracksProps } from 'lib/api'
 const RecommendedTracks: React.FC = () => {
   const [selection, setSelection] = useState<Selection[]>([])
   const [dirty, setDirty] = useState<boolean>(false)
-  const query = useQuery(
+  const { data, refetch } = useQuery(
     ['recommend-tracks'],
     () =>
       getRecommendedTracks(
@@ -23,7 +23,6 @@ const RecommendedTracks: React.FC = () => {
       enabled: false
     }
   )
-  const { data, refetch } = query
   // { data, refetch, dataUpdatedAt, isLoading, isError, error }
 
   function removeUri(uri: string) {
@@ -46,13 +45,6 @@ const RecommendedTracks: React.FC = () => {
   }
 
   function getRecommendations() {
-    console.log('getRecommendations')
-    console.log(
-      selection.map((item) => {
-        const { uri } = item
-        return uri
-      }) as getRecommendedTracksProps
-    )
     refetch()
   }
 
@@ -64,7 +56,7 @@ const RecommendedTracks: React.FC = () => {
       </div>
       <div className="flex items-center">
         {selection && selection.length == 0 ? (
-          <div className="dark:text-neutral-500">No tracks selected...</div>
+          <div className="dark:text-neutral-700">No tracks selected...</div>
         ) : (
           <div className="flex gap-2.5">
             {selection.length > 0 &&
@@ -85,7 +77,7 @@ const RecommendedTracks: React.FC = () => {
           </div>
         )}
         <button
-          className="ml-auto rounded-full border py-1 px-3 disabled:cursor-not-allowed disabled:opacity-50"
+          className="ml-auto rounded-full border py-1 px-3 disabled:cursor-not-allowed disabled:dark:border-neutral-700 disabled:dark:text-neutral-700"
           disabled={selection?.length == 0}
           onClick={() => getRecommendations()}>
           Get Recommendations

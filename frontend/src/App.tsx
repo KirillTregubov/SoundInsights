@@ -21,7 +21,6 @@ const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <div id="App" className="m-2">
-        <p>Hello from App.tsx</p>
         <RecommendedTracks />
         {/* <QueryInput />
         <Fetch /> */}
