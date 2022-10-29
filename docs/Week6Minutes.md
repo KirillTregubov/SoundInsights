@@ -52,3 +52,9 @@ what we finished:
 - Milestone4
   - "Implement the component that takes in user inputs". <br>
   Complete an example, will implement in next week.
+
+### For next week
+Kirill suggested:
+- We let users login and choose playlist(s) to generate similar songs to selected playlists.
+- Another feature: user types in some text to pass as playlist name and generate tracks that way.
+- Implement some visualization for data we get back from the ML model (ex. bar graph showing distribution of genres returned, etc.).
