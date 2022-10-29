@@ -5,6 +5,14 @@ from src.spotify_helper import get_access_token, get_tracks
 
 
 def recommend_tracks(track_uris: List[str]) -> Response:
+    """
+    Get recommended tracks for a list of track uris
+
+    Preconditions:
+    - track_uris is a list containing 1-5 "track_uris"
+    Postconditions:
+    - returns a list of 100 recommended "track_uris"
+    """
     access_token = get_access_token()
     if access_token is None:
         return make_response(jsonify([]), 401)  # unauthorized

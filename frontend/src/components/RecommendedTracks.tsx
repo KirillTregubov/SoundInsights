@@ -49,7 +49,7 @@ const RecommendedTracks: React.FC = () => {
   }
 
   return (
-    <div className="mx-auto max-w-xl">
+    <div className="mx-auto my-6 max-w-xl">
       <div className="mb-2">
         <h1 className="text-lg font-medium">Get Music Recommendations</h1>
         <h3 className="dark:text-neutral-400">Select up to 5 tracks.</h3>
