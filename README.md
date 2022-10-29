@@ -4,6 +4,12 @@
 [Roadmap](https://github.com/KirillTregubov/csc302/blob/main/docs/Roadmap.md)<br>
 [Tech Stack](https://github.com/KirillTregubov/csc302/blob/main/docs/TechStack.md)<br>
 
+## A2 Deliverable
+
+Here is the [document](https://github.com/KirillTregubov/csc302/blob/main/docs/A2Deliverable.md) containing a description of what we planned to implement in A2 as well as the progress report on our milestones.
+
+Please consult the links above for our meeting notes, tech stack, and roadmap. Meeting notes for A2 are weeks 5-8. Roadmap and tech stack are the same as from A1.
+
 ## Installation
 
 ### Linux
