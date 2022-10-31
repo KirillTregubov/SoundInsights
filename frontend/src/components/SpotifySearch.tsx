@@ -33,6 +33,8 @@ const Input: React.FC<InputProps> = ({ setValue }) => {
           }`}
         />
         <input
+          name="Search"
+          aria-label="Search"
           className="w-full select-none bg-inherit px-2 py-1 placeholder:text-neutral-300 focus:outline-none group-focus-within:placeholder:text-neutral-500 dark:placeholder:text-neutral-600"
           placeholder="Search tracks on Spotify"
           autoComplete="off"

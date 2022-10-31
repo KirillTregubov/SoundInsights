@@ -24,7 +24,10 @@ const TrackPreview: React.FC<Props> = ({ className, track, onClick }) => {
         <p className="flex items-center overflow-hidden overflow-ellipsis whitespace-nowrap">
           {track.name}{' '}
           {!!track.explicit && (
-            <span className="ml-1.5 flex select-none items-center rounded-sm px-1 py-[3px] text-[10px] font-medium leading-none dark:bg-neutral-300 dark:text-neutral-900">
+            <span
+              title="Explicit"
+              aria-label="Explicit"
+              className="ml-1.5 flex select-none items-center rounded-sm px-1 py-[3px] text-[10px] font-medium leading-none dark:bg-neutral-300 dark:text-neutral-900">
               E
             </span>
           )}
