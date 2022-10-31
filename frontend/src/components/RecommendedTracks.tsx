@@ -5,6 +5,7 @@ import { MinusCircleIcon } from '@heroicons/react/20/solid'
 import SpotifySearch, { Selection } from 'components/SpotifySearch'
 
 import { getRecommendedTracks, getRecommendedTracksProps } from 'lib/api'
+import TrackPreview from 'components/TrackPreview'
 // import Loading from 'components/Loading'
 
 const RecommendedTracks: React.FC = () => {
@@ -54,7 +55,7 @@ const RecommendedTracks: React.FC = () => {
         <h1 className="text-lg font-medium">Get Music Recommendations</h1>
         <h3 className="dark:text-neutral-400">Select up to 5 tracks.</h3>
       </div>
-      <div className="flex items-center">
+      <div className="flex select-none items-center">
         {selection && selection.length == 0 ? (
           <div className="dark:text-neutral-700">No tracks selected...</div>
         ) : (
@@ -62,11 +63,11 @@ const RecommendedTracks: React.FC = () => {
             {selection.length > 0 &&
               selection.map((track) => (
                 <button
-                  className="group relative -m-1 p-1 text-red-800"
+                  className="group relative -m-1 p-1 text-red-700/80"
                   key={track.uri}
                   onClick={() => removeUri(track.uri)}>
                   <img
-                    className="box-content h-7 w-7 rounded-md transition-opacity group-hover:opacity-60"
+                    className="box-content h-7 w-7 rounded transition-[opacity,border-radius] group-hover:rounded-md group-hover:opacity-60"
                     src={track.image}
                     alt="Cover art"
                   />
@@ -85,10 +86,14 @@ const RecommendedTracks: React.FC = () => {
       </div>
       <SpotifySearch setChosen={chooseSong} />
       {data && (
-        <details>
-          <summary className="select-none">Recommendations</summary>
-          <pre>{JSON.stringify(data, null, 2)}</pre>
-        </details>
+        <div className="mt-4">
+          <h1 className="text-lg font-medium">Recommended Tracks</h1>
+          <div className="flex flex-col">
+            {data.map((track) => (
+              <TrackPreview key={track.uri} track={track} />
+            ))}
+          </div>
+        </div>
       )}
     </div>
   )

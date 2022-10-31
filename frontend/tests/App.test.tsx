@@ -5,8 +5,8 @@ import App from 'src/App'
 describe('test App.tsx', () => {
   test('contains RecommendedTracks component', () => {
     const { getByText } = render(<App />)
-    const linkElement = getByText(/Get Music Recommendations/i)
-    expect(linkElement).toBeInTheDocument()
+    const header = getByText(/Team Ez2Type/i)
+    expect(header).toBeInTheDocument()
   })
   // test('contains QueryInput component', () => {
   //   const { getByRole } = render(<App />)

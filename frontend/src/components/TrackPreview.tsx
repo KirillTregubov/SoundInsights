@@ -15,7 +15,7 @@ const TrackPreview: React.FC<Props> = ({ className, track, onClick }) => {
       onClick={onClick}>
       {track.images && (
         <img
-          className="h-12 w-12 rounded-lg"
+          className="h-12 w-12 rounded-md"
           src={track.images.small}
           alt="Cover art"
         />
@@ -24,7 +24,7 @@ const TrackPreview: React.FC<Props> = ({ className, track, onClick }) => {
         <p className="flex items-center overflow-hidden overflow-ellipsis whitespace-nowrap">
           {track.name}{' '}
           {!!track.explicit && (
-            <span className="ml-1.5 flex items-center rounded-sm px-1 py-[3px] text-[10px] font-medium leading-none dark:bg-neutral-300 dark:text-neutral-900">
+            <span className="ml-1.5 flex select-none items-center rounded-sm px-1 py-[3px] text-[10px] font-medium leading-none dark:bg-neutral-300 dark:text-neutral-900">
               E
             </span>
           )}
