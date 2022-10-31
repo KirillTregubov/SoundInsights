@@ -166,6 +166,12 @@ To add a package to the backend, execute the following helper script:
 bash ./backend/install-pkg.sh
 ```
 
+To run linting for both the frontend and backend, execute:
+
+```sh
+bash ./run-lint.sh
+```
+
 ## License
 
 All code in this repository is distributed under the GNU GPLv3 license. See [`LICENSE.txt`](https://github.com/KirillTregubov/csc302/blob/main/LICENSE) for more information.
