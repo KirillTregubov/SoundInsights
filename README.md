@@ -1,9 +1,10 @@
 <div id="readme-top"></div>
 
 <div align="center">
-  <!-- <a href="https://github.com/KirillTregubov/csc302">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a> -->
+  <a href="https://github.com/KirillTregubov/csc302">
+    <svg width="500" height="500" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 250C0 112.142 112.155 0 250.007 0 387.855 0 500 112.147 500 250c0 31.127-5.717 60.943-16.157 88.454-.529 1.393-2.347 1.719-3.373.639a100.003 100.003 0 0 0-143.181-1.804 100.003 100.003 0 0 0 1.805 143.182c1.08 1.026.754 2.844-.639 3.373C310.946 494.283 281.132 500 250.007 500 112.145 500 0 387.848 0 250Zm233.083-99.817L198.177 34.157c-10.069 1.757-14.436 2.826-24.195 7.508l49.281 109.959c2.692-.595 3.681-.865 4.688-1.029 1.046-.17 2.112-.225 5.132-.412Zm-93.673-93.59c-24.982 13.521-47.37 32.213-65.452 55.681l94.191 75.91c9.404-13.093 21.6-23.134 35.449-29.645L139.41 56.594Zm30.858 193.397c0 43.971 35.771 79.741 79.743 79.741 43.973 0 79.744-35.77 79.744-79.741s-35.771-79.741-79.744-79.741c-43.972 0-79.743 35.77-79.743 79.741Z" fill="currentColor"/><path d="M250 213.913c19.296 0 36.087 16.79 36.087 36.087 0 19.297-16.79 36.087-36.087 36.087-19.297 0-36.087-16.79-36.087-36.087 0-19.297 16.79-36.087 36.087-36.087ZM250 190c-33.135 0-60 26.861-60 60 0 33.135 26.861 60 60 60 33.135 0 60-26.861 60-60 0-33.135-26.865-60-60-60Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M347.396 347.396a85 85 0 1 1 120.208 120.207 85 85 0 0 1-120.208-120.207Zm65.043 23.396a7.69 7.69 0 0 1 2.253 5.439v23.077h23.077a7.693 7.693 0 1 1 0 15.384h-23.077v23.077a7.693 7.693 0 1 1-15.384 0v-23.077h-23.077a7.69 7.69 0 1 1 0-15.384h23.077v-23.077a7.69 7.69 0 0 1 13.131-5.439Z" fill="currentColor"/></svg>
+    <a href="https://github.com/KirillTregubov/csc302/blob/main/docs/IconCopyright.md">Icon Copyright</a>
+  </a>
   <h2 align="center">Team Ez2Type</h2>
   <p align="center">
     A group project for UofT course CSC302 that uses the Spotify Million Playlist Dataset to display interesting and meaningful results.
