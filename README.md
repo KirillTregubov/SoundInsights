@@ -1,15 +1,12 @@
 <div id="readme-top"></div>
 
-# Team Ez2Type
-
 <div align="center">
   <!-- <a href="https://github.com/KirillTregubov/csc302">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a> -->
-
   <h2 align="center">Team Ez2Type</h2>
   <p align="center">
-    A group project that uses the Spotify Million Playlist Dataset to display interesting and meaningful results.
+    A group project for UofT course CSC302 that uses the Spotify Million Playlist Dataset to display interesting and meaningful results.
     <!-- <br />
     <a href="https://github.com/KirillTregubov/csc302"><strong>Explore the docs »</strong></a> -->
     <div>
@@ -23,7 +20,7 @@
 </div>
 
 <!-- TABLE OF CONTENTS -->
-## Table of Contents
+### Table of Contents
 - [Assignment 2](#assignment-2)
 - [Features](#features)
 - [Planned Features](#planned-features)
@@ -46,11 +43,13 @@
 
 ## Assignment 2
 
-All detailed information related to Assignment 2 not covered on this page can be found in [Assignment 2]().
+All detailed information related to Assignment 2 not covered on this page can be found in [this document](https://github.com/KirillTregubov/csc302/blob/main/docs/A2Deliverable.md), including a description of what we planned to implement in A2 as well as a progress report on our milestones.
+
+Meeting notes for A2 are weeks 5-8. Roadmap and tech stack are the same as from A1.
 
 ## Features
 
-- **Get recommended tracks**: Get recommended tracks based on an ML model.
+- **Get recommended tracks**: Provide up to 5 Spotify tracks and get recommended tracks based on an ML model.
 
 ## Planned Features
 
@@ -87,12 +86,6 @@ The [Spotify Million Playlist Dataset](https://www.aicrowd.com/challenges/spotif
 
 [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-%232671E5?logo=github-actions&logoColor=white)]()
 
-## A2 Deliverable
-
-Here is the [document](https://github.com/KirillTregubov/csc302/blob/main/docs/A2Deliverable.md) containing a description of what we planned to implement in A2 as well as the progress report on our milestones.
-
-Please consult the links above for our meeting notes, tech stack, and roadmap. Meeting notes for A2 are weeks 5-8. Roadmap and tech stack are the same as from A1.
-
 ## Installation
 
 ### Linux
@@ -121,7 +114,7 @@ run-install.bat
 
 ### Troubleshooting
 
-If the script fails to run on your machine, please [install Docker Desktop](https://docs.docker.com/desktop/) yourself.
+To verify that the script worked, try to open `Docker Desktop` using your Operating System's search features. If it is missing or doesn't open and succesfully start the Docker engine, or if the install script fails, please [install Docker Desktop](https://docs.docker.com/desktop/) yourself.
 
 ## Usage
 
@@ -171,7 +164,7 @@ bash ./backend/install-pkg.sh
 
 ## License
 
-Distributed under the GNU GPLv3. See [`LICENSE.txt`](https://github.com/KirillTregubov/csc302/blob/main/LICENSE) for more information.
+All code in this repository is distributed under the GNU GPLv3 license. See [`LICENSE.txt`](https://github.com/KirillTregubov/csc302/blob/main/LICENSE) for more information.
 
 ## Maintainers
 
