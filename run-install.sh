@@ -16,8 +16,8 @@ case "${uname}" in
         apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EA8CACC073C3DB2A
         apt-get remove docker docker-engine docker.io containerd runc
         sh get-docker.sh
-        printf "\n\033[1;32mInstallation complete\033[0m\n";;
-        rm get-docker.sh
+        printf "\n\033[1;32mInstallation complete\033[0m\n"
+        rm get-docker.sh;;
     Darwin*)
         case "${chip}" in
             i386)
