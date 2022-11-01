@@ -9,8 +9,8 @@ services:
         workdir: /app
     ports: [ '5050:5050' ]
     environment:
-      CLIENT_ID: 77b019360235410f81c0904a4ace93ba
-      CLIENT_SECRET: a90e38621cae4a6797a97004abe633b8
+      - CLIENT_ID
+      - CLIENT_SECRET
     volumes:
       - ./backend:/app
 
