@@ -3,21 +3,15 @@ import { render } from '@testing-library/react'
 import App from 'src/App'
 
 describe('test App.tsx', () => {
-  test('contains desired title', () => {
+  test('contains header', () => {
     const { getByText } = render(<App />)
-    const text = getByText('Hello from App.tsx')
-    expect(text).toBeInTheDocument()
+    const header = getByText(/Team Ez2Type/i)
+    expect(header).toBeInTheDocument()
   })
 
-  test('contains QueryInput component', () => {
-    const { getByRole } = render(<App />)
-    const button = getByRole('button', { name: 'Search' })
-    expect(button).toBeInTheDocument()
-  })
-
-  test('contains Fetch component', () => {
+  test('contains RecommendedTracks component', () => {
     const { getByText } = render(<App />)
-    const text = getByText('Fetch data from backend')
-    expect(text).toBeInTheDocument()
+    const header = getByText(/Get Music Recommendations/i)
+    expect(header).toBeInTheDocument()
   })
 })

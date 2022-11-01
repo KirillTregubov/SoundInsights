@@ -1,5 +1,6 @@
-import { DemoQuery, getDemoQuery } from 'lib/api'
 import { responses } from '../setup'
+import { getDemoQuery } from 'lib/api'
+import { DemoQuery } from 'lib/types'
 
 describe('Test lib/api endpoints', () => {
   test('API mock works', async () => {

@@ -25,11 +25,11 @@ interface SelectProps {
   setValue: React.Dispatch<string>
 }
 
-const Select: React.FC<SelectProps> = ({ setValue }: SelectProps) => {
+const Select: React.FC<SelectProps> = ({ setValue }) => {
   return (
     <select
       id="countries"
-      className="block w-full max-w-[12rem] cursor-default rounded-md border border-gray-300 py-2 pl-2 pr-5 text-sm text-gray-900 ring-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-opacity-75"
+      className="block w-full max-w-[12rem] cursor-default rounded-md border border-neutral-300 py-2 pl-2 pr-5 text-sm text-neutral-900 ring-neutral-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-opacity-75"
       onChange={(e) => {
         setValue(e.target.value)
       }}>
