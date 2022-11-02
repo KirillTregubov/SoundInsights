@@ -10,8 +10,6 @@
   <h2 align="center">Team Ez2Type</h2>
   <p align="center">
     A group project for UofT course CSC302 that uses the Spotify Million Playlist Dataset to display interesting and meaningful results.
-    <!-- <br />
-    <a href="https://github.com/KirillTregubov/csc302"><strong>Explore the docs »</strong></a> -->
     <div>
       <a href="https://github.com/KirillTregubov/csc302/tree/main/docs">Meeting Notes</a>
       ·
@@ -24,7 +22,9 @@
 <br />
 
 <!-- TABLE OF CONTENTS -->
+
 ### Table of Contents
+
 - [Assignment 2](#assignment-2)
 - [Features](#features)
 - [Planned Features](#planned-features)
@@ -41,7 +41,6 @@
   - [Other Scripts](#other-scripts)
 - [License](#license)
 - [Maintainers](#maintainers)
-
 
 <div id="top"></div>
 
