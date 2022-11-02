@@ -92,6 +92,8 @@ Next, make sure you have `yarn` installed:
 npm install yarn -g
 ```
 
+> :warning: **This project assumes you are using yarn to run it**: Please ensure it is installed!
+
 ### Installation
 
 1. Clone the repo

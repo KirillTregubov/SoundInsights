@@ -40,7 +40,8 @@
     ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "jsx-quotes": ["error", "prefer-double"]
+    "jsx-quotes": ["error", "prefer-double"],
+    "react/prop-types": "off"
   },
   "overrides": [
     {
