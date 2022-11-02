@@ -5,7 +5,7 @@
     <img width="200px" height="200px" src="https://raw.githubusercontent.com/KirillTregubov/csc302/a7c5f08e80f02bbeac78c2ce48d5e84fa04b4a7a/frontend/assets/icon.svg">
   </a>
   <div align="center">
-    <a href="https://github.com/KirillTregubov/csc302/blob/main/docs/IconCopyright.md">Icon Copyright</a>
+    <a href="docs/IconCopyright.md">Icon Copyright</a>
   </div>
   <h2 align="center">Team Ez2Type</h2>
   <p align="center">
@@ -34,7 +34,7 @@
   - [macOS](#macos)
   - [Windows](#windows)
   - [Troubleshooting](#troubleshooting)
-- [Usage](#usage) (build & test)
+- [Usage (build & test)](#usage)
   - [Linux](#linux-1)
   - [macOS and Windows](#macos--windows-wsl)
   - [Troubleshooting](#troubleshooting-1)
@@ -47,7 +47,7 @@
 
 ## Assignment 2
 
-All detailed information related to Assignment 2 not covered on this page can be found in [this document](https://github.com/KirillTregubov/csc302/blob/main/docs/A2Deliverable.md), including a description of what we planned to implement in A2 as well as a progress report on our milestones.
+All detailed information related to Assignment 2 not covered on this page can be found in [this document](docs/A2Deliverable.md), including a description of what we planned to implement in A2 as well as a progress report on our milestones.
 
 Meeting notes for A2 are weeks 5-8. Roadmap and tech stack are the same as from A1.
 
@@ -61,7 +61,7 @@ Our [Roadmap](https://github.com/users/KirillTregubov/projects/1/) shows all our
 
 ## Tech Stack
 
-[Tech Stack](https://github.com/KirillTregubov/csc302/blob/main/docs/TechStack.md) contains detailed information about the technologies we are using including Pros, Cons and Alternatives.
+[Tech Stack](docs/TechStack.md) contains detailed information about the technologies we are using including Pros, Cons and Alternatives.
 
 ### Dataset
 
@@ -79,7 +79,7 @@ The [Spotify Million Playlist Dataset](https://www.aicrowd.com/challenges/spotif
 
 ### Backend
 
-[![Python](https://img.shields.io/badge/python-3670A0?logo=python&logoColor=ffdd54)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3670A0?logo=python&logoColor=ffdd54)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-%23000?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
 
 ### Container
@@ -180,7 +180,7 @@ bash ./run-lint.sh
 
 ## License
 
-All code in this repository is distributed under the GNU GPLv3 license. See [`LICENSE.txt`](https://github.com/KirillTregubov/csc302/blob/main/LICENSE) for more information.
+All code in this repository is distributed under the GNU GPLv3 license. See [`LICENSE.txt`](LICENSE) for more information.
 
 ## Maintainers
 
