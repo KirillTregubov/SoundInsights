@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="https://github.com/KirillTregubov/csc302">
-    <img width="200px" height="200px" src="https://raw.githubusercontent.com/KirillTregubov/csc302/97468801313c593bec60c3066df2d1d84d0d1cd2/assets/icon.svg">
+    <img width="200px" height="200px" src="https://raw.githubusercontent.com/KirillTregubov/csc302/a7c5f08e80f02bbeac78c2ce48d5e84fa04b4a7a/frontend/assets/icon.svg">
   </a>
   <div align="center">
     <a href="https://github.com/KirillTregubov/csc302/blob/main/docs/IconCopyright.md">Icon Copyright</a>
