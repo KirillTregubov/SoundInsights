@@ -26,6 +26,7 @@
 ### Table of Contents
 
 - [Assignment 2](#assignment-2)
+- [Assignment 1](#assignment-1)
 - [Features](#features)
 - [Planned Features](#planned-features)
 - [Tech Stack](#tech-stack)
@@ -51,6 +52,7 @@ All detailed information related to Assignment 2 not covered on this page can be
 Meeting notes for A2 are weeks 5-8. Roadmap and tech stack are the same as from A1.
 
 ## Assignment 1
+
 We have created a [Blameless Postmortem](docs/A1Postmortem.md) to reflect on our experience working on A1 and how we can improve our processes for future deliverables.
 
 ## Features
