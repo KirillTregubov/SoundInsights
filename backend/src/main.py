@@ -1,51 +1,55 @@
-import sqlite3
-import os
-import json
+from flask import Flask, make_response, request, jsonify
+from flask_cors import CORS, cross_origin
+from src.db_demo import db_demo
+from src.db_helper import close_db
+from src.methods import recommend_tracks, search_tracks
 
-# Setup database.
-try:
-    os.remove("database.db")
-except:
-    pass
-con = sqlite3.connect("database.db")
-cur = con.cursor()
 
-# Load a small slice of the actual dataset.
-with open("dataset_small.json", "r") as read_file:
-    data_small = json.load(read_file)
+def create_app():
+    app = Flask(__name__)
+    CORS(app, origins="*")
 
-# Create tables.
-cur.execute("CREATE TABLE playlists(name, pid, num_tracks, num_albums, num_followers)")
-cur.execute("CREATE TABLE songs(artist_name, track_uri, artist_uri, track_name, album_uri, duration_ms, album_name)")
-cur.execute("CREATE TABLE songs_in_playlists(pid, track_uri)")
+    @app.teardown_appcontext
+    def cleanup(exception):
+        close_db()
 
-# Fill the "playlists" table.
-for pl in data_small["playlists"]:
-    cur.execute(f"INSERT INTO playlists VALUES (?, ?, ?, ?, ?)",
-                (pl["name"], pl["pid"], pl["num_tracks"], pl["num_albums"], pl["num_followers"]))
+    @app.route("/db-demo")
+    def query_db():
+        response = make_response(db_demo(), 200)
+        response.headers["Content-Type"] = "application/json"
+        return response
 
-# Fill the "songs" and "songs_in_playlists" tables.
-songs = set()
-for pl in data_small["playlists"]:
-    for song in pl["tracks"]:
-        cur.execute(f"INSERT INTO songs_in_playlists VALUES (?, ?)",
-                    (pl["pid"], song["track_uri"]))
-        songs.add(
-            (song["artist_name"],
-             song["track_uri"],
-             song["artist_uri"],
-             song["track_name"],
-             song["album_uri"],
-             song["duration_ms"],
-             song["album_name"]))
-# ...
-for song in songs:
-    cur.execute(f"INSERT INTO songs VALUES (?, ?, ?, ?, ?, ?, ?)",
-                song)
+    @app.route("/search-tracks")
+    @cross_origin(origin='localhost', headers=['Content-Type'])
+    def search_tracks_endpoint():
+        query = request.args.get("query")
+        if query is None:
+            return make_response(jsonify({"error": "query must be a URL parameter"}), 400)
+        # TODO: remove when fallback songs are added
+        if len(query) == 0:
+            return make_response(jsonify({"error": "query must not be empty"}), 400)
+        return search_tracks(query)
 
-# Commit our changes to disk.
-con.commit()
+    @app.route("/recommend-tracks", methods=['POST'])
+    def recommend_tracks_endpoint():
+        """
+        Get recommended tracks for a list of track uris
 
-# Make a sample query.
-res = cur.execute("SELECT avg(num_tracks) FROM playlists WHERE num_followers > 10")
-print(f"The average number of tracks in playlists with more than 10 followers is {res.fetchone()[0]}.")
+        Preconditions:
+        - POST body must be JSON
+        - POST body must be a List[str] containing 1-5 "track_uris"
+        """
+        print(request.is_json)
+        if request.headers.get('Content-Type') != 'application/json':
+            return make_response(jsonify({"error": "content_type must be application/json"}), 400)
+
+        if "data" not in request.json:
+            return make_response(jsonify({"error": "request body must contain a data field"}), 400)
+
+        track_uris = request.json["data"]
+        if (isinstance(track_uris, list) and len(track_uris) > 0 and len(track_uris) <= 5):
+            return recommend_tracks(track_uris)
+        else:
+            return make_response(jsonify({"error": "data must be a list of 1-5 track_uris"}), 400)
+
+    return app

@@ -15,8 +15,7 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a> -->
 
-<h3 align="center">CSC302 TS + React</h3>
-
+  <h3 align="center">CSC302 TS + React</h3>
   <p align="center">
     A school project.
     <!-- <br />
@@ -92,6 +91,8 @@ Next, make sure you have `yarn` installed:
 ```sh
 npm install yarn -g
 ```
+
+> :warning: **This project assumes you are using yarn to run it**: Please ensure it is installed!
 
 ### Installation
 

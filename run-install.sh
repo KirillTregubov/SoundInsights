@@ -2,7 +2,7 @@
 # Tested on macOS 11.7 and Windows 10 21H2
 
 if [ -x "$(command -v docker)" ]; then
-  printf "\n\033[31mError: \033[1;36mDocker \033[0;31mis already installed\033[0m\n" >&2
+  printf "\033[31mError: \033[1;36mDocker \033[0;31mis already installed\033[0m\n" >&2
   exit 1
 fi
 
@@ -16,7 +16,8 @@ case "${uname}" in
         apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EA8CACC073C3DB2A
         apt-get remove docker docker-engine docker.io containerd runc
         sh get-docker.sh
-        printf "\n\033[1;32mInstallation complete\033[0m\n";;
+        printf "\n\033[1;32mInstallation complete\033[0m\n"
+        rm get-docker.sh;;
     Darwin*)
         case "${chip}" in
             i386)

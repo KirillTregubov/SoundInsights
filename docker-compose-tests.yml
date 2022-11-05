@@ -4,15 +4,21 @@ name: "csc302-tests"
 
 services:
   backend:
-    container_name: backend
+    container_name: backend-tests
     build:
       context: ./backend
       dockerfile: Dockerfile.test
       args:
         workdir: /app
+    volumes:
+      - ./backend:/app
+    environment:
+      - CLIENT_ID
+      - CLIENT_SECRET
+      - USING_DOCKER=true
 
   frontend:
-    container_name: frontend
+    container_name: frontend-tests
     build:
       context: ./frontend
       dockerfile: Dockerfile.test
@@ -20,7 +26,7 @@ services:
         workdir: /app
     volumes:
       - ./frontend:/app
-      - node_modules:/app/node_modules
+      - node_modules:/app/node_modules/
 
 volumes:
   node_modules:

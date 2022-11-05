@@ -1,0 +1,8 @@
+{
+  "[python]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false
+  },
+  "todo-tree.general.tags": ["TODO", "FIXME", "BUG", "NOTE"]
+}

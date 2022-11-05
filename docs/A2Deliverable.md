@@ -3,7 +3,7 @@
 
 This document contains all the core expectations for assignment 2.
 
-## Description of the features your project intends to implement
+## Description of the features our project intends to implement
 CI
 - We prioritized this because "everything that can be automated at this point must be".
 - Deliverables:
@@ -65,16 +65,20 @@ Frontend Component
       - Need to write UI components to conditionally render responses from the recommendation backend endpoint.
       - These UI components need to be somewhat readably by the user.\
 
-## Progress of our Milestones
+## Progress towards our Milestones
 Milestone 2: Enforce automation and testing.
 - Ensure our code is linted, styled, and sufficiently tested. **IN PROGRESS**
 - Set up automatic testing, building, integration and deployment pipelines. **DONE**
 
 Milestone 3: Create a backend that runs machine learning on our data to answer interesting, complex questions.
-- Set up ML models that work on our data. **DONE**
+- Set up ML models that work on our data. **IN PROGRESS**
 - Code logic to process the info our ML models output and communicate it to the frontend. **IN PROGRESS (first feature done)**
 
 Milestone 4: Create a client that allows users to input queries they have related to our data and display meaningful conclusions and visualizations about it.
 - Design the user interface, with a focus on exposing all features, handling query input, and displaying data in appropriate formats. **DONE**
 - Implement UI components. **IN PROGRESS (first feature done)**
 - Implement communication with backend. **IN PROGRESS (first feature done)**
+
+## Blameless Postmortem on Assignment 1
+
+We have created a [Blameless Postmortem](docs/A1Postmortem.md) to reflect on our experience working on A1 and how we can improve our processes for future deliverables.

@@ -1,16 +1,17 @@
-import renderer from 'react-test-renderer'
-import App from '../src/App'
 import { render } from '@testing-library/react'
 
-describe('App.tsx', () => {
-  test('renders correctly', () => {
-    const tree = renderer.create(<App />).toJSON()
-    expect(tree).toMatchSnapshot()
+import App from 'src/App'
+
+describe('test App.tsx', () => {
+  test('contains header', () => {
+    const { getByText } = render(<App />)
+    const header = getByText(/Team Ez2Type/i)
+    expect(header).toBeInTheDocument()
   })
 
-  test('contains desired title', () => {
+  test('contains RecommendedTracks component', () => {
     const { getByText } = render(<App />)
-    const linkElement = getByText(/Vite \+ React/i)
-    expect(linkElement).toBeInTheDocument()
+    const header = getByText(/Get Music Recommendations/i)
+    expect(header).toBeInTheDocument()
   })
 })

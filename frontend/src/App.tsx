@@ -1,33 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 
-function App() {
-  const [count, setCount] = useState(0)
+import RecommendedTracks from 'components/RecommendedTracks'
+
+const App: React.FC = () => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false
+      }
+    }
+  })
 
   return (
-    <div className='App'>
-      <div>
-        <a href='https://vitejs.dev' target='_blank' rel='noreferrer'>
-          <img src='/vite.svg' className='logo' alt='Vite logo' />
-        </a>
-        <a href='https://reactjs.org' target='_blank' rel='noreferrer'>
-          <img src={reactLogo} className='logo react' alt='React logo' />
-        </a>
+    <QueryClientProvider client={queryClient}>
+      <div id="App" className="">
+        <nav className="sticky top-0 z-10 -mb-6 flex items-center gap-2 bg-gradient-to-b from-neutral-900 via-neutral-900 p-2 pb-6">
+          <img
+            className="h-7 w-7 select-none"
+            src="/assets/icon.svg"
+            alt="Project logo"
+          />
+          <h1 className="font-semibold">Team Ez2Type</h1>
+        </nav>
+        <div className="m-6">
+          <RecommendedTracks />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className='read-the-docs'>
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    </QueryClientProvider>
   )
 }
 
