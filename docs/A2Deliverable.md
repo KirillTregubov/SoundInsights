@@ -71,7 +71,7 @@ Milestone 2: Enforce automation and testing.
 - Set up automatic testing, building, integration and deployment pipelines. **DONE**
 
 Milestone 3: Create a backend that runs machine learning on our data to answer interesting, complex questions.
-- Set up ML models that work on our data. **DONE**
+- Set up ML models that work on our data. **IN PROGRESS**
 - Code logic to process the info our ML models output and communicate it to the frontend. **IN PROGRESS (first feature done)**
 
 Milestone 4: Create a client that allows users to input queries they have related to our data and display meaningful conclusions and visualizations about it.
