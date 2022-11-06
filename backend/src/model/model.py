@@ -17,9 +17,9 @@ import pickle
 import os
 
 
-abspath = os.path.abspath(__file__)
-dname = os.path.dirname(abspath)
-os.chdir(dname)
+# abspath = os.path.abspath(__file__)
+# dname = os.path.dirname(abspath)
+# os.chdir(dname)
 
 
 def continue_playlist(my_uris):
@@ -52,7 +52,7 @@ def continue_playlist(my_uris):
         playlists = data['playlists']
         return playlists
     
-    playlists = unpack(json_name='data/playlists.json')
+    playlists = unpack(json_name='src/model/data/playlists.json')
     
     # print(playlists[0]["tracks"][0])
     
@@ -151,7 +151,7 @@ def continue_playlist(my_uris):
         return df
     
     # playlist_df = create_playlist_dataframe(playlists)
-    playlist_df = pd.read_csv('cache/playlist_df.csv', index_col=0)
+    playlist_df = pd.read_csv('src/model/cache/playlist_df.csv', index_col=0)
     playlist_df
     
     # convert genre to label encoded
@@ -176,7 +176,7 @@ def continue_playlist(my_uris):
     alternative_uris = []
     
     try:
-        with open('cache/combined', 'rb') as fp:
+        with open('src/model/cache/combined', 'rb') as fp:
             combined = pickle.load(fp)
             pop_uris, hip_hop_uris, edm_uris, latin_uris, rock_uris, randb_uris, country_uris, jazz_uris, classical_uris, alternative_uris = combined
     
@@ -220,7 +220,7 @@ def continue_playlist(my_uris):
         
         combined = [pop_uris, hip_hop_uris, edm_uris, latin_uris, rock_uris, randb_uris, country_uris, jazz_uris, classical_uris, alternative_uris]
         
-        with open('cache/combined', 'wb') as fp:
+        with open('src/model/cache/combined', 'wb') as fp:
             pickle.dump(combined, fp)
             print('Done writing list into a binary file')
     
@@ -273,11 +273,11 @@ def continue_playlist(my_uris):
     # song_df = pd.read_csv('song_df.csv', index_col=0)
     
     try:
-        with open('cache/dataframe', 'rb') as fp:
+        with open('src/model/cache/dataframe', 'rb') as fp:
             song_df = pickle.load(fp)
     except FileNotFoundError:
         song_df = create_song_dataframe(song_uris)
-        with open('cache/dataframe', 'wb') as fp:
+        with open('src/model/cache/dataframe', 'wb') as fp:
             pickle.dump(song_df, fp)
             print('Done writing list into a binary file')
     
