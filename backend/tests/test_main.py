@@ -18,14 +18,6 @@ def app():
 def client(app):
     return app.test_client()
 
-
-def test_query_db(client):
-    response = client.get("/db-demo")
-    keys = response.json.keys()
-    assert "query" in keys
-    assert "result" in keys
-
-
 def test_recommend_tracks_endpoint_bad_request(client):
     response = client.post("/recommend-tracks")
     assert response.status_code == 400
