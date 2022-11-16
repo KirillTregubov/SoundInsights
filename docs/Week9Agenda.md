@@ -1,4 +1,4 @@
-# Week 8 Agenda
+# Week 9 Agenda
 
 Meeting time: Wednesday November 16th, 2022 at 6:30 p.m. Members: Kirill, Eddie, Burt, Roger
 
