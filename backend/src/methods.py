@@ -53,3 +53,59 @@ def search_tracks(query: str) -> Response:
     ret_res = make_response(jsonify(tracks), response.status_code)
     ret_res.headers["Content-Type"] = "application/json"
     return ret_res
+
+
+def get_general_info(track_uris: List[str]) -> Response:
+    """
+    Get general information about tracks with the given track_uris.
+
+    Preconditions:
+    - 0 <= len(track_uris) <= 50
+    Postconditions:
+    - Returns a response with general track info.
+        - Structure of the response JSON: https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-tracks
+        - If the request succeeds, the response contains a list of data with length == len(track_uris).
+        - If the request fails, the response contains an empty list and a corresponding error status_code.
+    """
+    access_token = get_access_token()
+    if access_token is None:
+        return make_response(jsonify([]), 401)
+    
+    headers = {"Authorization": f"Bearer {access_token}"}
+    params = {"ids": ",".join(track_uris)}
+    response = requests.get("https://api.spotify.com/v1/tracks", headers=headers, params=params)
+    
+    ret_res = make_response(
+        jsonify(response.json()["tracks"] if response.status_code == 200 else []),
+        response.status_code
+    )
+    ret_res.headers["Content-Type"] = "application/json"
+    return ret_res
+
+
+def get_audio_features(track_uris: List[str]) -> Response:
+    """
+    Get audio features of the tracks with the given track_uris.
+
+    Preconditions:
+    - 0 <= len(track_uris) <= 100
+    Postconditions:
+    - Returns a response with track audio features.
+        - Structure of the response JSON: https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-audio-features
+        - If the request succeeds, the response contains a list of data with length == len(track_uris).
+        - If the request fails, the response contains an empty list and a corresponding error status_code.
+    """
+    access_token = get_access_token()
+    if access_token is None:
+        return make_response(jsonify([]), 401)
+    
+    headers = {"Authorization": f"Bearer {access_token}"}
+    params = {"ids": ",".join(track_uris)}
+    response = requests.get("https://api.spotify.com/v1/audio-features", headers=headers, params=params)
+
+    ret_res = make_response(
+        jsonify(response.json()["audio_features"] if response.status_code == 200 else []),
+        response.status_code
+    )
+    ret_res.headers["Content-Type"] = "application/json"
+    return ret_res
