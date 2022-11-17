@@ -123,9 +123,13 @@ def test_get_general_info_endpoint(client):
         ]
     }), content_type='application/json')
 
-    assert response.status_code == 200
-    assert isinstance(response.json, list)
-    assert len(response.json) == 5
+    docker = os.environ.get("USING_DOCKER")
+    if type(docker) == str and docker.lower() == 'true':
+        assert response.status_code == 200
+        assert isinstance(response.json, list)
+        assert len(response.json) == 5
+    else:
+        assert response.status_code == 401
 
 
 # Audio features
@@ -179,6 +183,10 @@ def test_get_audio_features_endpoint(client):
         ]
     }), content_type='application/json')
 
-    assert response.status_code == 200
-    assert isinstance(response.json, list)
-    assert len(response.json) == 5
+    docker = os.environ.get("USING_DOCKER")
+    if type(docker) == str and docker.lower() == 'true':
+        assert response.status_code == 200
+        assert isinstance(response.json, list)
+        assert len(response.json) == 5
+    else:
+        assert response.status_code == 401
