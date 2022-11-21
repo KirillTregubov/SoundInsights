@@ -40,63 +40,16 @@ def create_app():
         - POST body must be JSON
         - POST body must be a List[str] containing 1-5 "track_uris"
         """
-        error_res = __verify_list(request, 1, 5)
-        if error_res is None:
-            return recommend_tracks(request.json["data"])
-        else:
-            return error_res
-    
-    @app.route("/general-info")
-    def get_general_info_endpoint():
-        """
-        Get general track information for a list of track_uris.
-
-        Preconditions:
-        - GET body must be JSON.
-        - GET body must be a List[str] with 1 <= length <= 50
-        """
-        error_res = __verify_list(request, 1, 50)
-        if error_res is None:
-            return get_general_info(request.json["data"])
-        else:
-            return error_res
-    
-    @app.route("/audio-features")
-    def get_audio_features_endpoint():
-        """
-        Get audio features for a list of track_uris.
-
-        Preconditions:
-        - GET body must be JSON.
-        - GET body must be a List[str] with 1 <= length <= 100
-        """
-        error_res = __verify_list(request, 1, 100)
-        if error_res is None:
-            return get_audio_features(request.json["data"])
-        else:
-            return error_res
-    
-    def __verify_list(request: Request, min_len: Optional[int], max_len: Optional[int]) -> Optional[Response]:
-        """
-        Verify that the given request contains data in the form of a list of min_len to max_len items.
-
-        Preconditions:
-        - request is a valid Request object
-        - min_len <= max_len
-        Postconditions:
-        - returns an error response with the corresponding message and status code if verification fails
-        - returns None if verification succeeds
-        """
         if request.headers.get('Content-Type') != 'application/json':
             return make_response(jsonify({"error": "content_type must be application/json"}), 400)
-        
+
         if "data" not in request.json:
             return make_response(jsonify({"error": "request body must contain a data field"}), 400)
-        
-        data = request.json["data"]
-        if not isinstance(data, list) or (min_len is not None and len(data) < min_len) or (max_len is not None and len(data) > max_len):
-            return make_response(jsonify({"error": f"data must be a list of {min_len}-{max_len} track_uris"}), 400)
-        
-        return None
+
+        track_uris = request.json["data"]
+        if (isinstance(track_uris, list) and len(track_uris) > 0 and len(track_uris) <= 5):
+            return recommend_tracks(track_uris)
+        else:
+            return make_response(jsonify({"error": "data must be a list of 1-5 track_uris"}), 400)
 
     return app
