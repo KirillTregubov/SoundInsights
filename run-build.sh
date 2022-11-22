@@ -15,6 +15,12 @@ clean_up () {
 }
 trap clean_up INT EXIT
 
+if [ ! -z "$1" ]
+  then export CLIENT_ID=$1
+fi
+if [ ! -z "$2" ]
+  then export CLIENT_SECRET=$2
+fi
 printf "\033[32mCreating and starting \033[1;36mDocker \033[0;32mcontainers\033[0m\n"
 printf "\033[33mTip: Use \033[1mCtrl + C\033[0;33m to cancel or close \033[1;36mDocker\033[0m\n\n"
 docker compose up --build

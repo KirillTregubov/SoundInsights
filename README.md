@@ -49,6 +49,8 @@
 
 All detailed information related to Assignment 2 not covered on this page can be found in [this document](docs/A2Deliverable.md), including a description of what we planned to implement in A2 as well as a progress report on our milestones.
 
+To properly run our app, you'll need to have the correct secret values on your machine. We decided the easiest way to safely pass you these secret values is to upload them via the A2 quercus submission. **Please check Eddie Shao's A2 quercus submission to get these secret values as well as the instructions on how to use them in our project.**
+
 Meeting notes for A2 are weeks 5-8. Roadmap and tech stack are the same as from A1.
 
 ## Assignment 1
