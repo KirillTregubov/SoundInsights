@@ -21,8 +21,9 @@
     "baseUrl": ".",
     "paths": {
       "src/*": ["src/*"],
+      "components/*": ["src/components/*"],
       "lib/*": ["src/lib/*"],
-      "components/*": ["src/components/*"]
+      "pages/*": ["src/pages/*"]
     }
   },
   "include": ["vite.config.ts", "**/*.ts", "**/*.tsx"],
