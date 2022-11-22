@@ -56,7 +56,7 @@
     "vite": "^3.1.0",
     "vite-tsconfig-paths": "^3.5.1",
     "vitest": "^0.24.3",
-    "spotify-web-api-js": "1.5.2",
+    "spotify-web-api-js": "1.5.2"
 
     
   }
