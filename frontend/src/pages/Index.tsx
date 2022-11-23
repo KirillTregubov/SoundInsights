@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import { Pie, PieChart } from 'recharts'
 
 import UserLogin from 'components/UserLogin'
-import { getTokenFromUrl, getPlayLists } from './lib/spotify'
 import SpotifyWebApi from 'spotify-web-api-js'
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
+// import { useLocalStorage } from 'lib/hooks'
+// import { useToken } from 'lib/tokenContext'
 
 const Index: React.FC = () => {
   const data01 = [
@@ -35,42 +36,47 @@ const Index: React.FC = () => {
     }
   ]
 
-  const spotify = new SpotifyWebApi()
-  const [spotifyToken, setSpotifyToken] = useState('')
+  // const spotify = new SpotifyWebApi()
+  // const [spotifyToken, setSpotifyToken] = useState('')
 
-  useEffect(() => {
-    const function_a = async () => {
-      console.log('This is what we derived from the URL: ', getTokenFromUrl())
-      const _spotifyToken = getTokenFromUrl().access_token
-      window.location.hash = ''
-      console.log('This is our spotify token ', _spotifyToken)
-      if (_spotifyToken) {
-        setSpotifyToken(_spotifyToken)
-        spotify.setAccessToken(_spotifyToken)
-        const playlists = await spotify
-          .getUserPlaylists() // note that we don't pass a user id
-          .then(
-            function (data) {
-              const string = JSON.parse(JSON.stringify(data.items))
-              return string
-            },
-            function (err) {
-              console.error(err)
-            }
-          )
-        const user_Info = await spotify.getMe()
-        const user_Id = user_Info.id
-        console.log('The user Id we get is', user_Id)
-        console.log('playlists, ', playlists)
-        const myAsynFunction = async (playlists): Promise<T> => {
-          const value = await playlists
-          return value
-        }
-      }
-    }
+  // const { token, setToken } = useToken()
 
-    function_a()
-  })
+  // const [token, setToken] = useLocalStorage('token')
+  // console.log('local storage token', token)
+
+  // useEffect(() => {
+  //   const function_a = async () => {
+  //     console.log('This is what we derived from the URL: ', getTokenFromUrl())
+  //     const _spotifyToken = getTokenFromUrl().access_token
+  //     window.location.hash = ''
+  //     console.log('This is our spotify token ', _spotifyToken)
+  //     if (_spotifyToken) {
+  //       setSpotifyToken(_spotifyToken)
+  //       spotify.setAccessToken(_spotifyToken)
+  //       const playlists = await spotify
+  //         .getUserPlaylists() // note that we don't pass a user id
+  //         .then(
+  //           function (data) {
+  //             const string = JSON.parse(JSON.stringify(data.items))
+  //             return string
+  //           },
+  //           function (err) {
+  //             console.error(err)
+  //           }
+  //         )
+  //       const user_Info = await spotify.getMe()
+  //       const user_Id = user_Info.id
+  //       console.log('The user Id we get is', user_Id)
+  //       console.log('playlists, ', playlists)
+  //       const myAsynFunction = async (playlists): Promise<T> => {
+  //         const value = await playlists
+  //         return value
+  //       }
+  //     }
+  //   }
+
+  //   function_a()
+  // })
 
   return (
     <>

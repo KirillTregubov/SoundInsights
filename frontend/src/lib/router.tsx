@@ -3,7 +3,9 @@ import { QueryClient } from '@tanstack/react-query'
 import Root from '../root'
 import ErrorPage from '../ErrorPage'
 import Index from 'pages/Index'
-import RecommendedTracks from 'src/pages/RecommendedTracks'
+import RecommendedTracks from 'pages/RecommendedTracks'
+import SpotifyCallback from 'pages/SpotifyCallback'
+import { useLocation } from 'react-router-dom'
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,6 +28,22 @@ export const routes = [
       {
         index: true,
         element: <Index />
+      },
+      {
+        path: '/callback',
+        // loader: async ({ params, request }) => {
+        //   console.log(params)
+        //   console.log('request', request)
+        //   const url = new URL(request.url)
+        //   console.log(url.searchParams)
+        //   const searchTerm = url.searchParams.get('access_token')
+        //   console.log(searchTerm)
+        //   const { handleSpotifyCallback } = await import(
+        //     'pages/SpotifyCallback'
+        //   )
+        //   return handleSpotifyCallback()
+        // },
+        element: <SpotifyCallback />
       },
       {
         path: '/get-recommendations',
