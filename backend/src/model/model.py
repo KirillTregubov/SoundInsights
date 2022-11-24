@@ -17,6 +17,8 @@ import pickle
 import os
 
 
+from spotify_helper import get_access_token, get_client_credentials
+
 # abspath = os.path.abspath(__file__)
 # dname = os.path.dirname(abspath)
 # os.chdir(dname)
@@ -31,8 +33,7 @@ def continue_playlist(my_uris):
     SIZE = 500  # this defines how many playlists we want
     
     # for Spotify API
-    cid = 'cc9a4cae89f3487f99ab84b46002abea'
-    secret = 'd8d0ed623ff4428893a0d4793a764402'
+    cid, secret = get_client_credentials()
     client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
     
