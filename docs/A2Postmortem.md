@@ -1,4 +1,4 @@
-# Assignment 1 Blameless Postmortem
+# Assignment 2 Blameless Postmortem
 
 ## What went well
    - We delivered the feature we planned (except for the ML integration which proved tricky)
