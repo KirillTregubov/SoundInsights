@@ -1,3 +1,4 @@
+// import { useLocation } from 'react-router-dom'
 import { QueryClient } from '@tanstack/react-query'
 
 import Root from '../root'
@@ -5,7 +6,7 @@ import ErrorPage from '../ErrorPage'
 import Index from 'pages/Index'
 import RecommendedTracks from 'pages/RecommendedTracks'
 import SpotifyCallback from 'pages/SpotifyCallback'
-import { useLocation } from 'react-router-dom'
+import PlaylistRecommendations from 'pages/PlaylistRecommendations'
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -48,6 +49,10 @@ export const routes = [
       {
         path: '/get-recommendations',
         element: <RecommendedTracks />
+      },
+      {
+        path: '/playlist-recommendations',
+        element: <PlaylistRecommendations />
       }
     ]
   }
