@@ -62,7 +62,7 @@ const PlaylistRecommendations: React.FC = () => {
       <h1>Playlist Recommendations</h1>
       <div>isLoading? {JSON.stringify(isLoading)}</div>
       <div>
-        Data: <pre>{data}</pre>
+        Data: <pre>{JSON.stringify(data)}</pre>
       </div>
     </div>
   )
