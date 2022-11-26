@@ -9,4 +9,4 @@ Docker.dmg
 installer.exe
 
 # Log files
-/logs
+/script-logs
