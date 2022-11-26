@@ -4,9 +4,13 @@ from flask_cors import CORS, cross_origin
 from src.db_demo import db_demo
 from src.db_helper import close_db
 from src.methods import recommend_tracks, search_tracks, get_general_info, get_audio_features
+import logging
+import os
 
 
 def create_app():
+    setup_logging()
+
     app = Flask(__name__)
     CORS(app, origins="*")
 
@@ -96,3 +100,14 @@ def create_app():
         return None
 
     return app
+
+
+# Logs will always be written to the logfile, but will only be written to STDOUT in DEBUG mode.
+def setup_logging():
+    with open("logfile", 'w+') as file:
+        file.truncate(0)
+    message_format = "%(asctime)s %(levelname)s in %(module)s: %(message)s"
+    is_debug = os.environ.get("FLASK_DEBUG") == "1"
+    logging.basicConfig(filename="logfile", format=message_format, level=logging.DEBUG if is_debug else logging.INFO)
+    if is_debug:
+        logging.getLogger().addHandler(logging.StreamHandler())
