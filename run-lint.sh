@@ -1,5 +1,7 @@
 #!/bin/sh
 
+source init-logging.sh run-lint.log
+
 printf "\033[32mRunning \033[1mTesting \033[0;32menvironment\033[0m\n"
 
 if ! docker -v >/dev/null 2>&1; then
