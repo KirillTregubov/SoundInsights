@@ -60,13 +60,14 @@ def __segment_list(lst: List, length: int) -> List[List]:
     """
     Segment the given lst into nested lists each with at most "length" elements. Each nested list
     will have "length" elements EXCEPT for the last one which will have the left over len(lst) % length
-    elements.
+    elements. If "length" divides len(lst), then the last nested list will also have "length" elements.
 
     Preconditions:
     - length >= 1
     Postconditions:
-    - The last nested list in the returned list has len == len(lst) % length. Every other list has
-      len == length.
+    - If len(lst) % length == 0, each nested list in the returned list will have "length" elements.
+      Otherwise, the last nested list in the returned list has len == len(lst) % length while
+      every other list has "length" elements.
     """
     segmented = []
     current = []
