@@ -32,22 +32,42 @@ def recommend_tracks(track_uris: List[str]) -> Response:
 
 
 def __recommend_using_ml(track_uris: List[str], max_ml_calls: Optional[int]) -> List[str]:
+    """
+    Return a list of track_uris recommended by the ML model given the input "track_uris".
+    The ML model will be called a maximum of "max_ml_calls" times. If this value is None, the
+    maximum allowed ML model calls of 100 will be used (not recommended).
+
+    Preconditions:
+    - max_ml_calls is None or 0 < max_ml_calls <= 100
+    Postconditions:
+    - returns a list of len == 100
+    """
     segmented = __segment_list(track_uris, 10)
     if len(segmented) == 0:
         return []
-    else:
-        recommended = []
-        num_loops = len(segmented) if max_ml_calls is None else min(len(segmented), max_ml_calls)
-        for i in range(num_loops):
-            segment = segmented[i]
-            # TODO: Run ML model on "segment" and extend the "recommended" list by
-            # the first 100 / min(len(segmented), max_ml_calls) items of the list returned by the ML model.
-            recommended.extend(["0UaMYEvWZi0ZqiDOoHU3YI", "6I9VzXrHxO9rA9A5euc8Ak"])
-        # TODO: assert len(recommended) should be 100
-        return recommended
+    recommended = []
+    num_loops = min(len(segmented), 100 if max_ml_calls is None else max_ml_calls)
+    for i in range(num_loops):
+        segment = segmented[i]
+        # TODO: Run ML model on "segment" and extend the "recommended" list by
+        # the first 100 / min(len(segmented), max_ml_calls) items of the list returned by the ML model.
+        recommended.extend(["0UaMYEvWZi0ZqiDOoHU3YI", "6I9VzXrHxO9rA9A5euc8Ak"])
+    # TODO: assert len(recommended) should be 100
+    return recommended
 
 
 def __segment_list(lst: List, length: int) -> List[List]:
+    """
+    Segment the given lst into nested lists each with at most "length" elements. Each nested list
+    will have "length" elements EXCEPT for the last one which will have the left over len(lst) % length
+    elements.
+
+    Preconditions:
+    - length >= 1
+    Postconditions:
+    - The last nested list in the returned list has len == len(lst) % length. Every other list has
+      len == length.
+    """
     segmented = []
     current = []
     for item in lst:
