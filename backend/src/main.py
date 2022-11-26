@@ -45,6 +45,22 @@ def create_app():
         else:
             return error_res
     
+    @app.route("/recommend-many-tracks", methods=['POST'])
+    def recommend_many_tracks_endpoint():
+        """
+        Get recommended tracks for a list of track uris. Similar to /recommend-tracks but
+        allows an arbitrary (any) number of track_uris as input.
+
+        Preconditions:
+        - POST body must be JSON
+        - POST body must be a List[str] of >= 1 "track_uris"
+        """
+        error_res = __verify_list(request, 1, None)
+        if error_res is None:
+            return recommend_tracks(request.json["data"])
+        else:
+            return error_res
+    
     @app.route("/general-info")
     def get_general_info_endpoint():
         """
@@ -91,7 +107,9 @@ def create_app():
         
         data = request.json["data"]
         if not isinstance(data, list) or (min_len is not None and len(data) < min_len) or (max_len is not None and len(data) > max_len):
-            return make_response(jsonify({"error": f"data must be a list of {min_len}-{max_len} track_uris"}), 400)
+            min_str = 0 if min_len is None else min_len
+            max_str = "N/A" if max_len is None else max_len
+            return make_response(jsonify({"error": f"data must be a list of {min_str}-{max_str} track_uris"}), 400)
         
         return None
 
