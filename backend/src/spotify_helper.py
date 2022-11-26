@@ -2,9 +2,11 @@ import json
 from typing import Optional, List
 import requests
 import os
+import logging
 
 
 def get_access_token() -> Optional[str]:
+    logging.info("get_access_token()")
     client_id = os.environ.get("CLIENT_ID")
     client_secret = os.environ.get("CLIENT_SECRET")
 
@@ -15,6 +17,7 @@ def get_access_token() -> Optional[str]:
             client_id = secrets[0]
             client_secret = secrets[1]
         except (OSError, IndexError):
+            logging.error("secrets.txt is either missing or in the wrong format.")
             return None
 
     response = requests.post("https://accounts.spotify.com/api/token", {
@@ -26,6 +29,7 @@ def get_access_token() -> Optional[str]:
     if response.status_code == 200:
         return response.json()["access_token"]
     else:
+        logging.error("Spotify API secret values were not configured properly. Run the build script with the secret values OR provide a secrets.txt file in /backend")
         return None
 
 

@@ -1,4 +1,5 @@
 import requests
+import logging
 from flask import Response, jsonify, make_response
 from typing import List
 from src.spotify_helper import get_access_token, get_tracks
@@ -13,6 +14,7 @@ def recommend_tracks(track_uris: List[str]) -> Response:
     Postconditions:
     - returns a list of 100 recommended "track_uris"
     """
+    logging.info(f"recommend_tracks({track_uris})")
     access_token = get_access_token()
     if access_token is None:
         return make_response(jsonify([]), 401)  # unauthorized
@@ -35,6 +37,7 @@ def recommend_tracks(track_uris: List[str]) -> Response:
 
 
 def search_tracks(query: str) -> Response:
+    logging.info(f"search_tracks({query})")
     access_token = get_access_token()
     if access_token is None:
         return make_response(jsonify([]), 401)  # unauthorized
@@ -67,6 +70,7 @@ def get_general_info(track_uris: List[str]) -> Response:
         - If the request succeeds, the response contains a list of data with length == len(track_uris).
         - If the request fails, the response contains an empty list and a corresponding error status_code.
     """
+    logging.info(f"get_general_info({track_uris})")
     access_token = get_access_token()
     if access_token is None:
         return make_response(jsonify([]), 401)
@@ -95,6 +99,7 @@ def get_audio_features(track_uris: List[str]) -> Response:
         - If the request succeeds, the response contains a list of data with length == len(track_uris).
         - If the request fails, the response contains an empty list and a corresponding error status_code.
     """
+    logging.info(f"get_audio_features({track_uris})")
     access_token = get_access_token()
     if access_token is None:
         return make_response(jsonify([]), 401)
