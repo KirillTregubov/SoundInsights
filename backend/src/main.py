@@ -102,8 +102,16 @@ def create_app():
     return app
 
 
-# Logs will always be written to the logfile, but will only be written to STDOUT in DEBUG mode.
 def setup_logging():
+    """
+    Setup logging for this project. This should be called before creating the app object.
+    - Logs will be written to the logfile and STDOUT in development mode.
+    - Logs will ONLY be written to the logfile in production mode.
+    - DEBUG level messages will be ignored in production mode.
+
+    Preconditions:
+    - Must be called before the first call to Flask(__name__).
+    """
     with open("logfile", 'w+') as file:
         file.truncate(0)
     message_format = "%(asctime)s %(levelname)s in %(module)s: %(message)s"
