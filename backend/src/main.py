@@ -122,9 +122,9 @@ def create_app():
 
 def setup_logging():
     """
-    Setup logging for this project. This should be called before creating the app object.
-    - Logs will be written to the logfile and STDOUT in development mode.
-    - Logs will ONLY be written to the logfile in production mode.
+    Setup logging for this project.
+    - This function needs to be called before creating the app object.
+    - Logs will be written to standard output AND a logfile.
     - DEBUG level messages will be ignored in production mode.
 
     Preconditions:
@@ -135,5 +135,4 @@ def setup_logging():
     message_format = "%(asctime)s %(levelname)s in %(module)s: %(message)s"
     is_debug = os.environ.get("FLASK_DEBUG") == "1"
     logging.basicConfig(filename="logfile", format=message_format, level=logging.DEBUG if is_debug else logging.INFO)
-    if is_debug:
-        logging.getLogger().addHandler(logging.StreamHandler())
+    logging.getLogger().addHandler(logging.StreamHandler())
