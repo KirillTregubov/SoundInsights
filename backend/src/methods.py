@@ -1,6 +1,6 @@
 import requests
 from flask import Response, jsonify, make_response
-from typing import List
+from typing import List, Optional
 from src.spotify_helper import get_access_token, get_tracks
 
 
@@ -9,7 +9,7 @@ def recommend_tracks(track_uris: List[str]) -> Response:
     Get recommended tracks for a list of track uris
 
     Preconditions:
-    - track_uris is a list containing 1-5 "track_uris"
+    - track_uris is a list containing >= 1 "track_uris"
     Postconditions:
     - returns a list of 100 recommended "track_uris"
     """
@@ -17,10 +17,7 @@ def recommend_tracks(track_uris: List[str]) -> Response:
     if access_token is None:
         return make_response(jsonify([]), 401)  # unauthorized
 
-    # TODO: pass track_uris to ML script and get back a list of recommendations
-    # for now, use these 2 arbitrary track_uris as mock
-    recommended_track_uris = [
-        "0UaMYEvWZi0ZqiDOoHU3YI", "6I9VzXrHxO9rA9A5euc8Ak"]
+    recommended_track_uris = __recommend_using_ml(track_uris, 2)
 
     headers = {"Authorization": f"Bearer {access_token}"}
     params = {"ids": ",".join(recommended_track_uris)}
@@ -32,6 +29,56 @@ def recommend_tracks(track_uris: List[str]) -> Response:
     ret_res = make_response(jsonify(tracks), response.status_code)
     ret_res.headers["Content-Type"] = "application/json"
     return ret_res
+
+
+def __recommend_using_ml(track_uris: List[str], max_ml_calls: Optional[int]) -> List[str]:
+    """
+    Return a list of track_uris recommended by the ML model given the input "track_uris".
+    The ML model will be called a maximum of "max_ml_calls" times. If this value is None, the
+    maximum allowed ML model calls of 100 will be used (not recommended).
+
+    Preconditions:
+    - max_ml_calls is None or 0 < max_ml_calls <= 100
+    Postconditions:
+    - returns a list of len == 100
+    """
+    segmented = __segment_list(track_uris, 10)
+    if len(segmented) == 0:
+        return []
+    recommended = []
+    num_loops = min(len(segmented), 100 if max_ml_calls is None else max_ml_calls)
+    for i in range(num_loops):
+        segment = segmented[i]
+        # TODO: Run ML model on "segment" and extend the "recommended" list by
+        # the first 100 / min(len(segmented), max_ml_calls) items of the list returned by the ML model.
+        recommended.extend(["0UaMYEvWZi0ZqiDOoHU3YI", "6I9VzXrHxO9rA9A5euc8Ak"])
+    # TODO: assert len(recommended) should be 100
+    return recommended
+
+
+def __segment_list(lst: List, length: int) -> List[List]:
+    """
+    Segment the given lst into nested lists each with at most "length" elements. Each nested list
+    will have "length" elements EXCEPT for the last one which will have the left over len(lst) % length
+    elements. If "length" divides len(lst), then the last nested list will also have "length" elements.
+
+    Preconditions:
+    - length >= 1
+    Postconditions:
+    - If len(lst) % length == 0, each nested list in the returned list will have "length" elements.
+      Otherwise, the last nested list in the returned list has len == len(lst) % length while
+      every other list has "length" elements.
+    """
+    segmented = []
+    current = []
+    for item in lst:
+        current.append(item)
+        if (len(current) == length):
+            segmented.append(current)
+            current = []
+    if len(current) > 0:
+        segmented.append(current)
+    return segmented
 
 
 def search_tracks(query: str) -> Response:
