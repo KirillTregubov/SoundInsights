@@ -1,7 +1,7 @@
 import fetch from 'cross-fetch'
 import { z } from 'zod'
 
-import { DemoQuery, TracksValidator } from 'lib/types'
+import { DemoQuery, PlaylistsValidator, TracksValidator } from 'lib/types'
 
 const API_URL = 'http://localhost:5050'
 
@@ -48,7 +48,6 @@ export const getRecommendedTracks = async (
     throw new Error('Request to /recommend-tracks failed')
   }
   const data = await response.json()
-  console.log(data)
   try {
     TracksValidator.parse(data)
   } catch (error) {
@@ -58,4 +57,21 @@ export const getRecommendedTracks = async (
     }
   }
   return TracksValidator.parse(data)
+}
+
+export const getTopPlaylists = async (query: string) => {
+  const response = await fetch(`${API_URL}/get-top-playlists`)
+  if (response.status !== 200) {
+    throw new Error('Request to /search failed')
+  }
+  const data = await response.json()
+  try {
+    PlaylistsValidator.parse(data)
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      console.log(error.issues)
+      throw new Error(`Type error ${JSON.stringify(error.issues)}`)
+    }
+  }
+  return data
 }

@@ -3,7 +3,7 @@ from flask import Flask, make_response, request, jsonify, Request, Response
 from flask_cors import CORS, cross_origin
 from src.db_demo import db_demo
 from src.db_helper import close_db
-from src.methods import recommend_tracks, search_tracks, get_general_info, get_audio_features
+from src.methods import recommend_tracks, search_tracks, get_general_info, get_audio_features, get_top_playlists
 
 
 def create_app():
@@ -88,6 +88,13 @@ def create_app():
             return get_audio_features(request.json["data"])
         else:
             return error_res
+    
+    @app.route("/get-top-playlists")
+    def get_top_playlists_endpoint():
+        """
+        Get the top playlists.
+        """
+        return get_top_playlists()
     
     def __verify_list(request: Request, min_len: Optional[int], max_len: Optional[int]) -> Optional[Response]:
         """

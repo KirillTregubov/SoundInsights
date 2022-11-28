@@ -1,5 +1,5 @@
 import json
-from typing import Optional, List
+from typing import Optional, List, Dict, Any
 import requests
 import os
 
@@ -44,3 +44,13 @@ def get_tracks(tracks) -> List[str]:
             "explicit": track["explicit"]
         })
     return result
+
+def get_playlist(playlist) -> Dict[Any, dict]:
+    all_images = playlist["images"]
+    return {
+        "name": playlist["name"],
+        "image": None if len(all_images) == 0 else all_images[0]["url"],
+        "uri": playlist["uri"],
+        "owner": playlist["owner"]["display_name"],
+        "color": playlist["primary_color"],
+    }

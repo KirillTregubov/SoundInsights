@@ -1,38 +1,21 @@
 import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-
-// import SpotifyWebApi from 'spotify-web-api-js'
-import { useToken } from 'lib/tokenContext'
 import fetch from 'cross-fetch'
 
-const PlaylistRecommendations: React.FC = () => {
+// import SpotifyWebApi from 'spotify-web-api-js'
+import AuthorizationWrapper from 'components/AuthorizationWrapper'
+import { useToken } from 'lib/tokenContext'
+import { getTopPlaylists } from 'lib/api'
+
+const TopPlaylists: React.FC = () => {
   // const spotify = new SpotifyWebApi()
   const [spotifyToken, setSpotifyToken] = useState('')
 
   const { token, _ } = useToken()
 
-  const query = useQuery(
-    ['playlist-recommendations'],
-    async () => {
-      console.log('token is', token)
-      const response = fetch('https://api.spotify.com/v1/me', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).then((res) => {
-        console.log(res)
-        return res.json() || null
-      })
-      return response
-      // spotify.setAccessToken(token)
-      // const data = await spotify.getMe()
-      // return data
-    },
-    {
-      enabled: !!token
-    }
-  )
+  const query = useQuery(['top-playlists'], async () => getTopPlaylists(), {
+    enabled: !!token
+  })
   const { data, isLoading } = query
 
   // useEffect(() => {
@@ -70,13 +53,12 @@ const PlaylistRecommendations: React.FC = () => {
 
   return (
     <div>
-      <h1>Playlist Recommendations</h1>
-      <div>isLoading? {JSON.stringify(isLoading)}</div>
+      <h1>Top Playlist Analysis</h1>
       <div>
-        Data: <pre>{JSON.stringify(data)}</pre>
+        Data: <pre>{JSON.stringify(data, null, 2)}</pre>
       </div>
     </div>
   )
 }
 
-export default PlaylistRecommendations
+export default TopPlaylists

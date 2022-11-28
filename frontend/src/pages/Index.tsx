@@ -1,4 +1,8 @@
-import { QueueListIcon, RectangleStackIcon } from '@heroicons/react/24/outline'
+import {
+  ChartPieIcon,
+  QueueListIcon,
+  RectangleStackIcon
+} from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 import { Pie, PieChart } from 'recharts'
 
@@ -57,6 +61,15 @@ const Index: React.FC = () => {
               <RectangleStackIcon className="h-10 w-10" />
               <div>
                 <h1>Get Playlist Recommendations</h1>
+                <p className="text-neutral-400">Feature coming soon!</p>
+              </div>
+            </div>
+          </Link>
+          <Link to="/playlist-analysis" title="Playlist Analysis">
+            <div className="flex items-center gap-2 rounded-lg bg-neutral-800 p-3 duration-150 hover:bg-neutral-700 active:scale-[.98] active:will-change-transform">
+              <ChartPieIcon className="h-10 w-10" />
+              <div>
+                <h1>Analysis of Top Playlists</h1>
                 <p className="text-neutral-400">Feature coming soon!</p>
               </div>
             </div>

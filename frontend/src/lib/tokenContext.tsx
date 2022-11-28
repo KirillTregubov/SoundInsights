@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 const TokenContext = createContext()
 

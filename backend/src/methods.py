@@ -1,7 +1,7 @@
 import requests
 from flask import Response, jsonify, make_response
 from typing import List, Optional
-from src.spotify_helper import get_access_token, get_tracks
+from src.spotify_helper import get_access_token, get_tracks, get_playlist
 
 
 def recommend_tracks(track_uris: List[str]) -> Response:
@@ -154,5 +154,40 @@ def get_audio_features(track_uris: List[str]) -> Response:
         jsonify(response.json()["audio_features"] if response.status_code == 200 else []),
         response.status_code
     )
+    ret_res.headers["Content-Type"] = "application/json"
+    return ret_res
+
+def get_top_playlists() -> Response:
+    """
+    Get the top playlists of the user.
+
+    Preconditions:
+    - None
+    Postconditions:
+    - Returns a response with the top playlists of the user.
+        - Structure of the response JSON: https://developer.spotify.com/documentation/web-api/reference/#/operations/get-list-users-playlists
+        - If the request succeeds, the response contains a list of data.
+        - If the request fails, the response contains an empty list and a corresponding error status_code.
+    """
+    access_token = get_access_token()
+    if access_token is None:
+        return make_response(jsonify([]), 401)
+    
+    headers = {"Authorization": f"Bearer {access_token}"}
+
+    data = []
+    for playlist in ['37i9dQZF1DXcBWIGoYBM5M', '37i9dQZEVXbMDoHDwVN2tF', '37i9dQZF1DX0XUsuxWHRQd', '37i9dQZF1DX10zKzsJ2jva', '37i9dQZF1DWY7IeIP1cdjF', '37i9dQZF1DWXRqgorJj26U']:
+        response = requests.get("https://api.spotify.com/v1/playlists/"+playlist, headers=headers)
+
+        if response.status_code != 200:
+            continue
+        
+        # TODO: Add caching so we can reuse this data to get tracks
+        data.append(get_playlist(response.json()))
+
+    ret_res = make_response(
+            jsonify(data),
+            response.status_code
+        )
     ret_res.headers["Content-Type"] = "application/json"
     return ret_res
