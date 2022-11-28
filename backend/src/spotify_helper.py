@@ -1,4 +1,4 @@
-import json
+from src.response_handler import log_error_res
 from typing import Optional, List
 import requests
 import os
@@ -29,7 +29,7 @@ def get_access_token() -> Optional[str]:
     if response.status_code == 200:
         return response.json()["access_token"]
     else:
-        logging.error("Spotify API secret values were not configured properly. Run the build script with the secret values OR provide a secrets.txt file in /backend")
+        log_error_res(response, "POST")
         return None
 
 
