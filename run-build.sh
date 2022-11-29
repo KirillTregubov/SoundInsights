@@ -13,6 +13,9 @@ start="$(date "+%Y-%m-%d--%H-%M-%S")"
 
 clean_up () {
   printf "\n\033[32mRemoving \033[1;36mDocker \033[0;32mcontainers\033[0m\n\n"
+  if [ ! -d "logs" ]
+    then mkdir logs
+  fi
   if [ ! -d "logs/backend" ]
     then mkdir logs/backend
   fi
