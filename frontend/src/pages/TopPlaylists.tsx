@@ -1,21 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import fetch from 'cross-fetch'
+// import fetch from 'cross-fetch'
 
 // import SpotifyWebApi from 'spotify-web-api-js'
-import AuthorizationWrapper from 'components/AuthorizationWrapper'
-import { useToken } from 'lib/tokenContext'
+// import AuthorizationWrapper from 'components/AuthorizationWrapper'
+// import { useToken } from 'lib/tokenContext'
 import { getTopPlaylists } from 'lib/api'
 
 const TopPlaylists: React.FC = () => {
   // const spotify = new SpotifyWebApi()
-  const [spotifyToken, setSpotifyToken] = useState('')
+  // const [spotifyToken, setSpotifyToken] = useState('')
 
-  const { token, _ } = useToken()
+  // const { token, _ } = useToken()
 
-  const query = useQuery(['top-playlists'], async () => getTopPlaylists(), {
-    enabled: !!token
-  })
+  const query = useQuery(['top-playlists'], async () => getTopPlaylists())
   const { data, isLoading } = query
 
   // useEffect(() => {

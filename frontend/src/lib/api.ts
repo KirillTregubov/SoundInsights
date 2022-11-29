@@ -59,7 +59,7 @@ export const getRecommendedTracks = async (
   return TracksValidator.parse(data)
 }
 
-export const getTopPlaylists = async (query: string) => {
+export const getTopPlaylists = async () => {
   const response = await fetch(`${API_URL}/get-top-playlists`)
   if (response.status !== 200) {
     throw new Error('Request to /search failed')
