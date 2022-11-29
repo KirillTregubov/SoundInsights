@@ -16,9 +16,6 @@ clean_up () {
   if [ ! -d "logs/backend" ]
     then mkdir logs/backend
   fi
-  if [ ! -d "logs/frontend" ]
-    then mkdir logs/frontend
-  fi
   docker cp backend:/app/logfile logs/backend/$start.log
   rm backend/logfile
   docker compose down -v --rmi all --remove-orphans
