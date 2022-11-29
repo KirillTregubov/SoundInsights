@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source init-logging.sh run-lint.log
+source init-logging.sh run-lint
 
 printf "\033[32mRunning \033[1mTesting \033[0;32menvironment\033[0m\n"
 

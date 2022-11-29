@@ -1,7 +1,7 @@
 #!/bin/sh
 # Tested on macOS 11.7 and Windows 10 21H2
 
-source init-logging.sh run-install.log
+source init-logging.sh run-install
 
 if [ -x "$(command -v docker)" ]; then
   printf "\033[31mError: \033[1;36mDocker \033[0;31mis already installed\033[0m\n" >&2
