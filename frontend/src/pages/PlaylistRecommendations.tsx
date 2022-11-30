@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-// import SpotifyWebApi from 'spotify-web-api-js'
+import SpotifyWebApi from 'spotify-web-api-js'
 import { useToken } from 'lib/tokenContext'
-import fetch from 'cross-fetch'
+import { never } from 'zod'
+import { responses } from 'tests/setup'
 
 const PlaylistRecommendations: React.FC = () => {
-  // const spotify = new SpotifyWebApi()
+  const spotify = new SpotifyWebApi()
   const [spotifyToken, setSpotifyToken] = useState('')
 
   const { token, _ } = useToken()
@@ -14,26 +15,75 @@ const PlaylistRecommendations: React.FC = () => {
   const query = useQuery(
     ['playlist-recommendations'],
     async () => {
-      console.log('token is', token)
-      const response = fetch('https://api.spotify.com/v1/me', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).then((res) => {
-        console.log(res)
-        return res.json() || null
-      })
-      return response
-      // spotify.setAccessToken(token)
+      var access_token = "Bearer " + token;
+      // console.log('token is ', access_token)
+      // var user_id_url = "https://api.spotify.com/v1/me";
+      // const user_id_res = fetch(user_id_url, {
+      //   method: 'GET',
+      //   headers: {"Authorization": access_token }
+      // }).then(
+      //   response => {
+      //     console.log(response)
+      //     return response.json()
+      //   }
+      // )
+
+      // const user_id = await(user_id_res)
+      // console.log(user_id)
+
+      // window.location.hash = ''
+      spotify.setAccessToken(token)
       // const data = await spotify.getMe()
-      // return data
+      const playlists = await spotify.getUserPlaylists()
+      var playlists_info = []
+
+      for (const item in playlists.items){
+        const playlist_url = playlists.items[item].href
+        const playlist_res = fetch(playlist_url, {
+          method: 'GET',
+          headers: {"Authorization": access_token }
+        }).then(
+          response => {
+            return response.json()
+          }
+        )
+        var playlist_obj = {
+          'name': '',
+          'tracks': ([] as any),
+        }
+        const playlist = await(playlist_res)
+        console.log(playlist)
+        playlist_obj['name'] = playlist.name
+        var tracks = []
+        for (const item in playlist.tracks.items) {
+          tracks.push(playlist.tracks.items[item].track.uri)
+        }
+
+        // const audio_features_res = fetch('http://localhost:5050/audio-features', {
+        //   method: "POST",
+        //   headers : {
+        //     'Content-Type': 'application/json'
+        //   },
+        //   body : JSON.stringify({
+        //     data: ['2up3OPMp9Tb4dAKM2erWXQ']
+        //   })
+        // })
+        // const audio_features = await(audio_features_res)
+        // console.log(audio_features)
+
+
+        playlist_obj['tracks'] = tracks
+        playlists_info.push(playlist_obj)
+      }
+      console.log(playlists_info)
+      return playlists
     },
     {
       enabled: !!token
     }
   )
   const { data, isLoading } = query
+  // console.log(data)
 
   // useEffect(() => {
   //   const function_a = async () => {

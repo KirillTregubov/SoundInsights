@@ -75,7 +75,7 @@ def create_app():
         else:
             return error_res
     
-    @app.route("/audio-features")
+    @app.route("/audio-features", methods=['POST'])
     def get_audio_features_endpoint():
         """
         Get audio features for a list of track_uris.

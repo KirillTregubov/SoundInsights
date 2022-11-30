@@ -4,7 +4,7 @@ import { useToken } from 'lib/tokenContext'
 
 const authEndpoint = 'https://accounts.spotify.com/authorize'
 const redirectUri = 'http://localhost:5000/callback'
-const clientId = '77b019360235410f81c0904a4ace93ba'
+const clientId = 'f07ef9ab78224bd6b90ffeedcc2d014c'
 const scopes = [
   // 'user-read-private',
   // 'user-read-email',
@@ -13,6 +13,7 @@ const scopes = [
   'user-library-read',
   'user-top-read',
   'user-modify-playback-state'
+
 ]
 
 const login_url = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
