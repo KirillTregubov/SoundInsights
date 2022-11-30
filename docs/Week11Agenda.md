@@ -7,21 +7,22 @@ Read this document and prepare to report your progress on your tasks that were a
 
 ## Tasks from Previous Week
 
-Burt
-- Finish code to get user playists.
-- Once endpoints are implemented, experiment with resulting data.
+Burt:
+- Finish playlist fetching from Spotify
+- Once endpoints are implemented, experiment with resulting data
 
-Eddie
-- Create endpoints to get audio data
-  - frontend passes in array of 50 track ID's which we'll pass to Spotify API to query general track info. [Reference](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-tracks).
-  - frontend passes in array of 100 track ID's which we'll pass to Spotify API to query audio features. [Reference](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-audio-features).
+Kirill:
+- Create endpoints/functionality to fetch top user tracks and tracks in specific top playlists
+- Create tool that allows all team members to tinker with visualization by offering inputs to change data used to generate the graphs
 
-Kirill
-- Configure libraries for frontend visualization.
-- Implement multi-page layout.
+Eddie:
+- Make endpoint that accepts playlist `track_uri`s
+- Start implementing logging (figure out how to log local shell scripts + commands run inside Docker)
+- OPTIONAL: modify README with changes outlined in last week's minutes
 
-Roger
-- Continue working on integrating ML model.
+Roger:
+ - fix caching in the ML model and merge PR
+
 
 ## During the meeting
 - Go over everyone's progress on their assigned tasks. (est. 15 min)
