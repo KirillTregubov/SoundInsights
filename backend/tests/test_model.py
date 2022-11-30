@@ -1,4 +1,4 @@
-from ..src.model.model import continue_playlist
+from src.model.model import continue_playlist
 import pytest
 
 def test_continue_playlist_no_input():
