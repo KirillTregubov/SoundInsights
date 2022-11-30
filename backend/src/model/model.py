@@ -1,5 +1,7 @@
 import json
 import operator
+import random
+
 import numpy as np
 import pandas as pd
 
@@ -331,7 +333,7 @@ def continue_playlist(my_uris):
         features = np.array(playlist_summarise(my_uris))
         # print(f"Features: {features}")
         playlist_prediction = classify_playlist(features, True)
-        # print(f'The playlist is genre: {genres[playlist_prediction[0]]}')
+        print(f'The playlist is genre: {genres[playlist_prediction[0]]}')
         
         # generate songs of specific genre
         genre_songs = song_df.loc[song_df['genre'] == playlist_prediction[0]]
@@ -366,7 +368,7 @@ def continue_playlist(my_uris):
         
         ret = []
         
-        for i in selected_songs_uris:
+        for i in random.sample(sorted(selected_songs_uris), 10):
             counter += 1
             entry = f"[{sp.track(i)['uri']}]: {sp.track(i)['name']}, by {sp.track(i)['artists'][0]['name']}"
             # print(entry)
@@ -383,11 +385,11 @@ def continue_playlist(my_uris):
 if __name__ == "__main__":
     
     # using KNN
-    my_uris = ["spotify:track:3QxXDiGzAb3SwB2ePuOiSw",
-               "spotify:track:1zUpNXz22EFtljQX3WPDzQ",
-               "spotify:track:5jEolaMASTe1FyYMUf8ulk",
-               "spotify:track:0dNiLb9FEHrRK7VFDJctiR",
-               "spotify:track:5TDEIDElkU2hrMnusjPLNu"]
+    my_uris = ["spotify:track:6B8hg3hfAk3zI1YLD78Va8",
+               "spotify:track:6dFcL5hsy8dy0RCFx7f5FD",
+               "spotify:track:2CEgGE6aESpnmtfiZwYlbV",
+               "spotify:track:4BFMQ15vXr626UOoZL8bUI",
+               "spotify:track:08kCck8nAJJEmxg0gXaJot"]
     
     ret = continue_playlist(my_uris)
     print(ret)
