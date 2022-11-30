@@ -250,3 +250,22 @@ def test_recommend_many_tracks_endpoint(client):
             assert "images" in keys
     else:
         assert response.status_code == 401
+
+
+# test get top playlists
+def test_get_top_playlists_endpoint_success(client):
+    response = client.get("/get-top-playlists")
+    # TODO: Fix API key
+    docker = os.environ.get("USING_DOCKER")
+    if type(docker) == str and docker.lower() == 'true':
+        assert response.status_code == 200
+        assert isinstance(response.json, List)
+        for track in response.json:
+            keys = track.keys()
+            assert "name" in keys
+            assert "image" in keys
+            assert "uri" in keys
+            assert "owner" in keys
+            assert "color" in keys
+    else:
+        assert response.status_code == 401

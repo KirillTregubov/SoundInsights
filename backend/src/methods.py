@@ -1,7 +1,10 @@
 import requests
 from flask import Response, jsonify, make_response
-from typing import List, Optional
+from typing import Dict, List, Optional
 from src.spotify_helper import get_access_token, get_tracks, get_playlist
+
+
+top_playlists_cache: Dict[str, Dict] = {}
 
 
 def recommend_tracks(track_uris: List[str]) -> Response:
@@ -157,6 +160,7 @@ def get_audio_features(track_uris: List[str]) -> Response:
     ret_res.headers["Content-Type"] = "application/json"
     return ret_res
 
+
 def get_top_playlists() -> Response:
     """
     Get the top playlists of the user.
@@ -172,22 +176,39 @@ def get_top_playlists() -> Response:
     access_token = get_access_token()
     if access_token is None:
         return make_response(jsonify([]), 401)
-    
-    headers = {"Authorization": f"Bearer {access_token}"}
 
     data = []
-    for playlist in ['37i9dQZF1DXcBWIGoYBM5M', '37i9dQZEVXbMDoHDwVN2tF', '37i9dQZF1DX0XUsuxWHRQd', '37i9dQZF1DX10zKzsJ2jva', '37i9dQZF1DWY7IeIP1cdjF', '37i9dQZF1DWXRqgorJj26U']:
-        response = requests.get("https://api.spotify.com/v1/playlists/"+playlist, headers=headers)
+    for playlist_id in ['37i9dQZF1DXcBWIGoYBM5M', '37i9dQZEVXbMDoHDwVN2tF', '37i9dQZF1DX0XUsuxWHRQd', '37i9dQZF1DX10zKzsJ2jva', '37i9dQZF1DWY7IeIP1cdjF', '37i9dQZF1DWXRqgorJj26U']:
+        playlist = __get_top_playlist(playlist_id, access_token)
+        if playlist is not None:
+            data.append(playlist)
 
-        if response.status_code != 200:
-            continue
-        
-        # TODO: Add caching so we can reuse this data to get tracks
-        data.append(get_playlist(response.json()))
+    # Spotify's top playlists should never be empty. If it is empty, then something went wrong with all
+    # of our requests to the Spotify API.
+    status_code = 500 if len(data) == 0 else 200
 
-    ret_res = make_response(
-            jsonify(data),
-            response.status_code
-        )
+    ret_res = make_response(jsonify(data), status_code)
     ret_res.headers["Content-Type"] = "application/json"
     return ret_res
+
+
+def __get_top_playlist(id: str, access_token: str) -> Optional[Dict]:
+    """
+    Return the playlist object associated with the given "id" from the playlist cache. If said
+    playlist doesn't exist in the cache, fetch it from Spotify and add it to the cache. If something
+    goes wrong with the fetch request, return None.
+    
+    "access_token" is used to authorize the fetch request from Spotify.
+    """
+    cached = top_playlists_cache.get(id)
+    if cached is None:
+        response = requests.get(f"https://api.spotify.com/v1/playlists/{id}", headers={"Authorization": f"Bearer {access_token}"})
+        if response.status_code == 200:
+            new_playlist = get_playlist(response.json())
+            top_playlists_cache[id] = new_playlist
+            return get_playlist(response.json())
+        else:
+            # TODO: do error logging here
+            return None
+    else:
+        return cached
