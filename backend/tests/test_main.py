@@ -260,8 +260,8 @@ def test_get_top_playlists_endpoint_success(client):
     if type(docker) == str and docker.lower() == 'true':
         assert response.status_code == 200
         assert isinstance(response.json, List)
-        for track in response.json:
-            keys = track.keys()
+        for playlist in response.json:
+            keys = playlist.keys()
             assert "name" in keys
             assert "image" in keys
             assert "uri" in keys
