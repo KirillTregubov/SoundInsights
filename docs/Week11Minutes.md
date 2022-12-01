@@ -36,4 +36,5 @@ Roger
 - Clean up ML model code
 
 We will have supplementary meeting later this week/weekend to create the presentation.
+
 We'll also use this time to work on the frontend visualization together.
