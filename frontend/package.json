@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "yarn run typecheck && vite build",
     "preview": "vite preview",
-    "test": "vitest run && tsc",
+    "typecheck": "tsc",
+    "test": "vitest run && yarn run typecheck",
     "test:watch": "vitest",
     "format": "yarn run prettier && yarn run lint",
     "lint:check": "npx eslint src",
@@ -18,19 +19,15 @@
   "dependencies": {
     "@heroicons/react": "^2.0.12",
     "@tanstack/react-query": "^4.12.0",
-    "jsdom": "^20.0.3",
-    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.3",
-    "recharts": "^2.1.16",
     "zod": "^3.19.1"
   },
   "devDependencies": {
     "@testing-library/dom": "^8.19.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.4.3",
+    "@testing-library/user-event": "^13.5.0",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@types/testing-library__jest-dom": "^5.14.5",
@@ -46,7 +43,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "msw": "^0.49.0",
+    "happy-dom": "^7.1.1",
+    "msw": "^0.47.4",
     "postcss": "^8.4.18",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
@@ -54,6 +52,6 @@
     "typescript": "^4.6.4",
     "vite": "^3.1.0",
     "vite-tsconfig-paths": "^3.5.1",
-    "vitest": "^0.25.2"
+    "vitest": "^0.24.3"
   }
 }
