@@ -1,28 +1,13 @@
 import json
-from typing import Optional, List, Tuple
+from typing import Optional, List
 import requests
 import os
 
 
 def get_access_token() -> Optional[str]:
-    client_id, client_secret = get_client_credentials()
-    
-    response = requests.post("https://accounts.spotify.com/api/token", {
-        "grant_type": "client_credentials",
-        "client_id": client_id,
-        "client_secret": client_secret,
-    })
-    
-    if response.status_code == 200:
-        return response.json()["access_token"]
-    else:
-        return None
-
-
-def get_client_credentials() -> Tuple[str, str]:
     client_id = os.environ.get("CLIENT_ID")
     client_secret = os.environ.get("CLIENT_SECRET")
-    
+
     # If secrets are not configured in the environment, try using the secrets file.
     if client_id is None or client_secret is None:
         try:
@@ -31,8 +16,17 @@ def get_client_credentials() -> Tuple[str, str]:
             client_secret = secrets[1]
         except (OSError, IndexError):
             return None
-    
-    return client_id, client_secret
+
+    response = requests.post("https://accounts.spotify.com/api/token", {
+        "grant_type": "client_credentials",
+        "client_id": client_id,
+        "client_secret": client_secret,
+    })
+
+    if response.status_code == 200:
+        return response.json()["access_token"]
+    else:
+        return None
 
 
 def get_tracks(tracks) -> List[str]:
@@ -50,7 +44,3 @@ def get_tracks(tracks) -> List[str]:
             "explicit": track["explicit"]
         })
     return result
-
-if __name__ == "__main__":
-    cid, secret = get_client_credentials()
-    print(cid)
