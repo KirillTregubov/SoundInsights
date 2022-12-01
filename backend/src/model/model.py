@@ -19,7 +19,7 @@ import pickle
 import os
 
 
-from spotify_helper import get_access_token, get_client_credentials
+from src.spotify_helper import get_access_token, get_client_credentials
 
 # abspath = os.path.abspath(__file__)
 # dname = os.path.dirname(abspath)
