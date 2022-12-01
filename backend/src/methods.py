@@ -12,7 +12,7 @@ def recommend_tracks(track_uris: List[str]) -> Response:
     Preconditions:
     - track_uris is a list containing >= 1 "track_uris"
     Postconditions:
-    - returns a list of <= 100 recommended "track_uris"
+    - returns a list of <= 1000 recommended "track_uris"
     """
     access_token = get_access_token()
     if access_token is None:
@@ -41,7 +41,7 @@ def __recommend_using_ml(track_uris: List[str], max_ml_calls: Optional[int]) -> 
     Preconditions:
     - max_ml_calls is None or 0 < max_ml_calls <= 100
     Postconditions:
-    - returns a list of len <= 100
+    - returns a list of len <= 1000
     """
     segmented = __segment_list(track_uris, 10)
     if len(segmented) == 0:
