@@ -35,8 +35,11 @@ def continue_playlist(my_uris):
     SIZE = 500  # this defines how many playlists we want
     
     # for Spotify API
-    cid, secret = get_client_credentials()
-    client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
+    credentials = get_client_credentials()
+    if credentials is None:
+        return []
+
+    client_credentials_manager = SpotifyClientCredentials(client_id=credentials[0], client_secret=credentials[1])
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
     
     def unpack(json_name):

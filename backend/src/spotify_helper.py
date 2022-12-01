@@ -5,12 +5,14 @@ import os
 
 
 def get_access_token() -> Optional[str]:
-    client_id, client_secret = get_client_credentials()
+    credentials = get_client_credentials()
+    if credentials is None:
+        return None
     
     response = requests.post("https://accounts.spotify.com/api/token", {
         "grant_type": "client_credentials",
-        "client_id": client_id,
-        "client_secret": client_secret,
+        "client_id": credentials[0],
+        "client_secret": credentials[1],
     })
     
     if response.status_code == 200:
@@ -19,7 +21,7 @@ def get_access_token() -> Optional[str]:
         return None
 
 
-def get_client_credentials() -> Tuple[str, str]:
+def get_client_credentials() -> Optional[Tuple[str, str]]:
     client_id = os.environ.get("CLIENT_ID")
     client_secret = os.environ.get("CLIENT_SECRET")
     
