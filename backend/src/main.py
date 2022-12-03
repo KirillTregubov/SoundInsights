@@ -1,7 +1,6 @@
 from typing import Optional
 from flask import Flask, make_response, request, jsonify, Request, Response
 from flask_cors import CORS, cross_origin
-from src.db_demo import db_demo
 from src.db_helper import close_db
 from src.methods import recommend_tracks, search_tracks, get_general_info, get_audio_features
 import logging
@@ -19,10 +18,6 @@ def create_app():
         close_db()
 
     @app.route("/db-demo")
-    def query_db():
-        response = make_response(db_demo(), 200)
-        response.headers["Content-Type"] = "application/json"
-        return response
 
     @app.route("/search-tracks")
     @cross_origin(origin='localhost', headers=['Content-Type'])

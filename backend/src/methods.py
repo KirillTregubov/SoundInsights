@@ -4,6 +4,7 @@ from flask import Response, jsonify, make_response
 from typing import List, Optional
 from src.spotify_helper import get_access_token, get_tracks
 from src.response_handler import log_error_res
+from src.model.model import continue_playlist
 
 
 def recommend_tracks(track_uris: List[str]) -> Response:
@@ -13,7 +14,7 @@ def recommend_tracks(track_uris: List[str]) -> Response:
     Preconditions:
     - track_uris is a list containing >= 1 "track_uris"
     Postconditions:
-    - returns a list of 100 recommended "track_uris"
+    - returns a list of <= 1000 recommended "track_uris"
     """
     logging.info(f"recommend_tracks({track_uris})")
     access_token = get_access_token()
@@ -47,7 +48,7 @@ def __recommend_using_ml(track_uris: List[str], max_ml_calls: Optional[int]) -> 
     Preconditions:
     - max_ml_calls is None or 0 < max_ml_calls <= 100
     Postconditions:
-    - returns a list of len == 100
+    - returns a list of len <= 1000
     """
     segmented = __segment_list(track_uris, 10)
     if len(segmented) == 0:
@@ -55,11 +56,7 @@ def __recommend_using_ml(track_uris: List[str], max_ml_calls: Optional[int]) -> 
     recommended = []
     num_loops = min(len(segmented), 100 if max_ml_calls is None else max_ml_calls)
     for i in range(num_loops):
-        segment = segmented[i]
-        # TODO: Run ML model on "segment" and extend the "recommended" list by
-        # the first 100 / min(len(segmented), max_ml_calls) items of the list returned by the ML model.
-        recommended.extend(["0UaMYEvWZi0ZqiDOoHU3YI", "6I9VzXrHxO9rA9A5euc8Ak"])
-    # TODO: assert len(recommended) should be 100
+        recommended.extend([uri.replace("spotify:track:", "") for uri in continue_playlist(segmented[i])])
     return recommended
 
 

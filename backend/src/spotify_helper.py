@@ -1,5 +1,5 @@
 from src.response_handler import log_error_res
-from typing import Optional, List
+from typing import Optional, List, Tuple
 import requests
 import os
 import logging
@@ -7,9 +7,28 @@ import logging
 
 def get_access_token() -> Optional[str]:
     logging.info("get_access_token()")
+    credentials = get_client_credentials()
+    if credentials is None:
+        return None
+    
+    response = requests.post("https://accounts.spotify.com/api/token", {
+        "grant_type": "client_credentials",
+        "client_id": credentials[0],
+        "client_secret": credentials[1],
+    })
+    
+    if response.status_code == 200:
+        return response.json()["access_token"]
+    else:
+        log_error_res(response, "POST")
+        return None
+
+
+def get_client_credentials() -> Optional[Tuple[str, str]]:
+    logging.info("get_client_credentials()")
     client_id = os.environ.get("CLIENT_ID")
     client_secret = os.environ.get("CLIENT_SECRET")
-
+    
     # If secrets are not configured in the environment, try using the secrets file.
     if client_id is None or client_secret is None:
         try:
@@ -19,18 +38,8 @@ def get_access_token() -> Optional[str]:
         except (OSError, IndexError):
             logging.error("secrets.txt is either missing or in the wrong format.")
             return None
-
-    response = requests.post("https://accounts.spotify.com/api/token", {
-        "grant_type": "client_credentials",
-        "client_id": client_id,
-        "client_secret": client_secret,
-    })
-
-    if response.status_code == 200:
-        return response.json()["access_token"]
-    else:
-        log_error_res(response, "POST")
-        return None
+    
+    return client_id, client_secret
 
 
 def get_tracks(tracks) -> List[str]:
@@ -48,3 +57,7 @@ def get_tracks(tracks) -> List[str]:
             "explicit": track["explicit"]
         })
     return result
+
+if __name__ == "__main__":
+    cid, secret = get_client_credentials()
+    print(cid)
