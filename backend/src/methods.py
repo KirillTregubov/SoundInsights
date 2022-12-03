@@ -6,8 +6,8 @@ from src.spotify_helper import get_access_token, get_tracks, get_playlist
 from src.response_handler import log_error_res
 from src.model.model import continue_playlist
 
-
 top_playlists_cache: Dict[str, Dict] = {}
+
 
 def recommend_tracks(track_uris: List[str]) -> Response:
     """
@@ -59,6 +59,7 @@ def __recommend_using_ml(track_uris: List[str], max_ml_calls: Optional[int]) -> 
     num_loops = min(len(segmented), 100 if max_ml_calls is None else max_ml_calls)
     for i in range(num_loops):
         recommended.extend([uri.replace("spotify:track:", "") for uri in continue_playlist(segmented[i])])
+    print('='*20, recommended, flush=True)
     return recommended
 
 

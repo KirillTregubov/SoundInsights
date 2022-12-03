@@ -1,7 +1,6 @@
 import { render } from '@testing-library/react'
-import TrackPreview from 'components/UserLogin'
+import TrackPreview from 'components/TrackPreview'
 import { Track } from 'lib/types'
-import { vi } from 'vitest'
 
 describe('test UserLogin.tsx component', () => {
   test('applies className properly', () => {

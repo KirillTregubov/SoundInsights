@@ -1,21 +1,17 @@
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-
 import SpotifyWebApi from 'spotify-web-api-js'
+
 import { useToken } from 'lib/tokenContext'
-import { never } from 'zod'
-import { responses } from 'tests/setup'
 
 const PlaylistRecommendations: React.FC = () => {
   const spotify = new SpotifyWebApi()
-  const [spotifyToken, setSpotifyToken] = useState('')
-
-  const { token, _ } = useToken()
+  const { token } = useToken()
 
   const query = useQuery(
     ['playlist-recommendations'],
     async () => {
-      var access_token = "Bearer " + token;
+      const access_token = 'Bearer ' + token
       // console.log('token is ', access_token)
       // var user_id_url = "https://api.spotify.com/v1/me";
       // const user_id_res = fetch(user_id_url, {
@@ -35,26 +31,24 @@ const PlaylistRecommendations: React.FC = () => {
       spotify.setAccessToken(token)
       // const data = await spotify.getMe()
       const playlists = await spotify.getUserPlaylists()
-      var playlists_info = []
+      const playlists_info = []
 
-      for (const item in playlists.items){
+      for (const item in playlists.items) {
         const playlist_url = playlists.items[item].href
         const playlist_res = fetch(playlist_url, {
           method: 'GET',
-          headers: {"Authorization": access_token }
-        }).then(
-          response => {
-            return response.json()
-          }
-        )
-        var playlist_obj = {
-          'name': '',
-          'tracks': ([] as any),
+          headers: { Authorization: access_token }
+        }).then((response) => {
+          return response.json()
+        })
+        const playlist_obj = {
+          name: '',
+          tracks: [] as any
         }
-        const playlist = await(playlist_res)
+        const playlist = await playlist_res
         console.log(playlist)
         playlist_obj['name'] = playlist.name
-        var tracks = []
+        const tracks = []
         for (const item in playlist.tracks.items) {
           tracks.push(playlist.tracks.items[item].track.uri)
         }
@@ -70,7 +64,6 @@ const PlaylistRecommendations: React.FC = () => {
         // })
         // const audio_features = await(audio_features_res)
         // console.log(audio_features)
-
 
         playlist_obj['tracks'] = tracks
         playlists_info.push(playlist_obj)
