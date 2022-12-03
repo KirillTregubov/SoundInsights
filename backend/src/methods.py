@@ -1,7 +1,9 @@
 import requests
+import logging
 from flask import Response, jsonify, make_response
 from typing import List, Optional
 from src.spotify_helper import get_access_token, get_tracks
+from src.response_handler import log_error_res
 from src.model.model import continue_playlist
 
 
@@ -14,6 +16,7 @@ def recommend_tracks(track_uris: List[str]) -> Response:
     Postconditions:
     - returns a list of <= 1000 recommended "track_uris"
     """
+    logging.info(f"recommend_tracks({track_uris})")
     access_token = get_access_token()
     if access_token is None:
         return make_response(jsonify([]), 401)  # unauthorized
@@ -25,7 +28,11 @@ def recommend_tracks(track_uris: List[str]) -> Response:
     response = requests.get(
         "https://api.spotify.com/v1/tracks", headers=headers, params=params)
 
-    tracks = get_tracks(response.json()["tracks"])
+    tracks = []
+    if response.status_code == 200:
+        tracks = get_tracks(response.json()["tracks"])
+    else:
+        log_error_res(response, "GET")
 
     ret_res = make_response(jsonify(tracks), response.status_code)
     ret_res.headers["Content-Type"] = "application/json"
@@ -79,6 +86,7 @@ def __segment_list(lst: List, length: int) -> List[List]:
 
 
 def search_tracks(query: str) -> Response:
+    logging.info(f"search_tracks({query})")
     access_token = get_access_token()
     if access_token is None:
         return make_response(jsonify([]), 401)  # unauthorized
@@ -93,7 +101,12 @@ def search_tracks(query: str) -> Response:
     response = requests.get(
         "https://api.spotify.com/v1/search", headers=headers, params=params)
 
-    tracks = get_tracks(response.json()["tracks"]["items"])
+    tracks = []
+    if response.status_code == 200:
+        tracks = get_tracks(response.json()["tracks"]["items"])
+    else:
+        log_error_res(response, "GET")
+
     ret_res = make_response(jsonify(tracks), response.status_code)
     ret_res.headers["Content-Type"] = "application/json"
     return ret_res
@@ -111,6 +124,7 @@ def get_general_info(track_uris: List[str]) -> Response:
         - If the request succeeds, the response contains a list of data with length == len(track_uris).
         - If the request fails, the response contains an empty list and a corresponding error status_code.
     """
+    logging.info(f"get_general_info({track_uris})")
     access_token = get_access_token()
     if access_token is None:
         return make_response(jsonify([]), 401)
@@ -119,10 +133,13 @@ def get_general_info(track_uris: List[str]) -> Response:
     params = {"ids": ",".join(track_uris)}
     response = requests.get("https://api.spotify.com/v1/tracks", headers=headers, params=params)
     
-    ret_res = make_response(
-        jsonify(response.json()["tracks"] if response.status_code == 200 else []),
-        response.status_code
-    )
+    tracks = []
+    if response.status_code == 200:
+        tracks = response.json()["tracks"]
+    else:
+        log_error_res(response, "GET")
+
+    ret_res = make_response(jsonify(tracks),response.status_code)
     ret_res.headers["Content-Type"] = "application/json"
     return ret_res
 
@@ -139,6 +156,7 @@ def get_audio_features(track_uris: List[str]) -> Response:
         - If the request succeeds, the response contains a list of data with length == len(track_uris).
         - If the request fails, the response contains an empty list and a corresponding error status_code.
     """
+    logging.info(f"get_audio_features({track_uris})")
     access_token = get_access_token()
     if access_token is None:
         return make_response(jsonify([]), 401)
@@ -147,9 +165,12 @@ def get_audio_features(track_uris: List[str]) -> Response:
     params = {"ids": ",".join(track_uris)}
     response = requests.get("https://api.spotify.com/v1/audio-features", headers=headers, params=params)
 
-    ret_res = make_response(
-        jsonify(response.json()["audio_features"] if response.status_code == 200 else []),
-        response.status_code
-    )
+    audio_features = []
+    if response.status_code == 200:
+        audio_features = response.json()["audio_features"]
+    else:
+        log_error_res(response, "GET")
+
+    ret_res = make_response(jsonify(audio_features),response.status_code)
     ret_res.headers["Content-Type"] = "application/json"
     return ret_res
