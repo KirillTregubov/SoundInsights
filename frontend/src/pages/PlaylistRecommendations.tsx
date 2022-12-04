@@ -1,50 +1,51 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import SpotifyWebApi from 'spotify-web-api-js'
+// import SpotifyWebApi from 'spotify-web-api-js'
+import ImageList from '@mui/material/ImageList'
+import ImageListItem from '@mui/material/ImageListItem'
+import ImageListItemBar from '@mui/material/ImageListItemBar'
 
-import { useToken,} from 'lib/tokenContext'
-import { never } from 'zod'
-import { responses } from 'tests/setup'
-import { getTopPlaylists } from 'lib/api'
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
-import { string } from 'prop-types'
+// import { useToken } from 'lib/tokenContext'
+import { getTopPlaylists, getRecommendedPlaylistTracks } from 'lib/api'
 
 const PlaylistRecommendations: React.FC = () => {
-  const query = useQuery(['top-playlists'], async () => getTopPlaylists())
-  const {data, isLoading} = query
   const [selected_playlist, set_playlist] = useState('')
+  const playlists = useQuery(['top-playlists'], async () => getTopPlaylists())
+  const recommendations = useQuery(
+    ['recommend-playlist-tracks', selected_playlist],
+    async () => getRecommendedPlaylistTracks(selected_playlist),
+    {
+      enabled: false
+    }
+  )
+  const { data, refetch: fetchRecommendations } = recommendations
+  const { data: playlistData, isLoading: playlistIsLoading } = playlists
 
-  function handle_remove(imageId: string){
+  function handle_remove() {
     set_playlist('')
   }
 
-  function handle_append(imageId: string){
-    set_playlist(imageId);
+  function handle_append(imageId: string) {
+    set_playlist(imageId.split(':').pop()!)
   }
 
-  function getRecommendations(){
-    console.log(selected_playlist)
-    
+  function getRecommendations() {
+    const playlist = selected_playlist
+    fetchRecommendations(selected_playlist)
   }
 
   const imageClick = (imageId) => {
     const border = document.getElementById(imageId).style.border
-    if (selected_playlist.length == 0){
-      document.getElementById(imageId).style.border = "2px solid #e5e7eb";
+    if (selected_playlist.length == 0) {
+      document.getElementById(imageId).style.border = '2px solid #e5e7eb'
       handle_append(imageId)
-    }
-    else if (selected_playlist != imageId) {
+    } else if (selected_playlist != imageId) {
       alert('You may only select one playlist')
+    } else {
+      document.getElementById(imageId).style.border = '0'
+      handle_remove()
     }
-    else {
-      document.getElementById(imageId).style.border = "0"
-      handle_remove(imageId)
-    }
-    
-  } 
-
+  }
 
   // const spotify = new SpotifyWebApi()
   // const [spotifyToken, setSpotifyToken] = useState('')
@@ -110,7 +111,6 @@ const PlaylistRecommendations: React.FC = () => {
   //       // const audio_features = await(audio_features_res)
   //       // console.log(audio_features)
 
-
   //       playlist_obj['tracks'] = tracks
   //       playlists_info.push(playlist_obj)
   //     }
@@ -158,16 +158,16 @@ const PlaylistRecommendations: React.FC = () => {
   // })
 
   return (
-    
     <div className="mx-auto max-w-xl">
-        <div className="mb-2">
-          <h1 className="text-lg font-medium">Get Playlists Recommendations</h1>
-          <h3 className="dark:text-neutral-400">Select your playlists.</h3>
-          <ImageList variant='standard'gap={13}>
-            {data.map((item) => (
+      <div className="mb-2">
+        <h1 className="text-lg font-medium">Get Playlists Recommendations</h1>
+        <h3 className="dark:text-neutral-400">Select your playlists.</h3>
+        <ImageList variant="standard" gap={13}>
+          {playlistData &&
+            playlistData.map((item) => (
               <ImageListItem key={item.image}>
                 <img
-                  id = {item.uri}
+                  id={item.uri}
                   src={`${item.image}?w=248&fit=crop&auto=format`}
                   srcSet={`${item.image}?w=248&fit=crop&auto=format&dpr=2 2x`}
                   alt={item.name}
@@ -181,15 +181,20 @@ const PlaylistRecommendations: React.FC = () => {
                 />
               </ImageListItem>
             ))}
-          </ImageList>
-        </div>
-        <button
-          className="ml-auto rounded-full border py-1 px-3 disabled:cursor-not-allowed disabled:dark:border-neutral-700 disabled:dark:text-neutral-700"
-          disabled={selected_playlist?.length == 0}
-          onClick={() => getRecommendations()}
-          >
-          Get Recommendations
-        </button>
+        </ImageList>
+      </div>
+      <button
+        className="ml-auto rounded-full border py-1 px-3 disabled:cursor-not-allowed disabled:dark:border-neutral-700 disabled:dark:text-neutral-700"
+        disabled={selected_playlist?.length == 0}
+        onClick={() => getRecommendations()}>
+        Get Recommendations
+      </button>
+      {data && (
+        <details>
+          <summary className="select-none">Data</summary>
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+        </details>
+      )}
       {/* <div>isLoading? {JSON.stringify(isLoading)}</div> */}
     </div>
   )

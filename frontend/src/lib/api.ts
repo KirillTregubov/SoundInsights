@@ -73,5 +73,30 @@ export const getTopPlaylists = async () => {
       throw new Error(`Type error ${JSON.stringify(error.issues)}`)
     }
   }
-  return data
+  return PlaylistsValidator.parse(data)
+}
+
+export const getRecommendedPlaylistTracks = async (uri: string) => {
+  const response = await fetch(`${API_URL}/recommend-playlist-tracks`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      data: uri
+    })
+  })
+  if (response.status !== 200) {
+    throw new Error('Request to /recommend-tracks failed')
+  }
+  const data = await response.json()
+  try {
+    TracksValidator.parse(data)
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      console.log(error.issues)
+      throw new Error(`Type error ${JSON.stringify(error.issues)}`)
+    }
+  }
+  return TracksValidator.parse(data)
 }

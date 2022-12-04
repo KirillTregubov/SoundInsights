@@ -45,7 +45,7 @@ def create_app():
             return error_res
     
     @app.route("/recommend-playlist-tracks", methods=['POST'])
-    def recommend_many_tracks_endpoint():
+    def recommend_playlist_tracks_endpoint():
         """
         Get recommended tracks for a list of track uris. Similar to /recommend-tracks but
         allows an arbitrary (any) number of track_uris as input.
@@ -56,6 +56,7 @@ def create_app():
         """
         if request.headers.get('Content-Type') != 'application/json':
             return make_response(jsonify({"error": "content_type must be application/json"}), 400)
+        print(request.json, flush=True)
         if "data" not in request.json:
             return make_response(jsonify({"error": "request body must contain a data field"}), 400)
         data = request.json["data"]

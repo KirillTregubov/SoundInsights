@@ -198,6 +198,7 @@ def get_top_playlists() -> Response:
     data = []
     for playlist_id in ['37i9dQZF1DXcBWIGoYBM5M', '37i9dQZEVXbMDoHDwVN2tF', '37i9dQZF1DX0XUsuxWHRQd', '37i9dQZF1DX10zKzsJ2jva', '37i9dQZF1DWY7IeIP1cdjF', '37i9dQZF1DWXRqgorJj26U']:
         playlist = __get_top_playlist(playlist_id, access_token)
+        playlist.pop("tracks")
         if playlist is not None:
             data.append(playlist)
 
@@ -227,10 +228,11 @@ def get_playlist_tracks(playlist_id: str) -> Response:
         return make_response(jsonify([]), 401)
 
     data = []
-    playlist = __get_top_playlist(playlist_id, access_token)
+    playlist = __get_top_playlist(playlist_id, access_token, True)
     if playlist is not None:
-        data.append(playlist)
+        data.append(playlist["tracks"])
     
+    print(data, flush=True)
     recommended_track_uris = __recommend_using_ml(data, 2)
 
     headers = {"Authorization": f"Bearer {access_token}"}
@@ -249,7 +251,7 @@ def get_playlist_tracks(playlist_id: str) -> Response:
     return ret_res
 
 
-def __get_top_playlist(id: str, access_token: str) -> Optional[Dict]:
+def __get_top_playlist(id: str, access_token: str, with_tracks = False) -> Optional[Dict]:
     """
     Return the playlist object associated with the given "id" from the playlist cache. If said
     playlist doesn't exist in the cache, fetch it from Spotify and add it to the cache. If something
@@ -263,9 +265,10 @@ def __get_top_playlist(id: str, access_token: str) -> Optional[Dict]:
         if response.status_code == 200:
             new_playlist = get_playlist(response.json())
             top_playlists_cache[id] = new_playlist
-            return get_playlist(response.json())
+            return new_playlist
         else:
             # TODO: do error logging here
             return None
     else:
+        print(cached, flush=True)
         return cached
