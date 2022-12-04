@@ -210,6 +210,45 @@ def get_top_playlists() -> Response:
     return ret_res
 
 
+def get_playlist_tracks(playlist_id: str) -> Response:
+    """
+    Get the tracks of the playlist with the given playlist_id.
+
+    Preconditions:
+    - None
+    Postconditions:
+    - Returns a response with the tracks of the playlist with the given playlist_id.
+        - Structure of the response JSON: https://developer.spotify.com/documentation/web-api/reference/#/operations/get-playlists-tracks
+        - If the request succeeds, the response contains a list of data.
+        - If the request fails, the response contains an empty list and a corresponding error status_code.
+    """
+    access_token = get_access_token()
+    if access_token is None:
+        return make_response(jsonify([]), 401)
+
+    data = []
+    playlist = __get_top_playlist(playlist_id, access_token)
+    if playlist is not None:
+        data.append(playlist)
+    
+    recommended_track_uris = __recommend_using_ml(data, 2)
+
+    headers = {"Authorization": f"Bearer {access_token}"}
+    params = {"ids": ",".join(recommended_track_uris)}
+    response = requests.get(
+        "https://api.spotify.com/v1/tracks", headers=headers, params=params)
+
+    tracks = []
+    if response.status_code == 200:
+        tracks = get_tracks(response.json()["tracks"])
+    else:
+        log_error_res(response, "GET")
+
+    ret_res = make_response(jsonify(tracks), response.status_code)
+    ret_res.headers["Content-Type"] = "application/json"
+    return ret_res
+
+
 def __get_top_playlist(id: str, access_token: str) -> Optional[Dict]:
     """
     Return the playlist object associated with the given "id" from the playlist cache. If said

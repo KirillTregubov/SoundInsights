@@ -17,10 +17,14 @@ const PlaylistAnalysis: React.FC = () => {
       </div>
       {isLoading && <p>Loading...</p>}
       {data && (
-        <div className="mt-4">
+        <div className="rounded-lg py-1.5 dark:bg-neutral-800">
           <div className="flex flex-col gap-1">
             {data.map((playlist) => (
-              <PlaylistPreview key={playlist.uri} playlist={playlist} />
+              <PlaylistPreview
+                className="cursor-pointer select-none px-3 hover:bg-neutral-700"
+                key={playlist.uri}
+                playlist={playlist}
+              />
             ))}
           </div>
         </div>

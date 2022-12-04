@@ -2,7 +2,7 @@ from typing import Optional
 from flask import Flask, make_response, request, jsonify, Request, Response
 from flask_cors import CORS, cross_origin
 from src.db_helper import close_db
-from src.methods import recommend_tracks, search_tracks, get_general_info, get_audio_features, get_top_playlists
+from src.methods import recommend_tracks, search_tracks, get_general_info, get_audio_features, get_top_playlists, get_playlist_tracks
 import logging
 import os
 
@@ -44,7 +44,7 @@ def create_app():
         else:
             return error_res
     
-    @app.route("/recommend-many-tracks", methods=['POST'])
+    @app.route("/recommend-playlist-tracks", methods=['POST'])
     def recommend_many_tracks_endpoint():
         """
         Get recommended tracks for a list of track uris. Similar to /recommend-tracks but
@@ -54,13 +54,16 @@ def create_app():
         - POST body must be JSON
         - POST body must be a "playlist_uri" str
         """
-        print(request.json)
-        error_res = __verify_list(request, 1, None)
-        if error_res is None:
-            return recommend_tracks(request.json["data"])
-        else:
-            return error_res
-    
+        if request.headers.get('Content-Type') != 'application/json':
+            return make_response(jsonify({"error": "content_type must be application/json"}), 400)
+        if "data" not in request.json:
+            return make_response(jsonify({"error": "request body must contain a data field"}), 400)
+        data = request.json["data"]
+        if not isinstance(data, str):
+            return make_response(jsonify({"error": f"data must be a playlist_uri string"}), 400)
+        
+        return get_playlist_tracks(data)
+
     @app.route("/general-info")
     def get_general_info_endpoint():
         """
