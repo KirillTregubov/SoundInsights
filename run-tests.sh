@@ -10,6 +10,7 @@ if ! docker -v >/dev/null 2>&1; then
 fi
 
 clean_up () {
+  exec &> /dev/tty
   printf "\n\033[32mRemoving \033[1;36mDocker \033[0;32mcontainers\033[0m\n\n"
   docker compose --file docker-compose-tests.yml down -v --rmi all --remove-orphans
   trap "" EXIT
