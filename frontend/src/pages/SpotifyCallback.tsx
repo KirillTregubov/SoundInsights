@@ -9,15 +9,18 @@ const SpotifyCallback: React.FC = () => {
 
   useEffect(() => {
     const parsedHash = new URLSearchParams(location.hash.slice(1))
-    // console.log(parsedHash.get('access_token'))
-    console.log(parsedHash.toString())
-    if (parsedHash.get('token_type') != 'Bearer') {
-      throw new Response('Not Found', { status: 404 })
+    if (
+      parsedHash.get('token_type') != 'Bearer' ||
+      !parsedHash.get('access_token') ||
+      !parsedHash.get('expires_in')
+    ) {
+      throw new Response('', { status: 400 })
+      return
     }
-    setToken(
-      parsedHash.get('access_token'),
-      Date.now() + parsedHash.get('expires_in') * 1000
-    )
+    const token = parsedHash.get('access_token') as string
+    const expiresIn =
+      Date.now() + parseInt(parsedHash.get('expires_in') as string) * 1000
+    setToken(token, expiresIn)
     navigate('/')
   }, [location.hash, setToken, navigate])
 

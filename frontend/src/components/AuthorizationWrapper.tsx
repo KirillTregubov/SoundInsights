@@ -1,8 +1,15 @@
 import { useToken } from 'lib/tokenContext'
 import UserLogin from 'components/UserLogin'
+import React from 'react'
 
-const AuthorizationWrapper: React.FC = ({ children }) => {
-  const { token, _ } = useToken()
+interface AuthorizationWrapperProps {
+  children: React.ReactNode
+}
+
+const AuthorizationWrapper: React.FC<AuthorizationWrapperProps> = ({
+  children
+}) => {
+  const { token } = useToken()
 
   return (
     <div>

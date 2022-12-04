@@ -7,7 +7,7 @@ import Index from 'pages/Index'
 import RecommendedTracks from 'pages/RecommendedTracks'
 import SpotifyCallback from 'pages/SpotifyCallback'
 import PlaylistRecommendations from 'pages/PlaylistRecommendations'
-import TopPlaylists from 'pages/TopPlaylists'
+import PlaylistAnalysis from 'pages/PlaylistAnalysis'
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -57,7 +57,7 @@ export const routes = [
       },
       {
         path: '/playlist-analysis',
-        element: <TopPlaylists />
+        element: <PlaylistAnalysis />
       }
     ]
   }

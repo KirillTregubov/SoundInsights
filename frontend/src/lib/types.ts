@@ -38,4 +38,6 @@ export const PlaylistValidator = z
   })
   .strict()
 
+export type Playlist = z.infer<typeof PlaylistValidator>
+
 export const PlaylistsValidator = PlaylistValidator.array()

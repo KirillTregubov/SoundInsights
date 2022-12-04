@@ -1,18 +1,27 @@
-import { useQuery } from '@tanstack/react-query'
-import { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 
-const TokenContext = createContext()
+interface TokenContextInterface {
+  token: string | null
+  setToken: (token: string, expiresIn: number) => void
+}
 
-export const TokenProvider = ({ children }) => {
-  if (parseInt(localStorage.getItem('token_expires_in')) < Date.now()) {
+const TokenContext = createContext<TokenContextInterface>(
+  {} as TokenContextInterface
+)
+
+export const TokenProvider = ({ children }: { children: React.ReactNode }) => {
+  if (
+    localStorage.getItem('token_expires_in') === null ||
+    parseInt(localStorage.getItem('token_expires_in') as string) < Date.now()
+  ) {
     localStorage.removeItem('token')
     localStorage.removeItem('token_expires_in')
   }
   const [token, setStateToken] = useState(localStorage.getItem('token') || null)
   // NOTE: we *might* need to memoize this value
-  const setToken = (newToken, expiresIn) => {
+  const setToken = (newToken: string, expiresIn: number) => {
     localStorage.setItem('token', newToken)
-    localStorage.setItem('token_expires_in', expiresIn)
+    localStorage.setItem('token_expires_in', String(expiresIn))
     setStateToken(newToken)
   }
   return (
