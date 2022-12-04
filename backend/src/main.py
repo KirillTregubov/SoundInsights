@@ -36,7 +36,7 @@ def create_app():
         Get recommended tracks for a list of track uris
         Preconditions:
         - POST body must be JSON
-        - POST body must be a List[str] containing 1-5 "track_uris"
+        - POST body must be a List[str] containing 1-5 "track_uri"s
         """
         error_res = __verify_list(request, 1, 5)
         if error_res is None:
@@ -52,8 +52,9 @@ def create_app():
 
         Preconditions:
         - POST body must be JSON
-        - POST body must be a List[str] of >= 1 "track_uris"
+        - POST body must be a "playlist_uri" str
         """
+        print(request.json)
         error_res = __verify_list(request, 1, None)
         if error_res is None:
             return recommend_tracks(request.json["data"])

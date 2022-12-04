@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.playlist-preview::before {
+  content: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  transform: translate(50%, 25px);
+}
+
+.playlist-preview:hover::before {
+  content: '';
+}

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { MinusCircleIcon } from '@heroicons/react/20/solid'
 
 import SpotifySearch, { Selection } from 'components/SpotifySearch'
@@ -11,6 +11,7 @@ import TrackPreview from 'components/TrackPreview'
 const RecommendedTracks: React.FC = () => {
   const [selection, setSelection] = useState<Selection[]>([])
   const [dirty, setDirty] = useState<boolean>(false)
+  const queryClient = useQueryClient()
   const { data, refetch } = useQuery(
     ['recommend-tracks'],
     () =>
@@ -21,9 +22,14 @@ const RecommendedTracks: React.FC = () => {
         }) as getRecommendedTracksProps
       ),
     {
-      enabled: false
+      enabled: false,
+      keepPreviousData: false
     }
   )
+
+  if (selection.length == 0) {
+    queryClient.removeQueries('recommend-tracks')
+  }
   // { data, refetch, dataUpdatedAt, isLoading, isError, error }
 
   function removeUri(uri: string) {

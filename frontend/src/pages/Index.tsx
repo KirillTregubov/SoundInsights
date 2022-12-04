@@ -6,12 +6,6 @@ import {
 import { Link } from 'react-router-dom'
 import { Pie, PieChart } from 'recharts'
 
-// import SpotifyWebApi from 'spotify-web-api-js'
-
-// import { useEffect, useState } from 'react'
-// import { useLocalStorage } from 'lib/hooks'
-// import { useToken } from 'lib/tokenContext'
-
 const Index: React.FC = () => {
   const data01 = [
     {
@@ -50,7 +44,7 @@ const Index: React.FC = () => {
               <div>
                 <h1>Get Song Recommendations</h1>
                 <p className="text-neutral-400">
-                  Select up to 5 Spotify tracks you like and receive 100 song
+                  Select up to 5 Spotify tracks you like and receive 10 song
                   recommendations.
                 </p>
               </div>

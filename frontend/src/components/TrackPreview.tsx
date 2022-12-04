@@ -9,7 +9,7 @@ interface Props {
 const TrackPreview: React.FC<Props> = ({ className, track, onClick }) => {
   return (
     <button
-      className={`box-border flex w-full min-w-0 items-center py-1.5 text-left gap-2${
+      className={`box-border flex w-full min-w-0 items-center gap-2 py-1.5 text-left ${
         className ? ` ${className}` : ''
       }`}
       onClick={onClick}>
@@ -21,17 +21,19 @@ const TrackPreview: React.FC<Props> = ({ className, track, onClick }) => {
         />
       )}
       <div className="min-w-0">
-        <p className="flex items-center overflow-hidden overflow-ellipsis whitespace-nowrap">
-          {track.name}{' '}
+        <div className="flex items-center">
+          <p className="overflow-hidden overflow-ellipsis whitespace-nowrap">
+            {track.name}{' '}
+          </p>
           {!!track.explicit && (
             <span
               title="Explicit"
               aria-label="Explicit"
-              className="ml-1.5 flex select-none items-center rounded-sm px-1 py-[3px] text-[10px] font-medium leading-none dark:bg-neutral-300 dark:text-neutral-900">
+              className="flex-0 ml-1.5 select-none rounded-sm px-1 py-[3px] text-[10px] font-medium leading-none dark:bg-neutral-300 dark:text-neutral-900">
               E
             </span>
           )}
-        </p>
+        </div>
         <div className="overflow-hidden overflow-ellipsis text-sm dark:text-neutral-400/90">
           {track.artists.map((artist: any) => (
             <span
