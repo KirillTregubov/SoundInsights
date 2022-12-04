@@ -265,10 +265,9 @@ def __get_top_playlist(id: str, access_token: str, with_tracks = False) -> Optio
         if response.status_code == 200:
             new_playlist = get_playlist(response.json())
             top_playlists_cache[id] = new_playlist
-            return new_playlist
+            return new_playlist.copy()
         else:
             # TODO: do error logging here
             return None
     else:
-        print(cached, flush=True)
-        return cached
+        return cached.copy()

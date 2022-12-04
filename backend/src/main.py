@@ -56,7 +56,6 @@ def create_app():
         """
         if request.headers.get('Content-Type') != 'application/json':
             return make_response(jsonify({"error": "content_type must be application/json"}), 400)
-        print(request.json, flush=True)
         if "data" not in request.json:
             return make_response(jsonify({"error": "request body must contain a data field"}), 400)
         data = request.json["data"]
