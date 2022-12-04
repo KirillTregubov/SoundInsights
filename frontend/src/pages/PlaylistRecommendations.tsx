@@ -1,8 +1,8 @@
-// import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import SpotifyWebApi from 'spotify-web-api-js'
 
-import { useToken } from 'lib/tokenContext'
+import { useToken,} from 'lib/tokenContext'
 import { never } from 'zod'
 import { responses } from 'tests/setup'
 import { getTopPlaylists } from 'lib/api'
@@ -25,6 +25,7 @@ const PlaylistRecommendations: React.FC = () => {
   }
 
   function getRecommendations(){
+    console.log(selected_playlist)
     
   }
 
