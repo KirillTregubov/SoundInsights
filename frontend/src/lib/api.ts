@@ -2,6 +2,7 @@ import fetch from 'cross-fetch'
 import { z } from 'zod'
 
 import { DemoQuery, PlaylistsValidator, TracksValidator } from 'lib/types'
+import { toastError } from 'lib/toast'
 
 const API_URL = 'http://localhost:5050'
 
@@ -62,7 +63,8 @@ export const getRecommendedTracks = async (
 export const getTopPlaylists = async () => {
   const response = await fetch(`${API_URL}/get-top-playlists`)
   if (response.status !== 200) {
-    throw new Error('Request to /search failed')
+    toastError('Failed to get top playlists')
+    throw new Error('Request to /get-top-playlists failed')
   }
   const data = await response.json()
   try {
@@ -76,14 +78,40 @@ export const getTopPlaylists = async () => {
   return PlaylistsValidator.parse(data)
 }
 
-export const getRecommendedPlaylistTracks = async (uri: string) => {
+export const getPlaylistData = async (id: string) => {
+  const response = await fetch(`${API_URL}/get-playlist-data`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      data: id
+    })
+  })
+  if (response.status !== 200) {
+    toastError('Failed to get playlist data')
+    throw new Error('Request to /get-playlist-data failed')
+  }
+  const data = await response.json()
+  // try {
+  //   PlaylistsValidator.parse(data)
+  // } catch (error) {
+  //   if (error instanceof z.ZodError) {
+  //     console.log(error.issues)
+  //     throw new Error(`Type error ${JSON.stringify(error.issues)}`)
+  //   }
+  // }
+  return data
+}
+
+export const getRecommendedPlaylistTracks = async (id: string) => {
   const response = await fetch(`${API_URL}/recommend-playlist-tracks`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      data: uri
+      data: id
     })
   })
   if (response.status !== 200) {

@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-.playlist-preview::before {
+.playlist-preview:hover {
+  border-color: var(--accent-color);
+}
+
+/* .playlist-preview::before {
   content: none;
   position: absolute;
   top: 0;
@@ -16,4 +20,4 @@
 
 .playlist-preview:hover::before {
   content: '';
-}
+} */

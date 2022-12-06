@@ -2,7 +2,7 @@ from typing import Optional
 from flask import Flask, make_response, request, jsonify, Request, Response
 from flask_cors import CORS, cross_origin
 from src.db_helper import close_db
-from src.methods import recommend_tracks, search_tracks, get_general_info, get_audio_features, get_top_playlists, get_playlist_tracks
+from src.methods import recommend_tracks, search_tracks, get_general_info, get_audio_features, get_top_playlists, get_playlist_recommendations, get_playlist_data
 import logging
 import os
 
@@ -62,7 +62,7 @@ def create_app():
         if not isinstance(data, str):
             return make_response(jsonify({"error": f"data must be a playlist_uri string"}), 400)
         
-        return get_playlist_tracks(data)
+        return get_playlist_recommendations(data)
 
     @app.route("/general-info")
     def get_general_info_endpoint():
@@ -99,6 +99,25 @@ def create_app():
         """
         return get_top_playlists()
     
+    @app.route("/get-playlist-data", methods=['POST'])
+    def get_playlist_data_endpoint():
+        """
+        Get playlist data.
+
+        Preconditions:
+        - GET body must be JSON.
+        - GET body must be a "playlist_uri" string
+        """
+        if request.headers.get('Content-Type') != 'application/json':
+            return make_response(jsonify({"error": "content_type must be application/json"}), 400)
+        if "data" not in request.json:
+            return make_response(jsonify({"error": "request body must contain a data field"}), 400)
+        data = request.json["data"]
+        if not isinstance(data, str):
+            return make_response(jsonify({"error": f"data must be a playlist_uri string"}), 400)
+        
+        return get_playlist_data(data)
+
     def __verify_list(request: Request, min_len: Optional[int], max_len: Optional[int]) -> Optional[Response]:
         """
         Verify that the given request contains data in the form of a list of min_len to max_len items.
