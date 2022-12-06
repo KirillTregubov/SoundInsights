@@ -44,7 +44,7 @@ const PlaylistAnalysis: React.FC = () => {
         <>
           <div className="mb-2">
             <button
-              className="group mt-1 inline-flex items-center gap-0.5 rounded-md bg-neutral-800 py-1 px-1.5 pr-2.5 font-medium hover:bg-neutral-700"
+              className="group mt-1 inline-flex items-center gap-0.5 rounded-md bg-neutral-200 py-1 px-1.5 pr-2.5 font-medium hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700"
               onClick={() => setSelectedPlaylist(null)}>
               <ChevronLeftIcon className="h-4 w-4 transition-transform will-change-transform group-hover:-translate-x-0.5" />
               Select another playlist
@@ -70,11 +70,11 @@ const PlaylistAnalysis: React.FC = () => {
       ) : isLoadingPlaylists ? (
         <Loading />
       ) : (
-        <div className="rounded-lg py-1.5 dark:bg-neutral-800">
+        <div className="rounded-lg bg-neutral-100 py-1.5 dark:bg-neutral-800">
           <div className="flex flex-col gap-1">
             {playlists.map((playlist) => (
               <PlaylistPreview
-                className="cursor-pointer select-none rounded-md border border-transparent px-3 hover:bg-neutral-700"
+                className="cursor-pointer select-none rounded-md border border-transparent px-3 hover:bg-neutral-200 dark:hover:bg-neutral-700"
                 key={playlist.uri}
                 playlist={playlist}
                 onClick={() => {

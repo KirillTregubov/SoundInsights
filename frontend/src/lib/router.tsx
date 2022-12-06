@@ -8,6 +8,7 @@ import RecommendedTracks from 'pages/RecommendedTracks'
 import SpotifyCallback from 'pages/SpotifyCallback'
 import PlaylistRecommendations from 'pages/PlaylistRecommendations'
 import PlaylistAnalysis from 'pages/PlaylistAnalysis'
+import Layout from 'pages/Layout'
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,7 +24,9 @@ export const routes = [
     element: <Root />,
     errorElement: (
       <Root>
-        <ErrorPage />
+        <Layout>
+          <ErrorPage />
+        </Layout>
       </Root>
     ),
     children: [
@@ -33,31 +36,31 @@ export const routes = [
       },
       {
         path: '/callback',
-        // loader: async ({ params, request }) => {
-        //   console.log(params)
-        //   console.log('request', request)
-        //   const url = new URL(request.url)
-        //   console.log(url.searchParams)
-        //   const searchTerm = url.searchParams.get('access_token')
-        //   console.log(searchTerm)
-        //   const { handleSpotifyCallback } = await import(
-        //     'pages/SpotifyCallback'
-        //   )
-        //   return handleSpotifyCallback()
-        // },
         element: <SpotifyCallback />
       },
       {
-        path: '/get-recommendations',
-        element: <RecommendedTracks />
+        path: '/track-recommendations',
+        element: (
+          <Layout>
+            <RecommendedTracks />
+          </Layout>
+        )
       },
       {
         path: '/playlist-recommendations',
-        element: <PlaylistRecommendations />
+        element: (
+          <Layout>
+            <PlaylistRecommendations />
+          </Layout>
+        )
       },
       {
         path: '/playlist-analysis',
-        element: <PlaylistAnalysis />
+        element: (
+          <Layout>
+            <PlaylistAnalysis />
+          </Layout>
+        )
       }
     ]
   }

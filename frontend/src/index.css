@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  overflow-y: overlay;
+}
+
 .playlist-preview:hover {
   border-color: var(--accent-color);
 }
