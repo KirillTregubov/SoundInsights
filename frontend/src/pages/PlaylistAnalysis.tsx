@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { getTopPlaylists } from 'lib/api'
 import PlaylistPreview from 'components/PlaylistPreview'
+import Loading from 'components/Loading'
 
 const PlaylistAnalysis: React.FC = () => {
   const query = useQuery(['top-playlists'], async () => getTopPlaylists())
@@ -15,7 +16,7 @@ const PlaylistAnalysis: React.FC = () => {
           Choose one of the top 6 Spotify playlists to conduct an analysis on.
         </h3>
       </div>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Loading />}
       {data && (
         <div className="rounded-lg py-1.5 dark:bg-neutral-800">
           <div className="flex flex-col gap-1">
