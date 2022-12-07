@@ -49,7 +49,7 @@ export const getRecommendedTracks = async (
     })
   })
   if (response.status !== 200) {
-    toastError('Failed to get recommendations')
+    toastError('Failed to get recommendations', toastId)
     throw new Error('Request to /recommend-tracks failed')
   }
   const data = await response.json()
@@ -77,7 +77,7 @@ export const getRecommendedPlaylistTracks = async (id: string) => {
     })
   })
   if (response.status !== 200) {
-    toastError('Failed to get recommendations based on a playlist')
+    toastError('Failed to get recommendations based on a playlist', toastId)
     throw new Error('Request to /recommend-playlist-tracks failed')
   }
   const data = await response.json()
@@ -123,7 +123,7 @@ export const getPlaylistData = async (id: string) => {
     })
   })
   if (response.status !== 200) {
-    toastError('Failed to get playlist data')
+    toastError('Failed to get playlist data', toastId)
     throw new Error('Request to /get-playlist-data failed')
   }
   const data = await response.json()
