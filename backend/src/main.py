@@ -69,7 +69,7 @@ def create_app():
             return make_response(jsonify({"error": "request body must contain a data field"}), 400)
         data = request.json["data"]
         if not isinstance(data, str):
-            return make_response(jsonify({"error": f"data must be a playlist_uri string"}), 400)
+            return make_response(jsonify({"error": "data must be a playlist_uri string"}), 400)
         
         return get_playlist_recommendations(data)
 
