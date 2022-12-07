@@ -27,4 +27,4 @@ Roger
 - Go over everyone's progress on their assigned tasks. (est. 15 min)
   - What's been completed?
   - What needs to be wrapped up before the presentation.
-- Decide on what everyone is responsible for with respect to the presentation.
+- Work on the presentation together. (est. 1 hour 30 min)
