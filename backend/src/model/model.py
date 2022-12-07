@@ -26,7 +26,7 @@ from src.spotify_helper import get_access_token, get_client_credentials
 # os.chdir(dname)
 
 
-def continue_playlist(my_uris):
+def continue_playlist(my_uris, debug=False):
     
     if len(my_uris) == 0:
         raise ValueError("At least 1 track_uri must be provided")
@@ -96,7 +96,10 @@ def continue_playlist(my_uris):
         all_tempo = np.zeros(len(playlist_uri))
         
         # unpack each uri
-        for i in tqdm(range(len(playlist_uri))):
+        
+        enumerable = tqdm(range(len(playlist_uri))) if debug else range(len(playlist_uri))
+        
+        for i in enumerable:
             # query spotify api
             audio_features = sp.audio_features(playlist_uri[i])
             all_key[i] = audio_features[0]['key']
@@ -336,7 +339,8 @@ def continue_playlist(my_uris):
         features = np.array(playlist_summarise(my_uris))
         # print(f"Features: {features}")
         playlist_prediction = classify_playlist(features, True)
-        print(f'The playlist is genre: {genres[playlist_prediction[0]]}')
+        if debug:
+            print(f'The playlist is genre: {genres[playlist_prediction[0]]}')
         
         # generate songs of specific genre
         genre_songs = song_df.loc[song_df['genre'] == playlist_prediction[0]]
@@ -394,5 +398,5 @@ if __name__ == "__main__":
                "spotify:track:4BFMQ15vXr626UOoZL8bUI",
                "spotify:track:08kCck8nAJJEmxg0gXaJot"]
     
-    ret = continue_playlist(my_uris)
+    ret = continue_playlist(my_uris, debug=False)
     print(ret)
