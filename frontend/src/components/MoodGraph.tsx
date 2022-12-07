@@ -9,8 +9,8 @@ import {
   Label
 } from 'recharts'
 
-export default function MoodGraph(props) {
-  const data = props.data.map((e) => {
+export default function MoodGraph(props: any) {
+  const data = props.data.map((e: any) => {
     return {
       valence: e.audio_features.valence,
       energy: e.audio_features.energy

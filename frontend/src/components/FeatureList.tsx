@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import {
   ChartPieIcon,
+  QuestionMarkCircleIcon,
   QueueListIcon,
   RectangleStackIcon
 } from '@heroicons/react/24/outline'

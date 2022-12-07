@@ -8,10 +8,7 @@ import TrackPreview from 'components/TrackPreview'
 import Input from 'components/Input'
 
 interface Props {
-  setChosen?: React.Dispatch<{
-    uri: string
-    image: string | undefined
-  }>
+  setChosen?: ({ image, uri }: any) => void
   hidden?: boolean
   setHidden?: React.Dispatch<boolean>
 }

@@ -33,7 +33,7 @@ export const searchPlaylist = async (query: string) => {
   return data
 }
 
-export type getRecommendedTracksProps = [uri: string]
+export type getRecommendedTracksProps = [string]
 
 export const getRecommendedTracks = async (
   tracks: getRecommendedTracksProps

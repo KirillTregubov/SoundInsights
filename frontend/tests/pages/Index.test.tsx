@@ -8,6 +8,6 @@ describe('test Index.tsx', () => {
     const GetRecommendationsLink = getByTitle(
       'Get Recommendations'
     ) as HTMLAnchorElement
-    expect(GetRecommendationsLink?.href).toContain('/get-recommendations')
+    expect(GetRecommendationsLink?.href).toContain('/track-recommendations')
   })
 })

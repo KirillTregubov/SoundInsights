@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { ChevronUpIcon } from '@heroicons/react/24/outline'
 
 import { searchPlaylist } from 'lib/api'
-import { Track } from 'lib/types'
+import { Playlist } from 'lib/types'
 import Loading from 'components/Loading'
 import Input from 'components/Input'
 import PlaylistPreview from 'components/PlaylistPreview'
@@ -12,7 +12,7 @@ interface Props {
   setChosen?: React.Dispatch<string>
   hidden?: boolean
   setHidden?: React.Dispatch<boolean>
-  isSelected?: (string) => boolean
+  isSelected?: (arg0: string) => boolean
 }
 
 const SpotifyPlaylistSearch: React.FC<Props> = ({
@@ -33,7 +33,7 @@ const SpotifyPlaylistSearch: React.FC<Props> = ({
 
   useEffect(() => {
     if (setHidden && hidden) {
-      setHidden(false)
+      setHidden && setHidden(false)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search])
@@ -53,7 +53,7 @@ const SpotifyPlaylistSearch: React.FC<Props> = ({
           <ChevronUpIcon
             className="absolute top-1/2 right-0  h-5 w-5 -translate-x-1/2 -translate-y-1/2 cursor-pointer transition"
             onClick={() => {
-              setHidden(true)
+              setHidden && setHidden(true)
             }}
           />
         )}
@@ -74,7 +74,7 @@ const SpotifyPlaylistSearch: React.FC<Props> = ({
           ) : data ? (
             <div>
               <div className="mx-0.5">
-                {data.map((playlist: Track) => (
+                {data.map((playlist: Playlist) => (
                   <PlaylistPreview
                     className={`clickable cursor-pointer select-none rounded-md border border-transparent px-3 ring-1 ring-transparent hover:bg-neutral-200 dark:hover:bg-neutral-700 ${
                       isSelected(playlist.uri) ? 'selected' : ''

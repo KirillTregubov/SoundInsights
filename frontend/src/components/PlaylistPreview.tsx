@@ -1,9 +1,10 @@
 import { Playlist } from 'lib/types'
+import { CSSProperties } from 'react'
 
 interface Props {
   className?: string
   playlist: Playlist
-  onClick?: () => void
+  onClick?: (arg0: string) => void
 }
 
 const PlaylistPreview: React.FC<Props> = ({ className, playlist, onClick }) => {
@@ -12,8 +13,8 @@ const PlaylistPreview: React.FC<Props> = ({ className, playlist, onClick }) => {
       className={`playlist-preview relative box-border flex w-full min-w-0 items-center gap-2 py-1.5 text-left ${
         className ? ` ${className}` : ''
       }`}
-      style={{ '--accent-color': playlist.color || '#1DB954' }}
-      onClick={() => onClick(playlist.uri)}>
+      style={{ '--accent-color': playlist.color || '#1DB954' } as CSSProperties}
+      onClick={() => onClick && onClick(playlist.uri)}>
       <img
         className="h-16 w-16 rounded-md"
         src={playlist.image}

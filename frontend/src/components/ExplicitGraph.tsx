@@ -1,8 +1,8 @@
 import { ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
 
-export default function ExplicitGraph(props) {
-  let yes: int = 0
-  let no: int = 0
+export default function ExplicitGraph(props: any) {
+  let yes = 0
+  let no = 0
   for (const e of props.data) {
     if (e.general_info.explicit) {
       yes++

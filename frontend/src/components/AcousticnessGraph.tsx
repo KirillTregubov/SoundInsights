@@ -8,15 +8,15 @@ import {
   ResponsiveContainer
 } from 'recharts'
 
-export default function AcousticnessGraph(props) {
+export default function AcousticnessGraph(props: any) {
   const acousticness = props.data
-    .map((e, index) => {
+    .map((e: any, index: any) => {
       return {
         name: index,
         value: e.audio_features.acousticness
       }
     })
-    .sort((a, b) => {
+    .sort((a: any, b: any) => {
       if (a.value < b.value) {
         return -1
       } else if (a.value > b.value) {

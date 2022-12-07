@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { ChevronLeftIcon } from '@heroicons/react/24/outline'
-import { toast } from 'react-hot-toast'
 
 import { getTopPlaylists, getPlaylistData } from 'lib/api'
-import { toastLoad } from 'lib/toast'
 import PlaylistPreview from 'components/PlaylistPreview'
 import Loading from 'components/Loading'
 import AcousticnessGraph from 'components/AcousticnessGraph'
@@ -14,18 +12,14 @@ import SpotifyPlaylistSearch from 'components/SpotifyPlaylistSearch'
 
 const PlaylistAnalysis: React.FC = () => {
   const [hidden, setHidden] = useState(false)
-  const [selectedPlaylist, setSelectedPlaylist] = useState(null)
+  const [selectedPlaylist, setSelectedPlaylist] = useState<string | null>(null)
   const { data: playlists, isLoading: isLoadingPlaylists } = useQuery(
     ['top-playlists'],
     async () => getTopPlaylists()
   )
-  const {
-    data,
-    refetch: fetchPlaylistData,
-    isFetching
-  } = useQuery(
+  const { data, refetch: fetchPlaylistData } = useQuery(
     ['playlist-data', selectedPlaylist],
-    async () => getPlaylistData(selectedPlaylist),
+    async () => getPlaylistData(selectedPlaylist || ''),
     {
       enabled: false,
       staleTime: 1000 * 60 * 60, // 1 hour
@@ -46,7 +40,7 @@ const PlaylistAnalysis: React.FC = () => {
 
   useEffect(() => {
     if (selectedPlaylist && !data) {
-      fetchPlaylistData(selectedPlaylist)
+      fetchPlaylistData()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPlaylist, data])
@@ -69,10 +63,6 @@ const PlaylistAnalysis: React.FC = () => {
               Select another playlist
             </button>
           </div>
-          {/* <details>
-            <summary className="select-none">Data</summary>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
-          </details> */}
           <h3 className="text-lg font-medium">
             How Natural Sounding is this Playlist? (Acousticness)
           </h3>
@@ -100,16 +90,17 @@ const PlaylistAnalysis: React.FC = () => {
               <h1 className="my-1 mt-3 text-lg font-medium">Top Playlists</h1>
               <div className="rounded-lg bg-neutral-100 py-1.5 dark:bg-neutral-800">
                 <div className="flex flex-col gap-1">
-                  {playlists.map((playlist) => (
-                    <PlaylistPreview
-                      className="clickable cursor-pointer select-none rounded-md border border-transparent px-3 hover:bg-neutral-200 dark:hover:bg-neutral-700"
-                      key={playlist.uri}
-                      playlist={playlist}
-                      onClick={() => {
-                        setSelectedPlaylist(playlist.uri.split(':').pop()!)
-                      }}
-                    />
-                  ))}
+                  {playlists &&
+                    playlists.map((playlist) => (
+                      <PlaylistPreview
+                        className="clickable cursor-pointer select-none rounded-md border border-transparent px-3 hover:bg-neutral-200 dark:hover:bg-neutral-700"
+                        key={playlist.uri}
+                        playlist={playlist}
+                        onClick={() => {
+                          setSelectedPlaylist(playlist.uri.split(':').pop()!)
+                        }}
+                      />
+                    ))}
                 </div>
               </div>
             </div>

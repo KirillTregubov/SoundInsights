@@ -4,7 +4,7 @@ interface Props {
   className?: string
   track: Track
   onClick?: () => void
-  spotifyLink?: boolean
+  isSpotifyLink?: boolean
 }
 
 const TrackPreview: React.FC<Props> = ({

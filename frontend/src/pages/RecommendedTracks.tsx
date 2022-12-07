@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { MinusCircleIcon } from '@heroicons/react/20/solid'
 
-import SpotifySearch, { Selection } from 'components/SpotifySearch'
-
 import { getRecommendedTracks, getRecommendedTracksProps } from 'lib/api'
+import { toastError } from 'lib/toast'
+import { queryClient } from 'lib/router'
+import SpotifySearch from 'components/SpotifySearch'
 import TrackPreview from 'components/TrackPreview'
 import Button from 'components/Button'
-// import Loading from 'components/Loading'
 
 const RecommendedTracks: React.FC = () => {
-  const [selection, setSelection] = useState<Selection[]>([])
+  const [selection, setSelection] = useState<{ image: string; uri: string }[]>(
+    []
+  )
   const [hidden, setHidden] = useState<boolean>(false)
-  const queryClient = useQueryClient()
   const { data, refetch } = useQuery(
     ['recommend-tracks'],
     () =>
       getRecommendedTracks(
-        selection.map((item) => {
-          const { uri } = item
+        selection.map(({ uri }) => {
           return uri
         }) as getRecommendedTracksProps
       ),
@@ -30,7 +30,7 @@ const RecommendedTracks: React.FC = () => {
 
   useEffect(() => {
     return () => {
-      queryClient.removeQueries('recommend-tracks')
+      queryClient.removeQueries('recommend-tracks' as any)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -39,13 +39,13 @@ const RecommendedTracks: React.FC = () => {
     setSelection(selection.filter((item) => item.uri !== uri))
   }
 
-  function chooseSong({ image, uri }: Selection) {
+  function chooseSong({ image, uri }: { image: string; uri: string }) {
     if (selection.filter((item) => item.uri === uri).length > 0) {
       removeUri(uri)
       return
     }
     if (selection.length >= 5) {
-      alert('You may only select up to 5 tracks.') // TODO: improve UX
+      toastError('You may only select up to 5 tracks.')
       return
     }
     setSelection([...selection, { image, uri }])
@@ -105,7 +105,11 @@ const RecommendedTracks: React.FC = () => {
           <h1 className="text-lg font-medium">Recommended Tracks</h1>
           <div className="flex flex-col">
             {data.map((track) => (
-              <TrackPreview key={track.uri} track={track} isSpotifyLink />
+              <TrackPreview
+                key={track.uri}
+                track={track}
+                isSpotifyLink={true}
+              />
             ))}
           </div>
         </div>
