@@ -1,9 +1,14 @@
+// import { useLocation } from 'react-router-dom'
 import { QueryClient } from '@tanstack/react-query'
 
 import Root from '../root'
 import ErrorPage from '../ErrorPage'
 import Index from 'pages/Index'
-import RecommendedTracks from 'src/pages/RecommendedTracks'
+import RecommendedTracks from 'pages/RecommendedTracks'
+import SpotifyCallback from 'pages/SpotifyCallback'
+import PlaylistRecommendations from 'pages/PlaylistRecommendations'
+import PlaylistAnalysis from 'pages/PlaylistAnalysis'
+import Layout from 'pages/Layout'
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,7 +24,9 @@ export const routes = [
     element: <Root />,
     errorElement: (
       <Root>
-        <ErrorPage />
+        <Layout>
+          <ErrorPage />
+        </Layout>
       </Root>
     ),
     children: [
@@ -28,8 +35,32 @@ export const routes = [
         element: <Index />
       },
       {
-        path: '/get-recommendations',
-        element: <RecommendedTracks />
+        path: '/callback',
+        element: <SpotifyCallback />
+      },
+      {
+        path: '/track-recommendations',
+        element: (
+          <Layout>
+            <RecommendedTracks />
+          </Layout>
+        )
+      },
+      {
+        path: '/playlist-recommendations',
+        element: (
+          <Layout>
+            <PlaylistRecommendations />
+          </Layout>
+        )
+      },
+      {
+        path: '/playlist-analysis',
+        element: (
+          <Layout>
+            <PlaylistAnalysis />
+          </Layout>
+        )
       }
     ]
   }

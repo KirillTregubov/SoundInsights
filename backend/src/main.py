@@ -2,7 +2,7 @@ from typing import Optional
 from flask import Flask, make_response, request, jsonify, Request, Response
 from flask_cors import CORS, cross_origin
 from src.db_helper import close_db
-from src.methods import recommend_tracks, search_tracks, get_general_info, get_audio_features
+from src.methods import recommend_tracks, search_tracks, search_playlist, get_general_info, get_audio_features, get_top_playlists, get_playlist_recommendations, get_playlist_data
 import logging
 import os
 
@@ -20,15 +20,24 @@ def create_app():
     @app.route("/db-demo")
 
     @app.route("/search-tracks")
-    @cross_origin(origin='localhost', headers=['Content-Type'])
+    # @cross_origin(origin='localhost', headers=['Content-Type'])
     def search_tracks_endpoint():
         query = request.args.get("query")
         if query is None:
             return make_response(jsonify({"error": "query must be a URL parameter"}), 400)
-        # TODO: remove when fallback songs are added
         if len(query) == 0:
             return make_response(jsonify({"error": "query must not be empty"}), 400)
         return search_tracks(query)
+    
+    @app.route("/search-playlist")
+    @cross_origin(origin='localhost', headers=['Content-Type'])
+    def search_playlist_endpoint():
+        query = request.args.get("query")
+        if query is None:
+            return make_response(jsonify({"error": "query must be a URL parameter"}), 400)
+        if len(query) == 0:
+            return make_response(jsonify({"error": "query must not be empty"}), 400)
+        return search_playlist(query)
 
     @app.route("/recommend-tracks", methods=['POST'])
     def recommend_tracks_endpoint():
@@ -36,7 +45,7 @@ def create_app():
         Get recommended tracks for a list of track uris
         Preconditions:
         - POST body must be JSON
-        - POST body must be a List[str] containing 1-5 "track_uris"
+        - POST body must be a List[str] containing 1-5 "track_uri"s
         """
         error_res = __verify_list(request, 1, 5)
         if error_res is None:
@@ -44,22 +53,26 @@ def create_app():
         else:
             return error_res
     
-    @app.route("/recommend-many-tracks", methods=['POST'])
-    def recommend_many_tracks_endpoint():
+    @app.route("/recommend-playlist-tracks", methods=['POST'])
+    def recommend_playlist_tracks_endpoint():
         """
         Get recommended tracks for a list of track uris. Similar to /recommend-tracks but
         allows an arbitrary (any) number of track_uris as input.
 
         Preconditions:
         - POST body must be JSON
-        - POST body must be a List[str] of >= 1 "track_uris"
+        - POST body must be a "playlist_uri" str
         """
-        error_res = __verify_list(request, 1, None)
-        if error_res is None:
-            return recommend_tracks(request.json["data"])
-        else:
-            return error_res
-    
+        if request.headers.get('Content-Type') != 'application/json':
+            return make_response(jsonify({"error": "content_type must be application/json"}), 400)
+        if "data" not in request.json:
+            return make_response(jsonify({"error": "request body must contain a data field"}), 400)
+        data = request.json["data"]
+        if not isinstance(data, str):
+            return make_response(jsonify({"error": "data must be a playlist_uri string"}), 400)
+        
+        return get_playlist_recommendations(data)
+
     @app.route("/general-info")
     def get_general_info_endpoint():
         """
@@ -74,7 +87,7 @@ def create_app():
         else:
             return error_res
     
-    @app.route("/audio-features")
+    @app.route("/audio-features", methods=['POST'])
     def get_audio_features_endpoint():
         """
         Get audio features for a list of track_uris.
@@ -88,6 +101,32 @@ def create_app():
         else:
             return error_res
     
+    @app.route("/get-top-playlists")
+    def get_top_playlists_endpoint():
+        """
+        Get the top playlists.
+        """
+        return get_top_playlists()
+    
+    @app.route("/get-playlist-data", methods=['POST'])
+    def get_playlist_data_endpoint():
+        """
+        Get playlist data.
+
+        Preconditions:
+        - GET body must be JSON.
+        - GET body must be a "playlist_uri" string
+        """
+        if request.headers.get('Content-Type') != 'application/json':
+            return make_response(jsonify({"error": "content_type must be application/json"}), 400)
+        if "data" not in request.json:
+            return make_response(jsonify({"error": "request body must contain a data field"}), 400)
+        data = request.json["data"]
+        if not isinstance(data, str):
+            return make_response(jsonify({"error": f"data must be a playlist_uri string"}), 400)
+        
+        return get_playlist_data(data)
+
     def __verify_list(request: Request, min_len: Optional[int], max_len: Optional[int]) -> Optional[Response]:
         """
         Verify that the given request contains data in the form of a list of min_len to max_len items.

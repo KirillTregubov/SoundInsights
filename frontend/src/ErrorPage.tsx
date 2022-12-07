@@ -10,14 +10,19 @@ interface ErrorType {
 const ErrorPage: React.FC = () => {
   const error = useRouteError() as ErrorType
 
+  // console.log(error, error.message)
+
+  const errorMessage =
+    (error.statusText && error.statusText.length > 0 && `{error.statusText}`) ||
+    error.message ||
+    'Something went wrong'
+
   return (
-    <div id="error-page">
+    <div id="error-page" className="flex flex-col items-center gap-1">
       <h1 className="font-medium italic">
         {error.status && error.status == 404
           ? 'Error 404: The page you are looking for does not exist.'
-          : `Error ${error.status}: ${error.statusText}` ||
-            error.message ||
-            'Something went wrong.'}
+          : `Error ${error.status}: ` + errorMessage}
       </h1>
       <Link
         to="/"

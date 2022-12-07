@@ -1,5 +1,4 @@
 /* SVG by Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL */
-
 interface LoadingProps {
   className?: string
 }

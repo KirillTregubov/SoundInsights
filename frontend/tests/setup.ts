@@ -4,27 +4,35 @@ import { setupServer } from 'msw/node'
 import { afterAll, afterEach, beforeAll } from 'vitest'
 
 const responses = {
-  'db-demo': { query: 'Mock query', result: 2 },
   'recommend-tracks': [
     {
       name: 'Lose Control (feat. Ciara & Fat Man Scoop)',
       artists: ['Missy Elliott', 'Ciara', 'Fatman Scoop'],
-      image_url:
-        'https://i.scdn.co/image/ab67616d0000b273f1dfae21eaac0d24fb3dcf5a'
+      uri: 'spotify:track:0WqIKmW4BTrj3eJFmnCKMv',
+      explicit: false,
+      images: {
+        small:
+          'https://i.scdn.co/image/ab67616d0000b273f1dfae21eaac0d24fb3dcf5a',
+        large:
+          'https://i.scdn.co/image/ab67616d0000b273f1dfae21eaac0d24fb3dcf5a'
+      }
     },
     {
       name: 'Toxic',
       artists: ['Britney Spears'],
-      image_url:
-        'https://i.scdn.co/image/ab67616d0000b273efc6988972cb04105f002cd4'
+      uri: 'spotify:track:6I9VzXrHxO9rA9A5euc8Ak',
+      explicit: false,
+      images: {
+        small:
+          'https://i.scdn.co/image/ab67616d0000b273efc6988972cb04105f002cd4',
+        large:
+          'https://i.scdn.co/image/ab67616d0000b273efc6988972cb04105f002cd4'
+      }
     }
   ]
 }
 
 const handlers = [
-  rest.get('http://localhost:5050/db-demo', (_, res, ctx) => {
-    return res(ctx.status(200), ctx.json(responses['db-demo']))
-  }),
   rest.post('http://localhost:5050/recommend-tracks', (_, res, ctx) => {
     return res(ctx.status(200), ctx.json(responses['recommend-tracks']))
   })

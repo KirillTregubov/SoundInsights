@@ -1,11 +1,15 @@
 import { Outlet } from 'react-router-dom'
-import Navbar from './components/Navbar'
+import { Toaster } from 'react-hot-toast'
 
 const Root: React.FC<{ children?: JSX.Element }> = ({ children }) => {
   return (
-    <div id="App" className="">
-      <Navbar />
-      <div className="my-6 mx-2">{children || <Outlet />}</div>
+    <div id="App">
+      <div>{children || <Outlet />}</div>
+      <Toaster
+        toastOptions={{
+          className: 'dark:!bg-neutral-800 dark:!text-neutral-100'
+        }}
+      />
     </div>
   )
 }
