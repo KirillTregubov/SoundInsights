@@ -53,7 +53,7 @@ This section contains some stuff regarding A3 for your convenience.
 - [Our project's goals + a guide on how to use our web app](#guide).
 - [Elaboration of our dataset](#our-dataset).
 - [Features that weren't delivered](#features-we-missed).
-- Meeting notes from weeks 9 to 11 are for A3.
+- [Meeting Notes](https://github.com/KirillTregubov/csc302/tree/main/docs) from weeks 9 to 11 are for A3.
 - [A2 blameless postmortem](docs/A2Postmortem.md).
 
 ## Guide
