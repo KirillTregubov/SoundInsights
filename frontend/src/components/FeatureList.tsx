@@ -131,7 +131,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
         </h1>
       </div>
       {description && (
-        <div className="mx-2 mt-2 text-center text-[#14532D] dark:text-green-100/90">
+        <div className="mx-2 mt-2 hidden text-center text-[#14532D] dark:text-green-100/90 lg:inline-block">
           {String(description)}
         </div>
       )}
