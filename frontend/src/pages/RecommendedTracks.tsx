@@ -24,7 +24,7 @@ const RecommendedTracks: React.FC = () => {
       ),
     {
       enabled: false,
-      keepPreviousData: false
+      retry: false
     }
   )
 
@@ -52,24 +52,23 @@ const RecommendedTracks: React.FC = () => {
   }
 
   function getRecommendations() {
-    refetch().then(() => {
-      setHidden(true)
-    })
+    setHidden(true)
+    refetch()
   }
 
   return (
     <div className="mx-auto max-w-xl">
-      <div className="mb-2">
+      <div className="mb-3">
         <h1 className="text-lg font-medium">Get Music Recommendations</h1>
         <h3 className="text-neutral-600 dark:text-neutral-400">
-          Select up to 5 tracks.
+          Recommendations are based on up to 5 tracks of your choosing.
         </h3>
       </div>
       <div className="flex select-none items-center">
         {selection && selection.length == 0 ? (
-          <div className="text-neutral-400 dark:text-neutral-700">
+          <h3 className="text-neutral-400 dark:text-neutral-600">
             No tracks selected...
-          </div>
+          </h3>
         ) : (
           <div className="flex gap-2.5">
             {selection.length > 0 &&

@@ -9,7 +9,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Navbar />
-      <div className="my-6 mx-2 mb-28">{children}</div>
+      <div className="my-6 mx-4 mb-[6.5rem]">{children}</div>
       <div className="fixed bottom-0 w-full p-3 px-2 sm:px-4 sm:pb-4">
         <FeatureList />
       </div>

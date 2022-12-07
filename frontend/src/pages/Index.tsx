@@ -3,8 +3,8 @@ import FeatureList from 'components/FeatureList'
 const Index: React.FC = () => {
   return (
     <div className="flex min-h-screen w-full flex-col justify-center px-4 md:px-8">
-      <div className="relative my-6 mx-auto max-w-[45rem] items-center px-6 lg:my-16 lg:mb-44 xl:max-w-3xl">
-        <div className="flex flex-col items-center gap-4 sm:flex-row">
+      <div className="relative my-6 mx-auto max-w-[45rem] items-center px-2 sm:px-6 lg:my-16 lg:mb-44 xl:max-w-3xl">
+        <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
           <img
             className="h-24 select-none"
             src="/assets/icon.svg"

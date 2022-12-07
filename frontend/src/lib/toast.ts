@@ -1,19 +1,19 @@
 import { toast } from 'react-hot-toast'
 
-export const toastSuccess = (message: string) => {
-  toast.success(message, {
-    // style: {
-    //   background: '#333',
-    //   color: '#fff'
-    // }
-  })
+export const toastSuccess = (message: string, id: string) => {
+  if (id) {
+    return toast.success(message, {
+      id: id,
+      duration: 1000
+    })
+  }
+  return toast.success(message)
 }
 
 export const toastError = (message: string) => {
-  toast.error(message, {
-    // style: {
-    //   background: '#333',
-    //   color: '#fff'
-    // }
-  })
+  return toast.error(message)
+}
+
+export const toastLoad = (message: string) => {
+  return toast.loading(message)
 }

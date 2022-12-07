@@ -60,11 +60,14 @@ def get_tracks(tracks) -> List[str]:
     return result
 
 
-def get_playlist(playlist) -> Dict[Any, dict]:
+def get_playlist(playlist, omitTracks=False) -> Dict[Any, dict]:
     all_images = playlist["images"]
     tracks = []
-    for track in playlist["tracks"]["items"]:
-        tracks.append(track["track"]["id"])
+    if omitTracks:
+        tracks.append(playlist["tracks"])
+    else:
+        for track in playlist["tracks"]["items"]:
+            tracks.append(track["track"]["id"])
     return {
         "name": playlist["name"],
         "image": None if len(all_images) == 0 else all_images[0]["url"],

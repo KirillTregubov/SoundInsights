@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { useQuery } from '@tanstack/react-query'
 
 import { searchTracks } from 'lib/api'
 import { Track } from 'lib/types'
-import { useDebounce } from 'lib/hooks'
 import Loading from 'components/Loading'
 import TrackPreview from 'components/TrackPreview'
+import Input from 'components/Input'
 
 interface Props {
   setChosen?: React.Dispatch<{
@@ -27,15 +26,13 @@ const SpotifySearch: React.FC<Props> = ({
     ['search-tracks', search],
     async () => searchTracks(search),
     {
-      enabled: Boolean(search), // TODO: remove when fallback songs added
+      enabled: Boolean(search),
       staleTime: 1000 * 60 * 60 // 1 hour
     }
   )
 
   useEffect(() => {
-    console.log('changed')
     if (setHidden && hidden) {
-      console.log('show')
       setHidden(false)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,9 +44,8 @@ const SpotifySearch: React.FC<Props> = ({
 
   return (
     <>
-      <Input setValue={handleSearch} />
+      <Input setValue={handleSearch} placeholder="Search tracks on Spotify" />
 
-      {/* TODO: fix bug that flashes old result when resetting to empty */}
       {search && (
         <div
           className={`overflow-hidden rounded-lg bg-neutral-100 transition-[opacity,max-height] ease-in-out will-change-[max-height] dark:bg-neutral-800 ${
@@ -94,41 +90,3 @@ const SpotifySearch: React.FC<Props> = ({
 }
 
 export default SpotifySearch
-
-interface InputProps {
-  setValue: React.Dispatch<string>
-}
-
-const Input: React.FC<InputProps> = ({ setValue }) => {
-  const [search, setSearch] = useState('')
-  useDebounce(
-    () => {
-      setValue(search)
-    },
-    [search],
-    400
-  )
-
-  return (
-    <>
-      <div className="group my-2 flex items-center rounded-full border border-neutral-400 px-3 py-1 focus-within:border-neutral-500 focus-within:bg-neutral-100 dark:border-neutral-500 dark:focus-within:bg-neutral-800">
-        <MagnifyingGlassIcon
-          className={`h-5 w-5 ${
-            search.length > 0
-              ? ''
-              : 'text-neutral-400 group-focus-within:text-neutral-500 dark:text-neutral-600'
-          }`}
-        />
-        <input
-          name="Search"
-          aria-label="Search"
-          className="w-full select-none bg-inherit px-2 py-1 placeholder:text-neutral-400 focus:outline-none group-focus-within:placeholder:text-neutral-500 dark:placeholder:text-neutral-600"
-          placeholder="Search tracks on Spotify"
-          autoComplete="off"
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-        />
-      </div>
-    </>
-  )
-}

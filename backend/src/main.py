@@ -2,7 +2,7 @@ from typing import Optional
 from flask import Flask, make_response, request, jsonify, Request, Response
 from flask_cors import CORS, cross_origin
 from src.db_helper import close_db
-from src.methods import recommend_tracks, search_tracks, get_general_info, get_audio_features, get_top_playlists, get_playlist_recommendations, get_playlist_data
+from src.methods import recommend_tracks, search_tracks, search_playlist, get_general_info, get_audio_features, get_top_playlists, get_playlist_recommendations, get_playlist_data
 import logging
 import os
 
@@ -20,15 +20,24 @@ def create_app():
     @app.route("/db-demo")
 
     @app.route("/search-tracks")
-    @cross_origin(origin='localhost', headers=['Content-Type'])
+    # @cross_origin(origin='localhost', headers=['Content-Type'])
     def search_tracks_endpoint():
         query = request.args.get("query")
         if query is None:
             return make_response(jsonify({"error": "query must be a URL parameter"}), 400)
-        # TODO: remove when fallback songs are added
         if len(query) == 0:
             return make_response(jsonify({"error": "query must not be empty"}), 400)
         return search_tracks(query)
+    
+    @app.route("/search-playlist")
+    @cross_origin(origin='localhost', headers=['Content-Type'])
+    def search_playlist_endpoint():
+        query = request.args.get("query")
+        if query is None:
+            return make_response(jsonify({"error": "query must be a URL parameter"}), 400)
+        if len(query) == 0:
+            return make_response(jsonify({"error": "query must not be empty"}), 400)
+        return search_playlist(query)
 
     @app.route("/recommend-tracks", methods=['POST'])
     def recommend_tracks_endpoint():

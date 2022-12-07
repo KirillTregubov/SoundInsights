@@ -154,6 +154,32 @@ def search_tracks(query: str) -> Response:
     return ret_res
 
 
+def search_playlist(query: str) -> Response:
+    logging.info(f"search_playlist({query})")
+    access_token = get_access_token()
+    if access_token is None:
+        return make_response(jsonify([]), 401)  # unauthorized
+
+    headers = {"Authorization": f"Bearer {access_token}"}
+
+    if len(query) == 0:
+        return make_response(jsonify([]), 200)
+    params = {"q": query, "type": "playlist", "limit": 10}
+    response = requests.get(
+        "https://api.spotify.com/v1/search", headers=headers, params=params)
+
+    playlists = []
+    if response.status_code == 200:
+        for item in response.json()["playlists"]["items"]:
+            playlists.append(get_playlist(item, True))
+    else:
+        log_error_res(response, "GET")
+
+    ret_res = make_response(jsonify(playlists), response.status_code)
+    ret_res.headers["Content-Type"] = "application/json"
+    return ret_res
+
+
 def get_general_info(track_uris: List[str]) -> Response:
     """
     Get general information about tracks with the given track_uris.
@@ -258,6 +284,7 @@ def get_playlist_data(playlist_id: str):
     playlist = __get_playlist(playlist_id, access_token)
     track_ids: List[str] = playlist["tracks"]
 
+    #
     audio_features = []
     for ids in __segment_list(track_ids, 100):
         res = get_audio_features(ids)

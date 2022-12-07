@@ -6,8 +6,17 @@ html {
   overflow-y: overlay;
 }
 
-.playlist-preview:hover {
+.playlist-preview:hover,
+.playlist-preview.selected {
   border-color: var(--accent-color);
+}
+
+.playlist-preview.selected {
+  --tw-ring-color: var(--accent-color);
+}
+
+.clickable {
+  @apply cursor-pointer transition-transform active:scale-[.97] active:will-change-transform;
 }
 
 /* .playlist-preview::before {
