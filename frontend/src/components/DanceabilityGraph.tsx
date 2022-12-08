@@ -5,16 +5,12 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  AreaChart,
-  Area
+  ResponsiveContainer
 } from 'recharts'
 import TrackPreview from 'components/TrackPreview'
 
 export default function DanceabilityGraph(props: any) {
-  const acousticness = props.data
+  const danceability = props.data
     .map((e: any, index: any) => {
       return {
         name: props.data[index]?.general_info?.name,
@@ -32,9 +28,12 @@ export default function DanceabilityGraph(props: any) {
       }
     })
     .sort((a: any, b: any) => {
-      if (a.danceability > b.danceability) {
+      if (a.danceability + a.speechiness > b.danceability + b.speechiness) {
         return -1
-      } else if (a.danceability < b.danceability) {
+      } else if (
+        a.danceability + a.speechiness <
+        b.danceability + b.speechiness
+      ) {
         return 1
       } else {
         return 0
@@ -44,7 +43,7 @@ export default function DanceabilityGraph(props: any) {
   return (
     <ResponsiveContainer width="100%" height={325}>
       <BarChart
-        data={acousticness}
+        data={danceability}
         margin={{ top: 15, right: 15, left: -10, bottom: 0 }}>
         <CartesianGrid strokeDasharray="3 3" vertical={false} />
         <XAxis

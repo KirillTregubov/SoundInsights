@@ -29,7 +29,7 @@ export default function MoodGraph(props: any) {
 
   return (
     <ResponsiveContainer width="100%" height={400} className="">
-      <ScatterChart margin={{ top: 5, right: 5, bottom: 50, left: 10 }}>
+      <ScatterChart margin={{ top: 15, right: 20, bottom: 20, left: 10 }}>
         <CartesianGrid className="stroke-neutral-900 dark:stroke-neutral-50" />
         <XAxis
           type="number"
@@ -94,15 +94,15 @@ const CustomTooltip = ({ active, payload }) => {
     return (
       <div className="w-full max-w-md rounded-md bg-neutral-200 px-2 py-0.5 dark:bg-neutral-700">
         <TrackPreview track={track} />
-        <div className="mx-auto my-1 flex max-w-[20rem] flex-col items-center gap-1">
+        <div className="my-1 mx-1 mb-1.5 flex flex-col gap-1.5">
           {payload.map((item, index) => (
             <div
               key={index}
-              className="relative mx-0.5 flex items-center gap-1">
+              className="relative flex w-full items-center justify-center gap-1">
               <div className="w-[3.8rem] flex-shrink-0 flex-grow-0 text-sm">
                 {item.name === 'valence' ? 'Unhappy' : 'Relaxing'}
               </div>
-              <div className="h-2.5 w-full min-w-[8rem] max-w-[16rem] rounded-full bg-neutral-400 dark:bg-neutral-600">
+              <div className="h-2.5 w-full min-w-[8rem] max-w-[12rem] rounded-full bg-neutral-400 dark:bg-neutral-600">
                 <div
                   className="h-2.5 rounded-full bg-[#1DB954]"
                   style={{
