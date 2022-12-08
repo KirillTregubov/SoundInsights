@@ -39,10 +39,20 @@ export default function AcousticnessGraph(props: any) {
     <ResponsiveContainer width="100%" height={300}>
       <BarChart
         data={acousticness}
-        margin={{ top: 15, right: 15, left: -10, bottom: 16 }}>
+        margin={{ top: 15, right: 15, left: -10, bottom: 0 }}>
         <CartesianGrid strokeDasharray="3 3" vertical={false} />
-        <XAxis stroke="currentColor" />
-        <YAxis stroke="currentColor" />
+        <XAxis
+          stroke="currentColor"
+          axisLine={{
+            strokeWidth: 3
+          }}
+        />
+        <YAxis
+          stroke="currentColor"
+          axisLine={{
+            strokeWidth: 2
+          }}
+        />
         <Tooltip content={<CustomTooltip />} />
         <Bar dataKey="value" fill="#1DB954" />
       </BarChart>
@@ -56,7 +66,7 @@ const CustomTooltip = ({ active, payload }) => {
     return (
       <div className="max-w-md rounded-md bg-neutral-200 px-2 py-0.5 pr-3 dark:bg-neutral-700">
         <TrackPreview track={track} />
-        <p className="mb-1 -mt-[0.2rem]">
+        <p className="mb-1 -mt-[0.1rem]">
           <span className="font-medium">Accousticness: </span>
           {payload[0]?.payload?.value}
         </p>

@@ -19,6 +19,10 @@ html {
   @apply cursor-pointer transition-transform active:scale-[.97] active:will-change-transform;
 }
 
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
 /* .playlist-preview::before {
   content: none;
   position: absolute;

@@ -22,7 +22,7 @@ export default function ExplicitGraph(props: any) {
   ]
 
   return (
-    <ResponsiveContainer width="100%" height={200}>
+    <ResponsiveContainer width="100%" height={225}>
       <PieChart margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
         <Pie
           data={data}
@@ -30,7 +30,7 @@ export default function ExplicitGraph(props: any) {
           nameKey="name"
           cx="50%"
           cy="50%"
-          outerRadius={50}
+          outerRadius={75}
           fill="currentColor"
           stroke="currentColor"
           label
@@ -43,7 +43,6 @@ export default function ExplicitGraph(props: any) {
                   ? 'fill-red-500 dark:!fill-red-700'
                   : 'fill-green-500 dark:!fill-green-700'
               }`}
-              // fill={entry.name === 'yes' ? '#ef4444' : 'green'}
             />
           ))}
         </Pie>

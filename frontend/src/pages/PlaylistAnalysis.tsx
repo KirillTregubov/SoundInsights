@@ -53,7 +53,11 @@ const PlaylistAnalysis: React.FC = () => {
   }, [selectedPlaylist, data])
 
   return (
-    <div className="mx-auto max-w-xl">
+    <div
+      className={`mx-auto transition-[max-width] duration-150 ease-out will-change-[max-width] ${
+        data ? 'max-w-5xl' : 'max-w-xl'
+      }`}>
+      {/* max-w-xl */}
       <div className="mb-3">
         <h1 className="text-lg font-medium">Top Playlist Analysis</h1>
         <h3 className="dark:text-neutral-400">
@@ -76,10 +80,7 @@ const PlaylistAnalysis: React.FC = () => {
               .pop()!}`}
             target="_blank"
             rel="noreferrer"
-            className={` clickable mb-3 flex w-full max-w-full cursor-pointer items-center gap-4 rounded-xl bg-neutral-100 p-4 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700`}>
-            {/* <details>
-                <pre>{JSON.stringify(data.playlist, null, 2)}</pre>
-              </details> */}
+            className={` clickable mb-4 flex w-full max-w-full cursor-pointer items-center gap-4 rounded-xl bg-neutral-100 p-4 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700`}>
             <img
               className="h-32 w-32 rounded-lg"
               src={data.playlist.image}
@@ -123,13 +124,11 @@ const PlaylistAnalysis: React.FC = () => {
                 </div> */}
             </div>
           </a>
-          <h3 className="text-lg font-medium">
-            How Natural Sounding is this Playlist? (Acousticness)
-          </h3>
-          <AcousticnessGraph data={data.tracks} />
-          <h3 className="text-lg font-medium">
-            How many tracks are explicit (red) or not (green)?
-          </h3>
+          <div className="mb-4 rounded-xl bg-neutral-100 p-4 dark:bg-neutral-800">
+            <h3 className="text-lg font-medium">Track Acousticness</h3>
+            <AcousticnessGraph data={data.tracks} />
+          </div>
+          <h3 className="mt-4 text-lg font-medium">Track Explicitness</h3>
           <ExplicitGraph data={data.tracks} />
           <h3 className="text-lg font-medium">
             What is the mood of this playlist? (valence (x) by energy (y))
