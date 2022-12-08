@@ -36,6 +36,7 @@ const PlaylistRecommendations: React.FC = () => {
 
   function getRecommendations() {
     if (selectedPlaylist) {
+      setHidden(true)
       fetchRecommendations()
     }
   }
