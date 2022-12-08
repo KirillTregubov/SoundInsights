@@ -22,10 +22,7 @@ export default function ExplicitGraph(props: any) {
   ]
 
   return (
-    <ResponsiveContainer
-      width="95%"
-      height={200}
-      className="flex-shrink-0 flex-grow-0">
+    <ResponsiveContainer width="95%" height={200}>
       <PieChart margin={{ top: 0, right: 20, bottom: 0, left: 20 }}>
         <Pie
           data={data}
@@ -37,7 +34,7 @@ export default function ExplicitGraph(props: any) {
           fill="currentColor"
           stroke="currentColor"
           label
-          animationDuration={0}>
+          animationDuration={500}>
           {data.map((entry, index) => (
             <Cell
               key={`cell-${index}`}

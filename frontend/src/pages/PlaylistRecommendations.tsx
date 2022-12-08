@@ -51,10 +51,10 @@ const PlaylistRecommendations: React.FC = () => {
   return (
     <div className="mx-auto max-w-xl">
       <div className="mb-3">
-        <h1 className="text-lg font-medium">
+        <h1 className="text-xl font-medium">
           Get Music Recommendations based on a Playlist
         </h1>
-        <h3 className="text-neutral-600 dark:text-neutral-400">
+        <h3 className="text-[17px] text-neutral-600 dark:text-neutral-400">
           Recommendations are based on a playlist of your choice.
         </h3>
       </div>
@@ -90,21 +90,24 @@ const PlaylistRecommendations: React.FC = () => {
             <Loading />
           </div>
         ) : (
-          <div className="rounded-lg bg-neutral-100 py-1.5 dark:bg-neutral-800">
-            <div className="flex flex-col gap-1">
-              {playlists &&
-                playlists.map((playlist) => (
-                  <PlaylistPreview
-                    className={`clickable cursor-pointer select-none rounded-md border border-transparent px-3 ring-1 ring-transparent hover:bg-neutral-200 dark:hover:bg-neutral-700 ${
-                      selectedPlaylist === playlist.uri.split(':').pop()
-                        ? 'selected'
-                        : ''
-                    }`}
-                    key={playlist.uri}
-                    playlist={playlist}
-                    onClick={() => handleSelection(playlist.uri)}
-                  />
-                ))}
+          <div className="mt-3">
+            <h1 className="my-1 mt-3 text-lg font-medium">Top Playlists</h1>
+            <div className="rounded-lg bg-neutral-100 py-1.5 dark:bg-neutral-800">
+              <div className="flex flex-col gap-1">
+                {playlists &&
+                  playlists.map((playlist) => (
+                    <PlaylistPreview
+                      className={`clickable cursor-pointer select-none rounded-md border border-transparent px-3 ring-1 ring-transparent hover:bg-neutral-200 dark:hover:bg-neutral-700 ${
+                        selectedPlaylist === playlist.uri.split(':').pop()
+                          ? 'selected'
+                          : ''
+                      }`}
+                      key={playlist.uri}
+                      playlist={playlist}
+                      onClick={() => handleSelection(playlist.uri)}
+                    />
+                  ))}
+              </div>
             </div>
           </div>
         )}

@@ -53,6 +53,7 @@ export default function AcousticnessGraph(props: any) {
           axisLine={{
             strokeWidth: 2
           }}
+          className="!select-none"
         />
         <Tooltip content={<CustomTooltip />} />
         <Bar dataKey="value" fill="#1DB954" />

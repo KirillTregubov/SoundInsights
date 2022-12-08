@@ -9,6 +9,7 @@ import SpotifyCallback from 'pages/SpotifyCallback'
 import PlaylistRecommendations from 'pages/PlaylistRecommendations'
 import PlaylistAnalysis from 'pages/PlaylistAnalysis'
 import Layout from 'pages/Layout'
+import AnalysisPage from 'pages/AnalysisPage'
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -59,6 +60,14 @@ export const routes = [
         element: (
           <Layout>
             <PlaylistAnalysis />
+          </Layout>
+        )
+      },
+      {
+        path: '/playlist-analysis/:id',
+        element: (
+          <Layout>
+            <AnalysisPage />
           </Layout>
         )
       }

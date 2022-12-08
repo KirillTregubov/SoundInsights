@@ -70,8 +70,8 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   return (
     <NavLink
       className={({ isActive }) =>
-        `group flex flex-1 cursor-pointer select-none items-center items-center justify-center rounded-xl bg-green-300/40 bg-clip-padding duration-150 hover:bg-green-400/60 active:scale-[.97] active:will-change-transform dark:bg-[#020804]/40 dark:hover:bg-[#5B876C]/40 ${
-          isActive ? 'bg-green-400/80 dark:bg-[#2B6442]/40' : ''
+        `group flex flex-1 cursor-pointer select-none items-center justify-center rounded-xl bg-green-300/60 bg-clip-padding duration-150 hover:bg-green-400/80 active:scale-[.97] active:will-change-transform dark:bg-[#020804]/40 dark:hover:bg-[#5B876C]/40 ${
+          isActive ? 'bg-green-500/80 dark:bg-[#2B6442]/40' : ''
         } ${expanded ? 'flex-col py-4 px-6' : 'py-2 px-3'}`
       }
       to={to}
@@ -91,16 +91,6 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
             />
           </g>
           <defs>
-            {/* <linearGradient
-                id="b"
-                x1={200}
-                x2={1241.37}
-                y1={1099}
-                y2={643.582}
-                gradientUnits="userSpaceOnUse">
-                <stop stopColor="currentColor" />
-                <stop offset={1} stopColor="currentColor" />
-              </linearGradient> */}
             <filter
               id="a"
               width={1350}

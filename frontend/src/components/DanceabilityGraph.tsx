@@ -15,7 +15,6 @@ export default function DanceabilityGraph(props: any) {
       return {
         name: props.data[index]?.general_info?.name,
         danceability: e.audio_features.danceability,
-        instrumentalness: e.audio_features.instrumentalness,
         speechiness: -e.audio_features.speechiness,
         track: {
           name: e.general_info.name,
@@ -72,12 +71,14 @@ const CustomTooltip = ({ active, payload }) => {
     return (
       <div className="max-w-md rounded-md bg-neutral-200 px-2 py-0.5 pr-3 dark:bg-neutral-700">
         <TrackPreview track={track} />
-        <p className="mb-1 -mt-[0.1rem]">
-          <span className="font-medium">Accousticness: </span>
-          {payload[0]?.payload?.value}
+        <p className="-mt-[0.1rem]">
+          <span className="font-medium">Danceability: </span>
+          {payload[0]?.payload?.danceability}
         </p>
-        danceability {payload[0]?.payload?.danceability}
-        speechiness {payload[0]?.payload?.speechiness}
+        <p className="mb-1">
+          <span className="font-medium">Speechiness: </span>
+          {Math.abs(payload[0]?.payload?.speechiness)}
+        </p>
       </div>
     )
   }

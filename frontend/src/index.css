@@ -19,6 +19,10 @@ html {
   @apply cursor-pointer transition-transform active:scale-[.97] active:will-change-transform;
 }
 
+.recharts-cartesian-axis-tick-value {
+  @apply select-none;
+}
+
 .animate-entrance {
   animation-duration: 0.5s;
   animation-name: entrance;
