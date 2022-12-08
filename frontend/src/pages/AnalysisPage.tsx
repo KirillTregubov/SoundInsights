@@ -128,12 +128,12 @@ const AnalysisPage: React.FC = () => {
               </h3>
               <DanceabilityGraph data={data.tracks} />
             </div>
-            <div className="animate-entrance flex w-full flex-1 flex-col items-center justify-center rounded-xl bg-neutral-100 p-4 py-5 dark:bg-neutral-800">
+            {/* <div className="animate-entrance flex w-full flex-1 flex-col items-center justify-center rounded-xl bg-neutral-100 p-4 py-5 dark:bg-neutral-800">
               <h3 className="mb-3 w-full text-center text-lg font-medium">
                 Loudest Tracks
               </h3>
               <LoudestTracks data={data.tracks} />
-            </div>
+            </div> */}
             <div className="animate-entrance flex w-full flex-1 flex-col items-center justify-center rounded-xl bg-neutral-100 p-4 py-5 dark:bg-neutral-800">
               <h3 className="mb-3 w-full text-center text-lg font-medium">
                 Top Tracks
