@@ -184,7 +184,7 @@ const PlaylistPage = ({ data }: { data: any }) => {
       </div>
       <div className="my-4 flex gap-4">
         <div className="animate-entrance w-full max-w-[40rem] rounded-xl bg-neutral-100 p-4 px-7 py-5 dark:bg-neutral-800">
-          <h3 className="text-lg font-medium">Party viabiliy ranking</h3>
+          <h3 className="text-lg font-medium">Party viability ranking</h3>
           <DanceabilityGraph data={data.tracks} />
         </div>
         {/* max-w-[40rem] */}
