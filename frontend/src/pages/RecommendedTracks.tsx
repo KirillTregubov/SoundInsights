@@ -24,7 +24,14 @@ const RecommendedTracks: React.FC = () => {
       ),
     {
       enabled: false,
-      retry: false
+      retry: false,
+      onSuccess: () => {
+        setSelectedPlaylist(null)
+        setTimeout(() => {
+          const element = document.getElementById('recommendations')
+          if (element) element.scrollIntoView()
+        }, 0)
+      }
     }
   )
 
@@ -101,7 +108,7 @@ const RecommendedTracks: React.FC = () => {
         setHidden={setHidden}
       />
       {data && (
-        <div className="mt-4">
+        <div id="recommendations" className="mt-4">
           <h1 className="text-lg font-medium">Recommended Tracks</h1>
           <div className="flex flex-col">
             {data.map((track) => (

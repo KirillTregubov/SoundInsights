@@ -21,7 +21,14 @@ const PlaylistRecommendations: React.FC = () => {
     async () => getRecommendedPlaylistTracks(selectedPlaylist || ''),
     {
       enabled: false,
-      retry: false
+      retry: false,
+      onSuccess: () => {
+        setSelectedPlaylist(null)
+        setTimeout(() => {
+          const element = document.getElementById('recommendations')
+          if (element) element.scrollIntoView()
+        }, 0)
+      }
     }
   )
 
@@ -66,7 +73,7 @@ const PlaylistRecommendations: React.FC = () => {
         )}
         <Button
           className="ml-auto"
-          disabled={selectedPlaylist?.length == 0}
+          disabled={selectedPlaylist === null}
           onClick={getRecommendations}>
           Get Recommendations
         </Button>
@@ -79,7 +86,9 @@ const PlaylistRecommendations: React.FC = () => {
           isSelected={(uri) => selectedPlaylist === uri.split(':').pop()!}
         />
         {isLoadingPlaylists ? (
-          <Loading />
+          <div className="flex h-full w-full items-center justify-center p-6">
+            <Loading />
+          </div>
         ) : (
           <div className="rounded-lg bg-neutral-100 py-1.5 dark:bg-neutral-800">
             <div className="flex flex-col gap-1">
@@ -101,7 +110,7 @@ const PlaylistRecommendations: React.FC = () => {
         )}
       </div>
       {playlistData && (
-        <div className="mt-4">
+        <div id="recommendations" className="mt-4">
           <h1 className="text-lg font-medium">Recommended Tracks</h1>
           <div className="flex flex-col">
             {playlistData.map((track) => (

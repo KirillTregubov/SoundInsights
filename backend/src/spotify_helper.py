@@ -111,6 +111,8 @@ def get_playlist(playlist, omitTracks=False) -> Dict[Any, dict]:
         "uri": playlist["uri"],
         "owner": playlist["owner"]["display_name"],
         "color": playlist["primary_color"],
+        "description": playlist["description"],
+        "followers": playlist["followers"]["total"] if playlist.get("followers") else None,
         "tracks": tracks
     }
 
