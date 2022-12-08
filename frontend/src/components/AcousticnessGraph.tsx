@@ -74,7 +74,7 @@ const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
       <div className="max-w-md rounded-md bg-neutral-200 px-2 py-0.5 pr-3 dark:bg-neutral-700">
         <TrackPreview track={track} />
         <div className="mb-1 -mt-[0.1rem] flex items-baseline gap-2">
-          <span className="font-medium">Accousticness: </span>
+          <span className="select-none font-medium">Accousticness: </span>
           <div className="h-2.5 w-full min-w-[8rem] max-w-[12rem] rounded-full bg-neutral-300 dark:bg-neutral-600">
             <div
               className="h-2.5 rounded-full bg-[#1DB954]"

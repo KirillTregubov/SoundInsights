@@ -73,7 +73,9 @@ const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
       <div className="max-w-md rounded-md bg-neutral-200 px-2 py-0.5 pr-3 dark:bg-neutral-700">
         <TrackPreview track={track} />
         <div className="-mt-[0.1rem] flex items-baseline justify-start gap-2">
-          <span className="max-w-[6.5rem] font-medium">Danceability: </span>
+          <span className="w-[6.25rem] select-none font-medium">
+            Danceability:{' '}
+          </span>
           <div className="h-2.5 w-full min-w-[8rem] max-w-[12rem] rounded-full bg-neutral-300 dark:bg-neutral-600">
             <div
               className="h-2.5 rounded-full bg-[#1DB954]"
@@ -87,8 +89,10 @@ const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
           </div>
         </div>
 
-        <div className="mb-1 flex items-baseline gap-2">
-          <span className="max-w-[6.5rem] font-medium">Speechiness: </span>
+        <div className="mb-1 flex items-baseline justify-start gap-2">
+          <span className="w-[6.25rem] select-none font-medium">
+            Speechiness:{' '}
+          </span>
           <div className="h-2.5 w-full min-w-[8rem] max-w-[12rem] rounded-full bg-neutral-300 dark:bg-neutral-600">
             <div
               className="h-2.5 rounded-full bg-[#1DB954]"

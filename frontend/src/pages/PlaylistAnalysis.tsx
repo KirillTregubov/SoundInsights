@@ -49,7 +49,7 @@ const PlaylistAnalysis: React.FC = () => {
   return (
     <div className="mx-auto max-w-xl">
       <div className="mb-3">
-        <h1 className="text-xl font-medium">Top Playlist Analysis</h1>
+        <h1 className="text-xl font-medium">Analyze a Playlist</h1>
         <h3 className="text-[17px] dark:text-neutral-400">
           Choose a playlist to conduct an analysis on.
         </h3>
@@ -61,7 +61,7 @@ const PlaylistAnalysis: React.FC = () => {
           setChosen={handleClick}
         />
         {isLoadingPlaylists ? (
-          <div className="flex h-full w-full items-center justify-center p-6">
+          <div className="flex h-full w-full items-center justify-center p-4">
             <Loading />
           </div>
         ) : (

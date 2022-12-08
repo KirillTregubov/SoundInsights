@@ -98,7 +98,7 @@ const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
             <div
               key={index}
               className="relative flex w-full items-baseline justify-center gap-1">
-              <div className="w-[3.8rem] flex-shrink-0 flex-grow-0 text-sm">
+              <div className="w-[3.8rem] flex-shrink-0 flex-grow-0 select-none text-sm">
                 {item.name === 'valence' ? 'Unhappy' : 'Relaxing'}
               </div>
               <div className="h-2.5 w-full min-w-[8rem] max-w-[12rem] rounded-full bg-neutral-300 dark:bg-neutral-600">
@@ -112,7 +112,7 @@ const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
                     }).format(item.value)}`
                   }}></div>
               </div>
-              <div className="w-[3.3rem] flex-shrink-0 flex-grow-0 text-right text-sm">
+              <div className="w-[3.3rem] flex-shrink-0 flex-grow-0 select-none text-right text-sm">
                 {item.name === 'valence' ? 'Happy' : 'Intense'}
               </div>
             </div>

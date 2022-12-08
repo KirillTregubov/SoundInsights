@@ -88,7 +88,7 @@ const PlaylistRecommendations: React.FC = () => {
           isSelected={(uri) => selectedPlaylist === uri.split(':').pop()!}
         />
         {isLoadingPlaylists ? (
-          <div className="flex h-full w-full items-center justify-center p-6">
+          <div className="flex h-full w-full items-center justify-center p-4">
             <Loading />
           </div>
         ) : (
