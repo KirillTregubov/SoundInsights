@@ -17,7 +17,7 @@ const AnalysisPage: React.FC = () => {
   const { id: selectedPlaylist } = useParams()
   const { data } = useQuery(
     ['playlist-data', selectedPlaylist],
-    async () => getPlaylistData(selectedPlaylist),
+    async () => getPlaylistData(selectedPlaylist || ''),
     {
       enabled: !!selectedPlaylist,
       staleTime: 1000 * 60 * 60, // 1 hour
@@ -58,7 +58,7 @@ const AnalysisPage: React.FC = () => {
               alt="Cover art"
             />
             <div className="flex-1 overflow-hidden">
-              <div className="mb-3 flex items-end">
+              <div className="mb-3 items-end xs:flex">
                 <div>
                   <h1 className="overflow-hidden overflow-ellipsis whitespace-nowrap text-lg font-medium">
                     {data.playlist.name}
@@ -68,7 +68,7 @@ const AnalysisPage: React.FC = () => {
                   </div>
                 </div>
                 <div
-                  className="ml-auto flex max-w-full cursor-default items-center gap-1 overflow-hidden overflow-ellipsis break-words dark:text-neutral-400"
+                  className="ml-auto mt-1 flex max-w-full cursor-default items-center gap-1 overflow-hidden overflow-ellipsis break-words dark:text-neutral-400 sm:mt-0"
                   title={`${new Intl.NumberFormat().format(
                     data.playlist.followers
                   )} followers`}>
@@ -87,29 +87,30 @@ const AnalysisPage: React.FC = () => {
             </div>
           </a>
           <div className="flex w-full flex-wrap gap-4">
-            <div className="animate-entrance flex w-full max-w-[48rem] flex-col items-center justify-center rounded-xl bg-neutral-100 px-7 py-5 dark:bg-neutral-800">
+            <div className="animate-entrance flex w-full flex-col items-center justify-center rounded-xl bg-neutral-100 px-2 py-4 dark:bg-neutral-800 sm:py-5 sm:px-7 layout:max-w-[48rem]">
               <h3 className="mb-1 text-lg font-medium">Track Acousticness</h3>
               <AcousticnessGraph data={data.tracks} />
             </div>
-            <div className="animate-entrance flex flex-1 flex-col items-center justify-center rounded-xl bg-neutral-100 p-4 dark:bg-neutral-800">
+            <div className="animate-entrance flex w-full flex-col items-center justify-center rounded-xl bg-neutral-100 p-4 dark:bg-neutral-800 sm:w-[15rem] sm:overflow-hidden">
+              {/* sm:max-w-[15rem] */}
               <h3 className="mb-1 text-lg font-medium">Explicitness Ratio</h3>
               <ExplicitGraph data={data.tracks} />
             </div>
-            <div className="animate-entrance flex w-full flex-1 flex-col items-start justify-center rounded-xl bg-neutral-100 p-4 py-5 dark:bg-neutral-800">
+            <div className="animate-entrance flex w-full flex-1 flex-col items-center justify-center rounded-xl bg-neutral-100 p-4 dark:bg-neutral-800 sm:min-w-[15rem] sm:overflow-hidden sm:py-5">
               <h3 className="mb-3 w-full text-center text-lg font-medium">
                 Fastest Tracks
               </h3>
               <FastestTracks data={data.tracks} />
             </div>
-            <div className="animate-entrance flex w-full max-w-[44rem] flex-col items-center justify-center rounded-xl bg-neutral-100 p-4 px-7 py-5 dark:bg-neutral-800">
+            <div className="animate-entrance flex w-full flex-col items-center justify-center rounded-xl bg-neutral-100 px-2 py-4 dark:bg-neutral-800 sm:px-7 sm:py-5 layout:max-w-[44rem]">
               <h3 className="mb-1 text-lg font-medium">Playlist Mood</h3>
               <MoodGraph data={data.tracks} />
             </div>
-            <div className="animate-entrance flex w-full max-w-[44rem] flex-col items-center justify-center rounded-xl bg-neutral-100 px-7 py-5 dark:bg-neutral-800">
+            <div className="animate-entrance flex w-full flex-col items-center justify-center rounded-xl bg-neutral-100 px-2 py-4 dark:bg-neutral-800 sm:px-7 sm:py-5 layout:max-w-[44rem]">
               <h3 className="text-lg font-medium">Party Viability Ranking</h3>
               <DanceabilityGraph data={data.tracks} />
             </div>
-            <div className="animate-entrance flex w-full flex-1 flex-col items-start justify-center rounded-xl bg-neutral-100 p-4 py-5 dark:bg-neutral-800">
+            <div className="animate-entrance flex w-full flex-1 flex-col items-center justify-center rounded-xl bg-neutral-100 p-4 py-5 dark:bg-neutral-800">
               <h3 className="mb-3 w-full text-center text-lg font-medium">
                 Loudest Tracks
               </h3>

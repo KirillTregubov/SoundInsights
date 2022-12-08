@@ -6,7 +6,8 @@ import {
   YAxis,
   Scatter,
   Label,
-  Tooltip
+  Tooltip,
+  TooltipProps
 } from 'recharts'
 
 import TrackPreview from 'components/TrackPreview'
@@ -29,7 +30,7 @@ export default function MoodGraph(props: any) {
 
   return (
     <ResponsiveContainer width="100%" height={400} className="">
-      <ScatterChart margin={{ top: 15, right: 20, bottom: 20, left: 10 }}>
+      <ScatterChart margin={{ top: 15, right: 15, bottom: 20, left: 12.5 }}>
         <CartesianGrid className="stroke-neutral-900 dark:stroke-neutral-50" />
         <XAxis
           type="number"
@@ -80,29 +81,27 @@ export default function MoodGraph(props: any) {
           />
         </YAxis>
         <Scatter name="Tracks" data={data} fill="#1DB954" />
-        <Tooltip content={<CustomTooltip />} />
-        {/* <ReferenceLine x={0.5} stroke="!currentColor" />
-        <ReferenceLine y={0.5} stroke="!currentColor" /> */}
+        <Tooltip content={CustomTooltip} />
       </ScatterChart>
     </ResponsiveContainer>
   )
 }
 
-const CustomTooltip = ({ active, payload }) => {
+const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
   if (active && payload && payload.length) {
     const track = payload[0]?.payload?.track
     return (
       <div className="w-full max-w-md rounded-md bg-neutral-200 px-2 py-0.5 dark:bg-neutral-700">
         <TrackPreview track={track} />
         <div className="my-1 mx-1 mb-1.5 flex flex-col gap-1.5">
-          {payload.map((item, index) => (
+          {payload.map((item: any, index: number) => (
             <div
               key={index}
-              className="relative flex w-full items-center justify-center gap-1">
+              className="relative flex w-full items-baseline justify-center gap-1">
               <div className="w-[3.8rem] flex-shrink-0 flex-grow-0 text-sm">
                 {item.name === 'valence' ? 'Unhappy' : 'Relaxing'}
               </div>
-              <div className="h-2.5 w-full min-w-[8rem] max-w-[12rem] rounded-full bg-neutral-400 dark:bg-neutral-600">
+              <div className="h-2.5 w-full min-w-[8rem] max-w-[12rem] rounded-full bg-neutral-300 dark:bg-neutral-600">
                 <div
                   className="h-2.5 rounded-full bg-[#1DB954]"
                   style={{

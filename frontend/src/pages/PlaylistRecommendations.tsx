@@ -58,21 +58,23 @@ const PlaylistRecommendations: React.FC = () => {
           Recommendations are based on a playlist of your choice.
         </h3>
       </div>
-      <div className="flex items-center">
-        {!selectedPlaylist ? (
-          <h3 className="text-neutral-400 dark:text-neutral-600">
-            No playlist selected...
-          </h3>
-        ) : (
-          <button
-            className="clickable flex items-center gap-1 text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-50"
-            onClick={() => setSelectedPlaylist(null)}>
-            Remove selection
-            <XCircleIcon className="h-34 w-5" />
-          </button>
-        )}
+      <div className="flex select-none flex-col justify-center gap-1 xs:flex-row xs:gap-0">
+        <div className="flex h-9 items-center">
+          {!selectedPlaylist ? (
+            <h3 className="text-neutral-400 dark:text-neutral-600">
+              No playlist selected...
+            </h3>
+          ) : (
+            <button
+              className="clickable flex items-center gap-1 text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-50"
+              onClick={() => setSelectedPlaylist(null)}>
+              Remove selection
+              <XCircleIcon className="h-34 w-5" />
+            </button>
+          )}
+        </div>
         <Button
-          className="ml-auto"
+          className="box-content h-7 xs:ml-auto xs:h-auto"
           disabled={selectedPlaylist === null}
           onClick={getRecommendations}>
           Get Recommendations
@@ -97,7 +99,7 @@ const PlaylistRecommendations: React.FC = () => {
                 {playlists &&
                   playlists.map((playlist) => (
                     <PlaylistPreview
-                      className={`clickable cursor-pointer select-none rounded-md border border-transparent px-3 ring-1 ring-transparent hover:bg-neutral-200 dark:hover:bg-neutral-700 ${
+                      className={`clickable cursor-pointer select-none rounded-md px-3 hover:bg-neutral-200 dark:hover:bg-neutral-700 ${
                         selectedPlaylist === playlist.uri.split(':').pop()
                           ? 'selected'
                           : ''
@@ -121,7 +123,7 @@ const PlaylistRecommendations: React.FC = () => {
                 key={track.uri}
                 track={track}
                 isSpotifyLink={true}
-                className="clickable rounded-md px-2 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                className="clickable -mx-2 rounded-md !p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800"
               />
             ))}
           </div>

@@ -29,11 +29,11 @@ export default function LoudestTracks(props: any) {
   return (
     <>
       {loudness &&
-        loudness.slice(0, 6).map((item) => {
+        loudness.slice(0, 6).map((item: any) => {
           return (
             <TrackPreview
               track={item.track}
-              className="clickable max-w-[17rem] rounded-md px-2 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+              className="clickable rounded-md p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 lg:max-w-[17rem]"
               isSpotifyLink={true}
               key={item.track.uri}
             />

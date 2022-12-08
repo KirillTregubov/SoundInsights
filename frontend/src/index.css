@@ -23,6 +23,10 @@ html {
   @apply select-none;
 }
 
+.recharts-tooltip-wrapper {
+  @apply outline-none;
+}
+
 .animate-entrance {
   animation-duration: 0.5s;
   animation-name: entrance;

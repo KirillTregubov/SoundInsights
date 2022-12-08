@@ -9,7 +9,8 @@ module.exports = {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans]
       },
       screens: {
-        layout: '1080px'
+        xs: '480px',
+        layout: '1056px'
       }
     }
   },

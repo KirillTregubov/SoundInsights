@@ -72,7 +72,7 @@ const PlaylistAnalysis: React.FC = () => {
                 {playlists &&
                   playlists.map((playlist) => (
                     <PlaylistPreview
-                      className="clickable cursor-pointer select-none rounded-md border border-transparent px-3 hover:bg-neutral-200 dark:hover:bg-neutral-700"
+                      className="clickable cursor-pointer select-none rounded-md px-3 hover:bg-neutral-200 dark:hover:bg-neutral-700"
                       key={playlist.uri}
                       playlist={playlist}
                       onClick={() => {

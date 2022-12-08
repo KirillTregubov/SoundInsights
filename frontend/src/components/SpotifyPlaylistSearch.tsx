@@ -76,7 +76,7 @@ const SpotifyPlaylistSearch: React.FC<Props> = ({
               <div className="mx-0.5">
                 {data.map((playlist: Playlist) => (
                   <PlaylistPreview
-                    className={`clickable cursor-pointer select-none rounded-md border border-transparent px-3 ring-1 ring-transparent hover:bg-neutral-200 dark:hover:bg-neutral-700 ${
+                    className={`clickable cursor-pointer select-none rounded-md px-3 hover:bg-neutral-200 dark:hover:bg-neutral-700 ${
                       isSelected(playlist.uri) ? 'selected' : ''
                     }`}
                     key={playlist.uri}

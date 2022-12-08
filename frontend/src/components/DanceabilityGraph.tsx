@@ -5,7 +5,8 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer,
+  TooltipProps
 } from 'recharts'
 import TrackPreview from 'components/TrackPreview'
 
@@ -57,7 +58,7 @@ export default function DanceabilityGraph(props: any) {
             strokeWidth: 2
           }}
         />
-        <Tooltip content={<CustomTooltip />} />
+        <Tooltip content={CustomTooltip} />
         <Bar dataKey="danceability" stackId="a" fill="#1DB954" />
         <Bar dataKey="speechiness" stackId="a" fill="#ff0000" />
       </BarChart>
@@ -65,20 +66,41 @@ export default function DanceabilityGraph(props: any) {
   )
 }
 
-const CustomTooltip = ({ active, payload }) => {
+const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
   if (active && payload && payload.length) {
     const track = payload[0]?.payload?.track
     return (
       <div className="max-w-md rounded-md bg-neutral-200 px-2 py-0.5 pr-3 dark:bg-neutral-700">
         <TrackPreview track={track} />
-        <p className="-mt-[0.1rem]">
-          <span className="font-medium">Danceability: </span>
-          {payload[0]?.payload?.danceability}
-        </p>
-        <p className="mb-1">
-          <span className="font-medium">Speechiness: </span>
-          {Math.abs(payload[0]?.payload?.speechiness)}
-        </p>
+        <div className="-mt-[0.1rem] flex items-baseline justify-start gap-2">
+          <span className="max-w-[6.5rem] font-medium">Danceability: </span>
+          <div className="h-2.5 w-full min-w-[8rem] max-w-[12rem] rounded-full bg-neutral-300 dark:bg-neutral-600">
+            <div
+              className="h-2.5 rounded-full bg-[#1DB954]"
+              style={{
+                width: `${new Intl.NumberFormat('default', {
+                  style: 'percent',
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2
+                }).format(payload[0]?.payload?.danceability)}`
+              }}></div>
+          </div>
+        </div>
+
+        <div className="mb-1 flex items-baseline gap-2">
+          <span className="max-w-[6.5rem] font-medium">Speechiness: </span>
+          <div className="h-2.5 w-full min-w-[8rem] max-w-[12rem] rounded-full bg-neutral-300 dark:bg-neutral-600">
+            <div
+              className="h-2.5 rounded-full bg-[#1DB954]"
+              style={{
+                width: `${new Intl.NumberFormat('default', {
+                  style: 'percent',
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2
+                }).format(Math.abs(payload[0]?.payload?.speechiness))}`
+              }}></div>
+          </div>
+        </div>
       </div>
     )
   }

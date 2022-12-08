@@ -7,6 +7,11 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts'
+import { TooltipProps } from 'recharts'
+// import {
+//   ValueType,
+//   NameType
+// } from 'recharts/src/component/DefaultTooltipContent'
 
 import TrackPreview from 'components/TrackPreview'
 
@@ -40,7 +45,7 @@ export default function AcousticnessGraph(props: any) {
     <ResponsiveContainer width="100%" height={325}>
       <BarChart
         data={acousticness}
-        margin={{ top: 15, right: 15, left: -10, bottom: 0 }}>
+        margin={{ top: 15, right: 15, left: -15, bottom: 0 }}>
         <CartesianGrid strokeDasharray="3 3" vertical={false} />
         <XAxis
           stroke="currentColor"
@@ -55,23 +60,33 @@ export default function AcousticnessGraph(props: any) {
           }}
           className="!select-none"
         />
-        <Tooltip content={<CustomTooltip />} />
+        <Tooltip content={CustomTooltip} />
         <Bar dataKey="value" fill="#1DB954" />
       </BarChart>
     </ResponsiveContainer>
   )
 }
 
-const CustomTooltip = ({ active, payload }) => {
+const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
   if (active && payload && payload.length) {
     const track = payload[0]?.payload?.track
     return (
       <div className="max-w-md rounded-md bg-neutral-200 px-2 py-0.5 pr-3 dark:bg-neutral-700">
         <TrackPreview track={track} />
-        <p className="mb-1 -mt-[0.1rem]">
+        <div className="mb-1 -mt-[0.1rem] flex items-baseline gap-2">
           <span className="font-medium">Accousticness: </span>
-          {payload[0]?.payload?.value}
-        </p>
+          <div className="h-2.5 w-full min-w-[8rem] max-w-[12rem] rounded-full bg-neutral-300 dark:bg-neutral-600">
+            <div
+              className="h-2.5 rounded-full bg-[#1DB954]"
+              style={{
+                width: `${new Intl.NumberFormat('default', {
+                  style: 'percent',
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2
+                }).format(payload[0]?.payload?.value)}`
+              }}></div>
+          </div>
+        </div>
       </div>
     )
   }
