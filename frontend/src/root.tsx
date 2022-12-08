@@ -7,7 +7,8 @@ const Root: React.FC<{ children?: JSX.Element }> = ({ children }) => {
       <div>{children || <Outlet />}</div>
       <Toaster
         toastOptions={{
-          className: 'dark:!bg-neutral-800 dark:!text-neutral-100'
+          className: 'dark:!bg-neutral-800 dark:!text-neutral-100',
+          duration: 2000
         }}
       />
     </div>

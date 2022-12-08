@@ -19,13 +19,13 @@ const TrackPreview: React.FC<Props> = ({
         href={`https://open.spotify.com/track/${track.uri.split(':').pop()!}`}
         target="_blank"
         rel="noreferrer"
-        className={`group relative box-border flex w-full min-w-0 items-center gap-2 py-1.5 text-left ${
+        className={`group relative box-border flex w-full min-w-0 items-center gap-2 py-1 text-left ${
           className ? ` ${className}` : ''
         }`}
         onClick={onClick}>
         {track.images && (
           <img
-            className="h-12 w-12 rounded-md"
+            className="h-12 w-12 select-none rounded-md"
             src={track.images.small}
             alt="Cover art"
           />
@@ -66,7 +66,7 @@ const TrackPreview: React.FC<Props> = ({
       onClick={onClick}>
       {track.images && (
         <img
-          className="h-12 w-12 rounded-md"
+          className="h-12 w-12 select-none rounded-md"
           src={track.images.small}
           alt="Cover art"
         />

@@ -261,7 +261,7 @@ def get_top_playlists() -> Response:
         return make_response(jsonify([]), 401)
 
     data = []
-    for playlist_id in ['37i9dQZF1DXcBWIGoYBM5M', '37i9dQZEVXbMDoHDwVN2tF', '37i9dQZF1DX0XUsuxWHRQd', '37i9dQZF1DX10zKzsJ2jva', '37i9dQZF1DWY7IeIP1cdjF', '37i9dQZF1DWXRqgorJj26U']:
+    for playlist_id in ['37i9dQZF1DXcBWIGoYBM5M', '37i9dQZEVXbMDoHDwVN2tF', '37i9dQZF1DX0XUsuxWHRQd', '37i9dQZF1DX10zKzsJ2jva', '37i9dQZF1DWY7IeIP1cdjF', '37i9dQZF1DWXRqgorJj26U', '37i9dQZF1DX4o1oenSJRJd', '37i9dQZF1DX4UtSsGT1Sbe']:
         playlist = __get_playlist(playlist_id, access_token)
         playlist.pop("tracks")
         if playlist is not None:
@@ -308,7 +308,7 @@ def get_playlist_data(playlist_id: str):
             "general_info": general_info[i]
         })
     
-    return make_response(jsonify(track_data), 200)
+    return make_response(jsonify({"tracks": track_data, "playlist": playlist}), 200)
 
 
 def condition_by_id(data):

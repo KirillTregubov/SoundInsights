@@ -22,21 +22,27 @@ export default function ExplicitGraph(props: any) {
   ]
 
   return (
-    <ResponsiveContainer width="100%" height={250}>
-      <PieChart margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
+    <ResponsiveContainer width="95%" height={200}>
+      <PieChart margin={{ top: 0, right: 20, bottom: 0, left: 20 }}>
         <Pie
           data={data}
           dataKey="value"
           nameKey="name"
           cx="50%"
           cy="50%"
-          outerRadius={50}
-          fill="#8884d8"
-          label>
+          outerRadius={60}
+          fill="currentColor"
+          stroke="currentColor"
+          label
+          animationDuration={500}>
           {data.map((entry, index) => (
             <Cell
               key={`cell-${index}`}
-              fill={entry.name === 'yes' ? 'red' : 'green'}
+              className={`${
+                entry.name === 'yes'
+                  ? 'fill-red-500 dark:!fill-red-700'
+                  : 'fill-green-500 dark:!fill-green-700'
+              }`}
             />
           ))}
         </Pie>

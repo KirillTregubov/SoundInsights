@@ -34,7 +34,10 @@ export const PlaylistValidator = z
     uri: z.string(),
     owner: z.string(),
     image: z.string().url(),
-    color: z.string().nullable()
+    color: z.string().nullable(),
+    // tracks: z.infer<typeof TracksValidator>
+    description: z.string().nullable(),
+    followers: z.number()
   })
   .strict()
 

@@ -7,6 +7,11 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans]
+      },
+      screens: {
+        xs: '480px',
+        smallLayout: '800px',
+        layout: '1056px'
       }
     }
   },
