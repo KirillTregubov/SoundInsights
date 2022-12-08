@@ -64,7 +64,7 @@ export default function AverageStats(props: any) {
                 <Loading />
               )}
             </span>
-            <span className="ml-auto block text-neutral-600 dark:text-neutral-400">
+            <span className="ml-auto block select-none text-neutral-600 dark:text-neutral-400">
               average duration
             </span>
           </div>
@@ -81,7 +81,7 @@ export default function AverageStats(props: any) {
                 }}
                 title={`Popularity is ${popularityAvg}`}></div>
             </div>
-            <span className="text-neutral-600 dark:text-neutral-400">
+            <span className="select-none text-neutral-600 dark:text-neutral-400">
               average popularity
             </span>
           </div>
@@ -89,7 +89,7 @@ export default function AverageStats(props: any) {
             <span className="mr-1 block text-lg font-semibold">
               {tempoAvg ? tempoAvg.toFixed(2) : <Loading />}
             </span>
-            <span className="ml-auto block text-neutral-600 dark:text-neutral-400">
+            <span className="ml-auto block select-none text-neutral-600 dark:text-neutral-400">
               average bpm
             </span>
           </div>

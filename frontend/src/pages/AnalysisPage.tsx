@@ -114,7 +114,7 @@ const AnalysisPage: React.FC = () => {
             </div>
             <div className="animate-entrance flex w-full flex-1 flex-col items-center justify-center rounded-xl bg-neutral-100 p-4 dark:bg-neutral-800 sm:min-w-[15rem] sm:overflow-hidden sm:py-5">
               <h3 className="mb-3 w-full text-center text-lg font-medium">
-                Fastest Tracks
+                High Tempo Tracks
               </h3>
               <FastestTracks data={data.tracks} />
             </div>
