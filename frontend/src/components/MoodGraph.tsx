@@ -8,7 +8,8 @@ import {
   Label,
   Tooltip
 } from 'recharts'
-import TrackPreview from './TrackPreview'
+
+import TrackPreview from 'components/TrackPreview'
 
 export default function MoodGraph(props: any) {
   const data = props.data.map((e: any) => {
@@ -91,11 +92,13 @@ const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     const track = payload[0]?.payload?.track
     return (
-      <div className="w-full max-w-md rounded-md bg-neutral-200 px-2 py-0.5 pr-3 dark:bg-neutral-700">
+      <div className="w-full max-w-md rounded-md bg-neutral-200 px-2 py-0.5 dark:bg-neutral-700">
         <TrackPreview track={track} />
         <div className="mx-auto my-1 flex max-w-[20rem] flex-col items-center gap-1">
           {payload.map((item, index) => (
-            <div key={index} className="relative flex items-center gap-1">
+            <div
+              key={index}
+              className="relative mx-0.5 flex items-center gap-1">
               <div className="w-[3.8rem] flex-shrink-0 flex-grow-0 text-sm">
                 {item.name === 'valence' ? 'Unhappy' : 'Relaxing'}
               </div>
@@ -110,14 +113,9 @@ const CustomTooltip = ({ active, payload }) => {
                     }).format(item.value)}`
                   }}></div>
               </div>
-
               <div className="w-[3.3rem] flex-shrink-0 flex-grow-0 text-right text-sm">
                 {item.name === 'valence' ? 'Happy' : 'Intense'}
               </div>
-              {/* <p className="">
-                <span className="font-medium capitalize">{item.name}: </span>
-                {item.value}
-              </p> */}
             </div>
           ))}
         </div>

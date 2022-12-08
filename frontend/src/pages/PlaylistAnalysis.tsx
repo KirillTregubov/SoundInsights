@@ -4,12 +4,14 @@ import { ChevronLeftIcon } from '@heroicons/react/24/outline'
 import { UserGroupIcon } from '@heroicons/react/20/solid'
 
 import { getTopPlaylists, getPlaylistData } from 'lib/api'
+import { useDelay } from 'lib/hooks'
 import PlaylistPreview from 'components/PlaylistPreview'
 import Loading from 'components/Loading'
 import AcousticnessGraph from 'components/AcousticnessGraph'
 import ExplicitGraph from 'components/ExplicitGraph'
 import MoodGraph from 'components/MoodGraph'
 import SpotifyPlaylistSearch from 'components/SpotifyPlaylistSearch'
+import DanceabilityGraph from 'src/components/DanceabilityGraph'
 
 const PlaylistAnalysis: React.FC = () => {
   const [hidden, setHidden] = useState(false)
@@ -54,7 +56,7 @@ const PlaylistAnalysis: React.FC = () => {
 
   return (
     <div
-      className={`mx-auto transition-[max-width] duration-150 ease-out will-change-[max-width] ${
+      className={`mx-auto transition-[max-width] duration-300 ease-out will-change-[max-width] ${
         data ? 'max-w-5xl' : 'max-w-xl'
       }`}>
       {/* max-w-xl */}
@@ -80,7 +82,7 @@ const PlaylistAnalysis: React.FC = () => {
               .pop()!}`}
             target="_blank"
             rel="noreferrer"
-            className={` clickable mb-4 flex w-full max-w-full cursor-pointer items-center gap-4 rounded-xl bg-neutral-100 p-4 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700`}>
+            className={`animate-entrance clickable mb-4 flex w-full max-w-full cursor-pointer items-center gap-5 rounded-xl bg-neutral-100 p-4 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700`}>
             <img
               className="h-32 w-32 rounded-lg"
               src={data.playlist.image}
@@ -124,16 +126,7 @@ const PlaylistAnalysis: React.FC = () => {
                 </div> */}
             </div>
           </a>
-          <div className="mb-4 rounded-xl bg-neutral-100 p-4 dark:bg-neutral-800">
-            <h3 className="text-lg font-medium">Track Acousticness</h3>
-            <AcousticnessGraph data={data.tracks} />
-          </div>
-          <h3 className="mt-4 text-lg font-medium">Track Explicitness</h3>
-          <ExplicitGraph data={data.tracks} />
-          <h3 className="text-lg font-medium">
-            What is the mood of this playlist? (valence (x) by energy (y))
-          </h3>
-          <MoodGraph data={data.tracks} />
+          <PlaylistPage data={data} />
         </>
       ) : (
         <>
@@ -173,3 +166,33 @@ const PlaylistAnalysis: React.FC = () => {
 }
 
 export default PlaylistAnalysis
+
+const PlaylistPage = ({ data }: { data: any }) => {
+  const delayedRender = useDelay(200)
+
+  return delayedRender(() => (
+    <>
+      <div className="mb-4 flex gap-4">
+        <div className="animate-entrance flex w-full max-w-[48rem] flex-col items-center justify-center rounded-xl bg-neutral-100 px-7 py-5 dark:bg-neutral-800">
+          <h3 className="mb-1 text-lg font-medium">Track Acousticness</h3>
+          <AcousticnessGraph data={data.tracks} />
+        </div>
+        <div className="animate-entrance flex flex-1 flex-col items-center justify-center rounded-xl bg-neutral-100 p-4 dark:bg-neutral-800">
+          <h3 className="mb-1 text-lg font-medium">Explicitness Ratio</h3>
+          <ExplicitGraph data={data.tracks} />
+        </div>
+      </div>
+      <div className="my-4 flex gap-4">
+        <div className="animate-entrance w-full max-w-[40rem] rounded-xl bg-neutral-100 p-4 px-7 py-5 dark:bg-neutral-800">
+          <h3 className="text-lg font-medium">Party viabiliy ranking</h3>
+          <DanceabilityGraph data={data.tracks} />
+        </div>
+        {/* max-w-[40rem] */}
+        <div className="animate-entrance w-full flex-1 rounded-xl bg-neutral-100 p-4 px-6 py-5 dark:bg-neutral-800">
+          <h3 className="mb-1 text-lg font-medium">Playlist Mood</h3>
+          <MoodGraph data={data.tracks} />
+        </div>
+      </div>
+    </>
+  ))
+}
