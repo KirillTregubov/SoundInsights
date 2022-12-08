@@ -108,12 +108,11 @@ const AnalysisPage: React.FC = () => {
               <AcousticnessGraph data={data.tracks} />
             </div>
             <div className="animate-entrance flex w-full flex-col items-center justify-center rounded-xl bg-neutral-100 p-4 dark:bg-neutral-800 sm:w-[15rem] sm:overflow-hidden">
-              {/* sm:max-w-[15rem] */}
               <h3 className="mb-1 text-lg font-medium">Explicitness Ratio</h3>
               <ExplicitGraph data={data.tracks} />
             </div>
             <div className="animate-entrance flex w-full flex-1 flex-col items-center justify-center rounded-xl bg-neutral-100 p-4 dark:bg-neutral-800 sm:min-w-[15rem] sm:overflow-hidden sm:py-5">
-              <h3 className="mb-3 w-full text-center text-lg font-medium">
+              <h3 className="mb-2 w-full text-center text-lg font-medium">
                 High Tempo Tracks
               </h3>
               <FastestTracks data={data.tracks} />
@@ -135,7 +134,7 @@ const AnalysisPage: React.FC = () => {
               <LoudestTracks data={data.tracks} />
             </div> */}
             <div className="animate-entrance flex w-full flex-1 flex-col items-center justify-center rounded-xl bg-neutral-100 p-4 py-5 dark:bg-neutral-800">
-              <h3 className="mb-3 w-full text-center text-lg font-medium">
+              <h3 className="mb-2 w-full text-center text-lg font-medium">
                 Top Tracks
               </h3>
               <PopularTracks data={data.tracks} />

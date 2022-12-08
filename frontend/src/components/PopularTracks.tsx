@@ -33,7 +33,7 @@ export default function PopularTracks(props: any) {
           return (
             <TrackPreview
               track={item.track}
-              className="clickable rounded-md p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 lg:max-w-[17rem]"
+              className="clickable rounded-md !p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 lg:max-w-[17rem]"
               isSpotifyLink={true}
               key={item.track.uri}
             />
