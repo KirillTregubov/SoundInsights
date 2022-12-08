@@ -3,5 +3,34 @@
 @tailwind utilities;
 
 html {
-  scrollbar-gutter: stable; /* No Safari support https://caniuse.com/mdn-css_properties_scrollbar-gutter  */
+  overflow-y: overlay;
 }
+
+.playlist-preview:hover,
+.playlist-preview.selected {
+  border-color: var(--accent-color);
+}
+
+.playlist-preview.selected {
+  --tw-ring-color: var(--accent-color);
+}
+
+.clickable {
+  @apply cursor-pointer transition-transform active:scale-[.97] active:will-change-transform;
+}
+
+/* .playlist-preview::before {
+  content: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  transform: translate(50%, 25px);
+}
+
+.playlist-preview:hover::before {
+  content: '';
+} */

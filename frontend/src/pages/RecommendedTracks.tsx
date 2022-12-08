@@ -1,63 +1,74 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { MinusCircleIcon } from '@heroicons/react/20/solid'
 
-import SpotifySearch, { Selection } from 'components/SpotifySearch'
-
 import { getRecommendedTracks, getRecommendedTracksProps } from 'lib/api'
+import { toastError } from 'lib/toast'
+import { queryClient } from 'lib/router'
+import SpotifySearch from 'components/SpotifySearch'
 import TrackPreview from 'components/TrackPreview'
-// import Loading from 'components/Loading'
+import Button from 'components/Button'
 
 const RecommendedTracks: React.FC = () => {
-  const [selection, setSelection] = useState<Selection[]>([])
-  const [dirty, setDirty] = useState<boolean>(false)
+  const [selection, setSelection] = useState<{ image: string; uri: string }[]>(
+    []
+  )
+  const [hidden, setHidden] = useState<boolean>(false)
   const { data, refetch } = useQuery(
     ['recommend-tracks'],
     () =>
       getRecommendedTracks(
-        selection.map((item) => {
-          const { uri } = item
+        selection.map(({ uri }) => {
           return uri
         }) as getRecommendedTracksProps
       ),
     {
-      enabled: false
+      enabled: false,
+      retry: false
     }
   )
-  // { data, refetch, dataUpdatedAt, isLoading, isError, error }
+
+  useEffect(() => {
+    return () => {
+      queryClient.removeQueries('recommend-tracks' as any)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   function removeUri(uri: string) {
     setSelection(selection.filter((item) => item.uri !== uri))
   }
 
-  function chooseSong({ image, uri }: Selection) {
+  function chooseSong({ image, uri }: { image: string; uri: string }) {
     if (selection.filter((item) => item.uri === uri).length > 0) {
       removeUri(uri)
       return
     }
-    if (!dirty) {
-      setDirty(true)
-    }
     if (selection.length >= 5) {
-      alert('You may only select up to 5 tracks.') // TODO: improve UX
+      toastError('You may only select up to 5 tracks.')
       return
     }
     setSelection([...selection, { image, uri }])
   }
 
   function getRecommendations() {
+    setHidden(true)
     refetch()
   }
 
   return (
-    <div className="mx-auto my-6 max-w-xl">
-      <div className="mb-2">
+    <div className="mx-auto max-w-xl">
+      <div className="mb-3">
         <h1 className="text-lg font-medium">Get Music Recommendations</h1>
-        <h3 className="dark:text-neutral-400">Select up to 5 tracks.</h3>
+        <h3 className="text-neutral-600 dark:text-neutral-400">
+          Recommendations are based on up to 5 tracks of your choosing.
+        </h3>
       </div>
       <div className="flex select-none items-center">
         {selection && selection.length == 0 ? (
-          <div className="dark:text-neutral-700">No tracks selected...</div>
+          <h3 className="text-neutral-400 dark:text-neutral-600">
+            No tracks selected...
+          </h3>
         ) : (
           <div className="flex gap-2.5">
             {selection.length > 0 &&
@@ -77,20 +88,28 @@ const RecommendedTracks: React.FC = () => {
               ))}
           </div>
         )}
-        <button
-          className="ml-auto rounded-full border py-1 px-3 disabled:cursor-not-allowed disabled:dark:border-neutral-700 disabled:dark:text-neutral-700"
+        <Button
+          className="ml-auto"
           disabled={selection?.length == 0}
           onClick={() => getRecommendations()}>
           Get Recommendations
-        </button>
+        </Button>
       </div>
-      <SpotifySearch setChosen={chooseSong} />
+      <SpotifySearch
+        setChosen={chooseSong}
+        hidden={hidden}
+        setHidden={setHidden}
+      />
       {data && (
         <div className="mt-4">
           <h1 className="text-lg font-medium">Recommended Tracks</h1>
           <div className="flex flex-col">
             {data.map((track) => (
-              <TrackPreview key={track.uri} track={track} />
+              <TrackPreview
+                key={track.uri}
+                track={track}
+                isSpotifyLink={true}
+              />
             ))}
           </div>
         </div>
@@ -100,64 +119,3 @@ const RecommendedTracks: React.FC = () => {
 }
 
 export default RecommendedTracks
-
-// const Body = ({ children }: { children: React.ReactNode }) => {
-//   return (
-//     <div className="my-2 rounded-lg bg-neutral-200 p-4">
-//       <h1 className="font-semibold">Fetch Recommended Tracks</h1>
-//       <div>{children}</div>
-//     </div>
-//   )
-// }
-// if (isLoading)
-//   return (
-//     <Body>
-//       {/* By Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL */}
-//       <svg
-//         className="mt-1 h-7 w-7 animate-spin text-neutral-700"
-//         viewBox="0 0 38 38"
-//         xmlns="http://www.w3.org/2000/svg">
-//         <defs>
-//           <linearGradient
-//             x1="8.042%"
-//             y1="0%"
-//             x2="65.682%"
-//             y2="23.865%"
-//             id="a">
-//             <stop stopColor="currentColor" stopOpacity="0" offset="0%" />
-//             <stop
-//               stopColor="currentColor"
-//               stopOpacity=".631"
-//               offset="63.146%"
-//             />
-//             <stop stopColor="currentColor" offset="100%" />
-//           </linearGradient>
-//         </defs>
-//         <g fill="none" fillRule="evenodd">
-//           <g transform="translate(1 1)">
-//             <path
-//               d="M36 18c0-9.94-8.06-18-18-18"
-//               stroke="url(#a)"
-//               strokeWidth="2"></path>
-//           </g>
-//         </g>
-//       </svg>
-//     </Body>
-//   )
-// if (isError)
-//   return (
-//     <Body>
-//       <pre>{error?.toString()}</pre>
-//     </Body>
-//   )
-// return (
-//   <Body>
-//     <div>
-//       Data: <pre>{JSON.stringify(data, null, 2)}</pre>
-//     </div>
-//     <h4 className="mt-1 text-sm text-neutral-900">
-//       Received at {new Date(dataUpdatedAt).toLocaleString()}
-//     </h4>
-//   </Body>
-// )
-// }

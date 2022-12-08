@@ -1,3 +1,4 @@
+from typing import Optional, List, Dict, Any
 from src.response_handler import log_error_res
 from typing import Any, Dict, Optional, List, Tuple
 import requests
@@ -94,6 +95,25 @@ def get_tracks(tracks) -> List[str]:
             "explicit": track["explicit"]
         })
     return result
+
+
+def get_playlist(playlist, omitTracks=False) -> Dict[Any, dict]:
+    all_images = playlist["images"]
+    tracks = []
+    if omitTracks:
+        tracks.append(playlist["tracks"])
+    else:
+        for track in playlist["tracks"]["items"]:
+            tracks.append(track["track"]["id"])
+    return {
+        "name": playlist["name"],
+        "image": None if len(all_images) == 0 else all_images[0]["url"],
+        "uri": playlist["uri"],
+        "owner": playlist["owner"]["display_name"],
+        "color": playlist["primary_color"],
+        "tracks": tracks
+    }
+
 
 if __name__ == "__main__":
     cid, secret = get_client_credentials()
