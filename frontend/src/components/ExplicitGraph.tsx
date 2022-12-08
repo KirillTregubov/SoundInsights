@@ -31,13 +31,19 @@ export default function ExplicitGraph(props: any) {
           cx="50%"
           cy="50%"
           outerRadius={50}
-          fill="#8884d8"
+          fill="currentColor"
+          stroke="currentColor"
           label
           animationDuration={750}>
           {data.map((entry, index) => (
             <Cell
               key={`cell-${index}`}
-              fill={entry.name === 'yes' ? 'red' : 'green'}
+              className={`${
+                entry.name === 'yes'
+                  ? 'fill-red-500 dark:!fill-red-700'
+                  : 'fill-green-500 dark:!fill-green-700'
+              }`}
+              // fill={entry.name === 'yes' ? '#ef4444' : 'green'}
             />
           ))}
         </Pie>

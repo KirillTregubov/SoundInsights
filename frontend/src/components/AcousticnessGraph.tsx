@@ -36,21 +36,21 @@ export default function AcousticnessGraph(props: any) {
     })
 
   return (
-    <ResponsiveContainer width="100%" height={250}>
+    <ResponsiveContainer width="100%" height={300}>
       <BarChart
         data={acousticness}
-        margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+        margin={{ top: 15, right: 15, left: -10, bottom: 16 }}>
         <CartesianGrid strokeDasharray="3 3" vertical={false} />
-        <XAxis />
-        <YAxis />
+        <XAxis stroke="currentColor" />
+        <YAxis stroke="currentColor" />
         <Tooltip content={<CustomTooltip />} />
-        <Bar dataKey="value" fill="#8884d8" />
+        <Bar dataKey="value" fill="#1DB954" />
       </BarChart>
     </ResponsiveContainer>
   )
 }
 
-const CustomTooltip = ({ active, payload, label }) => {
+const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     const track = payload[0]?.payload?.track
     return (

@@ -26,7 +26,6 @@ const RecommendedTracks: React.FC = () => {
       enabled: false,
       retry: false,
       onSuccess: () => {
-        setSelectedPlaylist(null)
         setTimeout(() => {
           const element = document.getElementById('recommendations')
           if (element) element.scrollIntoView()
@@ -116,6 +115,7 @@ const RecommendedTracks: React.FC = () => {
                 key={track.uri}
                 track={track}
                 isSpotifyLink={true}
+                className="clickable rounded-md px-2 hover:bg-neutral-100 dark:hover:bg-neutral-800"
               />
             ))}
           </div>

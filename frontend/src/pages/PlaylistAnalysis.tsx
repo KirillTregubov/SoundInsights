@@ -76,45 +76,44 @@ const PlaylistAnalysis: React.FC = () => {
               .pop()!}`}
             target="_blank"
             rel="noreferrer"
-            className={`cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-700`}>
-            <div className="mb-3 flex w-full max-w-full items-center gap-4 rounded-xl bg-neutral-100 p-4 dark:bg-neutral-800">
-              {/* <details>
+            className={` clickable mb-3 flex w-full max-w-full cursor-pointer items-center gap-4 rounded-xl bg-neutral-100 p-4 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700`}>
+            {/* <details>
                 <pre>{JSON.stringify(data.playlist, null, 2)}</pre>
               </details> */}
-              <img
-                className="h-32 w-32 rounded-lg"
-                src={data.playlist.image}
-                alt="Cover art"
-              />
-              <div className="flex-1 overflow-hidden">
-                <div className="mb-3 flex items-end">
-                  <div>
-                    <h1 className="overflow-hidden overflow-ellipsis whitespace-nowrap text-lg font-medium">
-                      {data.playlist.name}
-                    </h1>
-                    <div className="overflow-hidden overflow-ellipsis whitespace-nowrap  dark:text-neutral-400">
-                      {data.playlist.owner}
-                    </div>
-                  </div>
-                  <div
-                    className="ml-auto flex max-w-full cursor-default items-center gap-1 overflow-hidden overflow-ellipsis break-words dark:text-neutral-400"
-                    title={`${new Intl.NumberFormat().format(
-                      data.playlist.followers
-                    )} followers`}>
-                    <UserGroupIcon className="h-4 w-4" />
-                    <span>
-                      {new Intl.NumberFormat('en-CA', {
-                        notation: 'compact',
-                        compactDisplay: 'short'
-                      }).format(data.playlist.followers)}
-                    </span>
+            <img
+              className="h-32 w-32 rounded-lg"
+              src={data.playlist.image}
+              alt="Cover art"
+            />
+            <div className="flex-1 overflow-hidden">
+              <div className="mb-3 flex items-end">
+                <div>
+                  <h1 className="overflow-hidden overflow-ellipsis whitespace-nowrap text-lg font-medium">
+                    {data.playlist.name}
+                  </h1>
+                  <div className="overflow-hidden overflow-ellipsis whitespace-nowrap  dark:text-neutral-400">
+                    {data.playlist.owner}
                   </div>
                 </div>
-                <div className="max-w-full overflow-hidden overflow-ellipsis break-words dark:text-neutral-400">
-                  {data.playlist.description}
+                <div
+                  className="ml-auto flex max-w-full cursor-default items-center gap-1 overflow-hidden overflow-ellipsis break-words dark:text-neutral-400"
+                  title={`${new Intl.NumberFormat().format(
+                    data.playlist.followers
+                  )} followers`}>
+                  <UserGroupIcon className="h-4 w-4" />
+                  <span>
+                    {new Intl.NumberFormat('en-CA', {
+                      notation: 'compact',
+                      compactDisplay: 'short'
+                    }).format(data.playlist.followers)}
+                  </span>
                 </div>
+              </div>
+              <div className="max-w-full overflow-hidden overflow-ellipsis break-words dark:text-neutral-400">
+                {data.playlist.description}
+              </div>
 
-                {/* <div className="overflow-hidden overflow-ellipsis dark:text-neutral-400/90">
+              {/* <div className="overflow-hidden overflow-ellipsis dark:text-neutral-400/90">
                   <span className="whitespace-nowrap after:content-[',\00a0'] [&:last-child]:after:content-['']">
                     {data.playlist.description}
                      && (
@@ -122,7 +121,6 @@ const PlaylistAnalysis: React.FC = () => {
                     ) 
                   </span>
                 </div> */}
-              </div>
             </div>
           </a>
           <h3 className="text-lg font-medium">
@@ -146,7 +144,9 @@ const PlaylistAnalysis: React.FC = () => {
             setChosen={handleClick}
           />
           {isLoadingPlaylists ? (
-            <Loading />
+            <div className="flex h-full w-full items-center justify-center p-6">
+              <Loading />
+            </div>
           ) : (
             <div className="mt-3">
               <h1 className="my-1 mt-3 text-lg font-medium">Top Playlists</h1>

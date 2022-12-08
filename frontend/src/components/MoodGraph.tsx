@@ -5,7 +5,6 @@ import {
   XAxis,
   YAxis,
   Scatter,
-  ReferenceLine,
   Label
 } from 'recharts'
 
