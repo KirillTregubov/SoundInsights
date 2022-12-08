@@ -15,11 +15,7 @@ def test_continue_playlist_valid_input():
                "spotify:track:5TDEIDElkU2hrMnusjPLNu"]
     
     ret = continue_playlist(my_uris)
-    docker = os.environ.get("USING_DOCKER")
-    if type(docker) == str and docker.lower() == 'true':
-        assert(len(ret) == 10)
-    else:
-        assert(len(ret) == 0)
+    assert(len(ret) == 10)
     for uri in ret:
         assert(uri.startswith("spotify:track:"))
 
