@@ -54,7 +54,7 @@ export default function AverageStats(props: any) {
           <div className="flex w-full items-baseline">
             <span className="mr-1 block text-lg font-semibold">
               {durationAvg ? (
-                new Intl.DateTimeFormat('en-GB', {
+                new Intl.DateTimeFormat('default', {
                   timeZone: 'Etc/UTC',
                   hour12: false,
                   minute: '2-digit',
