@@ -10,8 +10,6 @@ interface ErrorType {
 const ErrorPage: React.FC = () => {
   const error = useRouteError() as ErrorType
 
-  // console.log(error, error.message)
-
   const errorMessage =
     (error.statusText && error.statusText.length > 0 && `{error.statusText}`) ||
     error.message ||

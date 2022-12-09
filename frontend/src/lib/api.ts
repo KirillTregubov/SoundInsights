@@ -57,6 +57,7 @@ export const getRecommendedTracks = async (
     TracksValidator.parse(data)
   } catch (error) {
     if (error instanceof z.ZodError) {
+      toastError('Check console for error')
       console.log(error.issues)
       throw new Error(`Type error ${JSON.stringify(error.issues)}`)
     }
@@ -85,6 +86,7 @@ export const getRecommendedPlaylistTracks = async (id: string) => {
     TracksValidator.parse(data)
   } catch (error) {
     if (error instanceof z.ZodError) {
+      toastError('Check console for error')
       console.log(error.issues)
       throw new Error(`Type error ${JSON.stringify(error.issues)}`)
     }
@@ -104,6 +106,7 @@ export const getTopPlaylists = async () => {
     PlaylistsValidator.parse(data)
   } catch (error) {
     if (error instanceof z.ZodError) {
+      toastError('Check console for error')
       console.log(error.issues)
       throw new Error(`Type error ${JSON.stringify(error.issues)}`)
     }
