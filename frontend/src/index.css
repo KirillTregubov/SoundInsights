@@ -27,6 +27,15 @@ html {
   @apply outline-none;
 }
 
+.animation-fade {
+  animation: fadein 500ms ease-out;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 .animate-entrance {
   animation-duration: 0.5s;
   animation-name: entrance;

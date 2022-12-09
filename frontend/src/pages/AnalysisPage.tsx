@@ -62,7 +62,7 @@ const AnalysisPage: React.FC = () => {
                 .pop()!}`}
               target="_blank"
               rel="noreferrer"
-              className={`animate-entrance clickable flex w-full max-w-full cursor-pointer items-center gap-5 rounded-xl bg-neutral-100 p-4 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700`}>
+              className="animate-entrance clickable flex w-full max-w-full cursor-pointer items-center gap-5 rounded-xl bg-neutral-100 p-4 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700">
               <img
                 className="h-32 w-32 select-none rounded-lg"
                 src={data.playlist.image}
