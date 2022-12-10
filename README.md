@@ -69,8 +69,8 @@ Visualization in our app is done in 2 different ways: song recommendations and d
 
 ### Song Recommendations
 Ask our app to recommend you some new songs based on what you give it. There are 2 ways to ask for song recommendations:
-- Search up individual songs you enjoy and get our app to recommend you new songs similar to what you've chosen.
-- Choose a number of playlists from Spotify's top playlists and have our app recommend you new songs similar to what's on those playlists.
+- Search up individual Spotify tracks you enjoy and get our app to recommend you new songs similar to what you've chosen.
+- Choose a Spotify playlist from a predetermined list or search one and have our app recommend you new songs similar to those on the selected playlist.
 
 ### Analyze Spotify's Top Playlists
 Get a visual analysis of various information for the songs in Spotify's top playlists. Some things you can visualize include patterns in mood, genre, tempo, and more.
