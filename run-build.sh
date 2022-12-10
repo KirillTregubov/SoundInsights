@@ -1,5 +1,7 @@
 #!/bin/sh
 
+source init-logging.sh run-build
+
 printf "\033[32mRunning \033[1mDevelopment \033[0;32menvironment\033[0m\n"
 
 if ! docker -v >/dev/null 2>&1; then
@@ -7,8 +9,19 @@ if ! docker -v >/dev/null 2>&1; then
   exit 1
 fi
 
+start="$(date "+%Y-%m-%d--%H-%M-%S")"
+
 clean_up () {
+  exec &> /dev/tty
   printf "\n\033[32mRemoving \033[1;36mDocker \033[0;32mcontainers\033[0m\n\n"
+  if [ ! -d "logs" ]
+    then mkdir logs
+  fi
+  if [ ! -d "logs/backend" ]
+    then mkdir logs/backend
+  fi
+  docker cp backend:/app/logfile logs/backend/$start.log
+  rm backend/logfile
   docker compose down -v --rmi all --remove-orphans
   trap "" EXIT
   exit 0

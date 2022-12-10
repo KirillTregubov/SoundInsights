@@ -9,7 +9,7 @@
   </div>
   <h2 align="center">Team Ez2Type</h2>
   <p align="center">
-    A group project for UofT course CSC302 that uses the Spotify Million Playlist Dataset to display interesting and meaningful results.
+    A University of Toronto group project for CSC302 that displays interesting and meaningful results about your Spotify listening habits.
     <div>
       <a href="https://github.com/KirillTregubov/csc302/tree/main/docs">Meeting Notes</a>
       ·
@@ -23,12 +23,13 @@
 
 <!-- TABLE OF CONTENTS -->
 
-### Table of Contents
+## Table of Contents
 
-- [Assignment 2](#assignment-2)
-- [Assignment 1](#assignment-1)
+- [A3 Deliverable](#a3-deliverable)
+- [Guide](#guide)
 - [Features](#features)
-- [Planned Features](#planned-features)
+- [Our Dataset](#our-dataset)
+- [Roadmap](#roadmap)
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
   - [Linux](#linux)
@@ -40,42 +41,52 @@
   - [macOS and Windows](#macos--windows-wsl)
   - [Troubleshooting](#troubleshooting-1)
   - [Other Scripts](#other-scripts)
+- [Features we Missed](#features-we-missed)
+- [Legacy Documents](#legacy-documents)
 - [License](#license)
 - [Maintainers](#maintainers)
 
 <div id="top"></div>
 
-## Assignment 2
+## A3 Deliverable
+This section contains some stuff regarding A3 for your convenience.
+- [Our project's goals + a guide on how to use our web app](#guide).
+- [Elaboration of our dataset](#our-dataset).
+- [Features that weren't delivered](#features-we-missed).
+- [Meeting Notes](https://github.com/KirillTregubov/csc302/tree/main/docs) from weeks 9 to 11 are for A3.
+- [A2 blameless postmortem](docs/A2Postmortem.md).
 
-All detailed information related to Assignment 2 not covered on this page can be found in [this document](docs/A2Deliverable.md), including a description of what we planned to implement in A2 as well as a progress report on our milestones.
+## Guide
+Our goal with visualization is to open people's eyes to why they listen to the music they listen to; to satiate their curiosity of their own listening trends. Ever wondered why you're putting that one artist's tracks on repeat 24/7? Plug their songs into our visual analysis systems and get some insight into what audio percs you're so enamored with. You might even find some new songs to get addicted to in the process!
 
-To properly run our app, you'll need to have the correct secret values on your machine. We decided the easiest way to safely pass you these secret values is to upload them via the A2 quercus submission. **Please check Eddie Shao's A2 quercus submission to get these secret values as well as the instructions on how to use them in our project.**
+To properly run our app, you'll need to have the correct secret values on your machine. We decided the easiest way to safely pass you these secret values is to upload them via the A3 quercus submission. **Please check Eddie Shao's A3 quercus submission to get these secret values as well as the instructions on how to use them in our project.**
 
-Meeting notes for A2 are weeks 5-8. Roadmap and tech stack are the same as from A1.
+Once you have the secrets set up, go through the [Installation](#installation) and [Usage (build)](#usage) instructions. The "Get Song Recommendations" and "Get Playlist Recommendations" features will recommend songs to you and the "Analysis of Top Playlists" feature will show some visual analysis about Spotify's top playlists. More information about these in the [features](#features) section.
 
-## Assignment 1
-
-We have created a [Blameless Postmortem](docs/A1Postmortem.md) to reflect on our experience working on A1 and how we can improve our processes for future deliverables.
+Visualization in our app is done in 2 different ways: song recommendations and data analysis using [Recharts](https://recharts.org/en-US/).
 
 ## Features
 
-- **Get recommended tracks**: Provide up to 5 Spotify tracks and get recommended tracks based on an ML model.
+### Song Recommendations
+Ask our app to recommend you some new songs based on what you give it. There are 2 ways to ask for song recommendations:
+- Search up individual songs you enjoy and get our app to recommend you new songs similar to what you've chosen.
+- Choose a number of playlists from Spotify's top playlists and have our app recommend you new songs similar to what's on those playlists.
 
-## Planned Features
+### Analyze Spotify's Top Playlists
+Get a visual analysis of various information for the songs in Spotify's top playlists. Some things you can visualize include patterns in mood, genre, tempo, and more.
+
+## Our Dataset
+The dataset we used is Spotify. More specifically, we used both the [Spotify Million Playlist](https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge) dataset and [Spotify API](https://developer.spotify.com/documentation/web-api/) in tandem.
+- The Spotify Million Playlist dataset is used to train our machine learning model. This model is what powers our song recommendation system.
+- The Spotify API is our data source for songs and playlists that we run visual analyses on. Through the Spotify API, we have access to audio and meta information which we use to display trends and patterns.
+
+## Roadmap
 
 Our [Roadmap](https://github.com/users/KirillTregubov/projects/1/) shows all our tasks labelled by status (complete, in progress, not started), assignee, and milestone.
 
 ## Tech Stack
 
-[Tech Stack](docs/TechStack.md) contains detailed information about the technologies we are using including Pros, Cons and Alternatives.
-
-### Dataset
-
-The [Spotify Million Playlist Dataset](https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge) and the [Spotify Web API](https://developer.spotify.com/documentation/web-api/).
-
-### Database
-
-[![SQLITE](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white)](https://www.sqlite.org/index.html)
+Here is an overview of our tech stack. Detailed information (pros, cons, alternatives, etc.) can be found in [this document](docs/TechStack.md).
 
 ### Frontend
 
@@ -95,12 +106,6 @@ The [Spotify Million Playlist Dataset](https://www.aicrowd.com/challenges/spotif
 ### CI
 
 [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-%232671E5?logo=github-actions&logoColor=white)]()
-
-## A2 Deliverable
-
-Here is the [document](https://github.com/KirillTregubov/csc302/blob/main/docs/A2Deliverable.md) containing a description of what we planned to implement in A2 as well as the progress report on our milestones.
-
-Please consult the links above for our meeting notes, tech stack, and roadmap. Meeting notes for A2 are weeks 5-8. Roadmap and tech stack are the same as from A1.
 
 ## Installation
 
@@ -183,6 +188,18 @@ To run linting for both the frontend and backend, execute:
 ```sh
 bash ./run-lint.sh
 ```
+
+## Features we Missed
+
+### Analyze Your Spotify Account
+Originally, we planned to also visualize data about a user's Spotify account (listening habits, song patterns, etc.). However, due to problems with time and Spotify authorization, we couldn't implement this.
+
+User data visualization was the last item on our todo list, so we held off on researching it until later on. Unfortunately, we found out too late that the Spotify authorization we adopted in our project didn't allow us to do general user authentication. We didn't have time to re-implement the authorization flow again, so we decided to scrap that idea and analyze public data instead.
+
+## Legacy Documents
+
+- [A2 Deliverable](https://github.com/KirillTregubov/csc302/blob/main/docs/A2Deliverable.md)
+- [A1 Postmortem](docs/A1Postmortem.md)
 
 ## License
 
