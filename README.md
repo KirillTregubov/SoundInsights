@@ -9,7 +9,7 @@
   </div>
   <h2 align="center">Team Ez2Type</h2>
   <p align="center">
-    A University of Toronto group project for CSC302 that displays interesting and meaningful results about your Spotify listening habits.
+    A University of Toronto group project for CSC302 that generates recommendations based on Spotify tracks and playlists and has a playlist analyzer that displays interesting visualizations.
     <div>
       <a href="https://github.com/KirillTregubov/csc302/tree/main/docs">Meeting Notes</a>
       ·
