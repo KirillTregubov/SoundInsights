@@ -59,7 +59,9 @@ This section contains some stuff regarding A3 for your convenience.
 ## Guide
 Our goal with visualization is to open people's eyes to why they listen to the music they listen to; to satiate their curiosity of their own listening trends. Ever wondered why you're putting that one artist's tracks on repeat 24/7? Plug their songs into our visual analysis systems and get some insight into what audio percs you're so enamored with. You might even find some new songs to get addicted to in the process!
 
-To get started with our app, first go through the [installation](#installation). After that, run `bash run-build.sh` and head to `http://localhost:5000/` on your browser to open the web app. The "Get Song Recommendations" and "Get Playlist Recommendations" features will recommend songs to you and the "Analysis of Top Playlists" feature will show some visual analysis about Spotify's top playlists. More information about these in the [features](#features) section.
+To properly run our app, you'll need to have the correct secret values on your machine. We decided the easiest way to safely pass you these secret values is to upload them via the A3 quercus submission. **Please check Eddie Shao's A3 quercus submission to get these secret values as well as the instructions on how to use them in our project.**
+
+Once you have the secrets set up, go through the [Installation](#installation) and [Usage (build)](#usage) instructions. The "Get Song Recommendations" and "Get Playlist Recommendations" features will recommend songs to you and the "Analysis of Top Playlists" feature will show some visual analysis about Spotify's top playlists. More information about these in the [features](#features) section.
 
 Visualization in our app is done in 2 different ways: song recommendations and data analysis using [Recharts](https://recharts.org/en-US/).
 
