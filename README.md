@@ -9,7 +9,7 @@
   </div>
   <h2 align="center">Team Ez2Type</h2>
   <p align="center">
-    A University of Toronto group project for CSC302 that displays interesting and meaningful results about your Spotify listening habits.
+    A University of Toronto group project for CSC302 that generates recommendations based on Spotify tracks and playlists and has a playlist analyzer that displays interesting visualizations.
     <div>
       <a href="https://github.com/KirillTregubov/csc302/tree/main/docs">Meeting Notes</a>
       ·
@@ -53,13 +53,15 @@ This section contains some stuff regarding A3 for your convenience.
 - [Our project's goals + a guide on how to use our web app](#guide).
 - [Elaboration of our dataset](#our-dataset).
 - [Features that weren't delivered](#features-we-missed).
-- Meeting notes from weeks 9 to 11 are for A3.
+- [Meeting Notes](https://github.com/KirillTregubov/csc302/tree/main/docs) from weeks 9 to 11 are for A3.
 - [A2 blameless postmortem](docs/A2Postmortem.md).
 
 ## Guide
 Our goal with visualization is to open people's eyes to why they listen to the music they listen to; to satiate their curiosity of their own listening trends. Ever wondered why you're putting that one artist's tracks on repeat 24/7? Plug their songs into our visual analysis systems and get some insight into what audio percs you're so enamored with. You might even find some new songs to get addicted to in the process!
 
-To get started with our app, first go through the [installation](#installation). After that, run `bash run-build.sh` and head to `http://localhost:5000/` on your browser to open the web app. The "Get Song Recommendations" and "Get Playlist Recommendations" features will recommend songs to you and the "Analysis of Top Playlists" feature will show some visual analysis about Spotify's top playlists. More information about these in the [features](#features) section.
+To properly run our app, you'll need to have the correct secret values on your machine. We decided the easiest way to safely pass you these secret values is to upload them via the A3 quercus submission. **Please check Eddie Shao's A3 quercus submission to get these secret values as well as the instructions on how to use them in our project.**
+
+Once you have the secrets set up, go through the [Installation](#installation) and [Usage (build)](#usage) instructions. The "Get Song Recommendations" and "Get Playlist Recommendations" features will recommend songs to you and the "Analysis of Top Playlists" feature will show some visual analysis about Spotify's top playlists. More information about these in the [features](#features) section.
 
 Visualization in our app is done in 2 different ways: song recommendations and data analysis using [Recharts](https://recharts.org/en-US/).
 
@@ -67,8 +69,8 @@ Visualization in our app is done in 2 different ways: song recommendations and d
 
 ### Song Recommendations
 Ask our app to recommend you some new songs based on what you give it. There are 2 ways to ask for song recommendations:
-- Search up individual songs you enjoy and get our app to recommend you new songs similar to what you've chosen.
-- Choose a number of playlists from Spotify's top playlists and have our app recommend you new songs similar to what's on those playlists.
+- Search up individual Spotify tracks you enjoy and get our app to recommend you new songs similar to what you've chosen.
+- Choose a Spotify playlist from a predetermined list or search one and have our app recommend you new songs similar to those on the selected playlist.
 
 ### Analyze Spotify's Top Playlists
 Get a visual analysis of various information for the songs in Spotify's top playlists. Some things you can visualize include patterns in mood, genre, tempo, and more.

@@ -25,4 +25,7 @@ jobs:
           pip install pytest
           pip install -r requirements.txt
       - name: Test with pytest
+        env:
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         run: PYTHONPATH=. pytest

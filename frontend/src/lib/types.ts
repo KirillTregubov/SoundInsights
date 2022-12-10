@@ -14,9 +14,11 @@ export const TrackValidator = z
     explicit: z.boolean()
   })
   .strict()
+
 export type Track = z.infer<typeof TrackValidator>
 
 export const TracksValidator = TrackValidator.array()
+
 export type Tracks = z.infer<typeof TracksValidator>
 
 export const DemoQuery = z
@@ -25,3 +27,20 @@ export const DemoQuery = z
     result: z.number()
   })
   .strict()
+
+export const PlaylistValidator = z
+  .object({
+    name: z.string(),
+    uri: z.string(),
+    owner: z.string(),
+    image: z.string().url(),
+    color: z.string().nullable(),
+    // tracks: z.infer<typeof TracksValidator>
+    description: z.string().nullable(),
+    followers: z.number()
+  })
+  .strict()
+
+export type Playlist = z.infer<typeof PlaylistValidator>
+
+export const PlaylistsValidator = PlaylistValidator.array()

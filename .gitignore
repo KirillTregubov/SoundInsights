@@ -7,3 +7,6 @@
 get-docker.sh
 Docker.dmg
 installer.exe
+
+# Log files
+/logs
