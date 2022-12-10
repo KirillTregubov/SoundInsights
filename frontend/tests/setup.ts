@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
-import { afterAll, afterEach, beforeAll, vi } from 'vitest'
+import { afterAll, afterEach, beforeAll } from 'vitest'
 
 const responses = {
   'recommend-tracks': [
@@ -47,4 +47,5 @@ beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
 afterAll(() => server.close())
 afterEach(() => server.resetHandlers())
 
-window.scrollTo = vi.fn()
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+window.scrollTo = () => {}
