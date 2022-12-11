@@ -48,6 +48,20 @@
 
 <div id="top"></div>
 
+## Screenshots
+<details><summary>Desktop Screenshots</summary>
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/KirillTregubov/csc302/blob/main/assets/recommendation-dark.png">
+      <source media="(prefers-color-scheme: light)" srcset="https://github.com/KirillTregubov/csc302/blob/main/assets/recommendation.png">
+      <img alt="Screenshot of the Track Recommendations" src="https://github.com/KirillTregubov/csc302/blob/main/assets/recommendation-dark.png">
+    </picture>
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/KirillTregubov/csc302/blob/main/assets/analysis-dark.png">
+      <source media="(prefers-color-scheme: light)" srcset="https://github.com/KirillTregubov/csc302/blob/main/assets/analysis.png">
+      <img alt="Screenshot of the Playlist Analysis Report" src="https://github.com/KirillTregubov/csc302/blob/main/assets/analysis-dark.png">
+    </picture>
+</details>
+
 ## A3 Deliverable
 This section contains some stuff regarding A3 for your convenience.
 - [Our project's goals + a guide on how to use our web app](#guide).
