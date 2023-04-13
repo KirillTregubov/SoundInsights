@@ -7,9 +7,9 @@
   <div align="center">
     <a href="docs/IconCopyright.md">Icon Copyright</a>
   </div>
-  <h2 align="center">Team Ez2Type</h2>
+  <h2 align="center">Sound Insights</h2>
   <p align="center">
-    A University of Toronto group project for CSC302 that generates recommendations based on Spotify tracks and playlists and has a playlist analyzer that displays interesting visualizations.
+    Find your next sound based on your favourite tracks or see all the interesting details about that one playlist you just can't get enough of. This is a University of Toronto group project for CSC302 that generates recommendations based on Spotify tracks and playlists and has a Spotify playlist analyzer that displays interesting visualizations.
     <div>
       <a href="https://github.com/KirillTregubov/csc302/tree/main/docs">Meeting Notes</a>
       ·
@@ -25,6 +25,7 @@
 
 ## Table of Contents
 
+- [Screenshots](#screenshots)
 - [A3 Deliverable](#a3-deliverable)
 - [Guide](#guide)
 - [Features](#features)
@@ -49,18 +50,20 @@
 <div id="top"></div>
 
 ## Screenshots
-<details><summary>Desktop Screenshots</summary>
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/KirillTregubov/csc302/blob/main/assets/recommendation-dark.png">
-      <source media="(prefers-color-scheme: light)" srcset="https://github.com/KirillTregubov/csc302/blob/main/assets/recommendation.png">
-      <img alt="Screenshot of the Track Recommendations" src="https://github.com/KirillTregubov/csc302/blob/main/assets/recommendation-dark.png">
-    </picture>
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/KirillTregubov/csc302/blob/main/assets/analysis-dark.png">
-      <source media="(prefers-color-scheme: light)" srcset="https://github.com/KirillTregubov/csc302/blob/main/assets/analysis.png">
-      <img alt="Screenshot of the Playlist Analysis Report" src="https://github.com/KirillTregubov/csc302/blob/main/assets/analysis-dark.png">
-    </picture>
-</details>
+
+### Desktop Screenshots
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/KirillTregubov/csc302/blob/main/assets/recommendation-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/KirillTregubov/csc302/blob/main/assets/recommendation.png">
+  <img alt="Screenshot of the Track Recommendations" src="https://github.com/KirillTregubov/csc302/blob/main/assets/recommendation-dark.png">
+</picture>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/KirillTregubov/csc302/blob/main/assets/analysis-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/KirillTregubov/csc302/blob/main/assets/analysis.png">
+  <img alt="Screenshot of the Playlist Analysis Report" src="https://github.com/KirillTregubov/csc302/blob/main/assets/analysis-dark.png">
+</picture>
+
 
 ## A3 Deliverable
 This section contains some stuff regarding A3 for your convenience.
