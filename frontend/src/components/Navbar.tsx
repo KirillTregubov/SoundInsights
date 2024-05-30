@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
           src="/assets/icon.svg"
           alt="Project logo"
         />
-        <h1 className="font-semibold">Team Ez2Type</h1>
+        <h1 className="font-semibold">Sound Insights</h1>
       </Link>
       {/* NOTE: We sunset this feature due to issues with Account Authorization
       <div className="pointer-events-auto ml-auto">

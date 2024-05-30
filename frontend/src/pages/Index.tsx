@@ -12,7 +12,7 @@ const Index: React.FC = () => {
           />
           <div>
             <h1 className="whitespace-pre-wrap text-2xl font-semibold">
-              Welcome to the Ez2Type Project
+              Welcome to Sound Insights
             </h1>
             <h2 className="mt-1 text-lg text-neutral-600 dark:text-neutral-400">
               This is a project that aims to help you discover new music and
